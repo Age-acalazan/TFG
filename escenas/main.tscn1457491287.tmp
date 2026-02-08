@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2cvg4o47gmft"]
+
+[ext_resource type="Script" uid="uid://c8hmfle324qdp" path="res://scripts/main.gd" id="1_0kxa1"]
+[ext_resource type="Script" uid="uid://chskd2l34kiev" path="res://scripts/baraja.gd" id="1_d7u15"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_0kxa1")
+
+[node name="Baraja" type="Node" parent="."]
+script = ExtResource("1_d7u15")
+
+[node name="Timer" type="Timer" parent="Baraja"]
+one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+
+[node name="HUD" type="Node2D" parent="."]
+
+[node name="LabelVida" type="Label" parent="HUD"]
+offset_top = 394.0
+offset_right = 289.0
+offset_bottom = 472.0
+theme_override_font_sizes/font_size = 55
+text = "LabelVida"
+
+[node name="LabelArma" type="Label" parent="HUD"]
+offset_top = 476.0
+offset_right = 289.0
+offset_bottom = 552.0
+theme_override_font_sizes/font_size = 55
+text = "LabelArma"
+
+[node name="LabelMonstruoAnterior" type="Label" parent="HUD"]
+offset_left = -2.0
+offset_top = 552.0
+offset_right = 622.0
+offset_bottom = 628.0
+theme_override_font_sizes/font_size = 55
+text = "LabelMonstruoAnterior"
+
+[node name="MonstruoAnterior" type="Sprite2D" parent="HUD"]
+position = Vector2(968, 536)
+
+[node name="CambiarArma" type="Button" parent="HUD"]
+offset_left = 16.0
+offset_top = 296.0
+offset_right = 232.0
+offset_bottom = 384.0
+
+[connection signal="carta_clicada" from="Baraja" to="." method="_on_baraja_carta_clicada"]
+[connection signal="timeout" from="Baraja/Timer" to="Baraja" method="_on_timer_timeout"]
+[connection signal="pressed" from="HUD/CambiarArma" to="." method="_on_cambiar_arma_pressed"]

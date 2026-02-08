@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://201tv4dy3mr2"]
+
+[ext_resource type="Script" uid="uid://clq22wtips7ws" path="res://scripts/carta.gd" id="1_yo80u"]
+[ext_resource type="Texture2D" uid="uid://bannrseusddki" path="res://assets/sprites/monstruos/1p.png" id="2_sllcx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_up28s"]
+size = Vector2(17.592592, 17.543861)
+
+[node name="Carta" type="Node2D"]
+script = ExtResource("1_yo80u")
+valor = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_sllcx")
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(11.4, 11.4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+position = Vector2(0, 1.5685433e-08)
+shape = SubResource("RectangleShape2D_up28s")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
