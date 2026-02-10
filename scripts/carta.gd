@@ -17,10 +17,6 @@ func _ready():
 
 func _process(_delta: float) -> void:
 	pass
-	#if !collision_shape_2d.disabled:
-		#sprite_2d.set_modulate(Color(1,1,1,1))
-	#else:
-		#sprite_2d.set_modulate(Color.RED)
 
 
 # Cuando se clica

@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://c4q07m8nnmxng"]
+
+[ext_resource type="Script" uid="uid://ngr6bjdjnvnf" path="res://scripts/menu.gd" id="1_vdanu"]
+
+[node name="Menu" type="Node2D" unique_id=2043182576]
+script = ExtResource("1_vdanu")
+
+[node name="Jugar" type="Button" parent="." unique_id=935869368]
+offset_left = 64.0
+offset_top = 128.0
+offset_right = 421.0
+offset_bottom = 221.0
+text = "JUGAR"
+
+[node name="TablaClasificacion" type="Button" parent="." unique_id=52301222]
+offset_left = 64.0
+offset_top = 256.0
+offset_right = 421.0
+offset_bottom = 349.0
+text = "TABLA DE CLASIFICACIONES"
+
+[node name="ComoJugar" type="Button" parent="." unique_id=919301113]
+offset_left = 64.0
+offset_top = 384.0
+offset_right = 421.0
+offset_bottom = 477.0
+text = "CÓMO JUGAR
+"
+
+[node name="PopupComoJugar" type="RichTextLabel" parent="ComoJugar" unique_id=1532880347]
+visible = false
+layout_mode = 0
+offset_left = 408.0
+offset_top = -376.0
+offset_right = 1080.0
+offset_bottom = 256.0
+theme_override_font_sizes/normal_font_size = 40
+text = "TUTORIAL DE CÓMO JUGARRRRR"
+
+[node name="Panel" type="Panel" parent="ComoJugar/PopupComoJugar" unique_id=1917885997]
+layout_mode = 0
+offset_right = 672.0
+offset_bottom = 632.0
+
+[node name="Creditos" type="Button" parent="." unique_id=2030521444]
+offset_left = 64.0
+offset_top = 512.0
+offset_right = 421.0
+offset_bottom = 605.0
+text = "CREDITOS"
+
+[node name="PopupCreditos" type="RichTextLabel" parent="Creditos" unique_id=1749266686]
+visible = false
+layout_mode = 0
+offset_left = 408.0
+offset_top = -504.0
+offset_right = 1080.0
+offset_bottom = 128.0
+theme_override_font_sizes/normal_font_size = 40
+text = "CREDITOSSSSSSSSSSSSSSSS"
+
+[node name="Panel" type="Panel" parent="Creditos/PopupCreditos" unique_id=1949611291]
+layout_mode = 0
+offset_right = 672.0
+offset_bottom = 632.0
+
+[connection signal="button_up" from="Jugar" to="." method="_on_jugar_button_up"]
+[connection signal="button_up" from="ComoJugar" to="." method="_on_como_jugar_button_up"]
+[connection signal="button_up" from="Creditos" to="." method="_on_creditos_button_up"]

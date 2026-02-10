@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://d2cvg4o47gmft"]
 
-[ext_resource type="Script" uid="uid://c8hmfle324qdp" path="res://scripts/main.gd" id="1_0kxa1"]
-[ext_resource type="Script" uid="uid://chskd2l34kiev" path="res://scripts/baraja.gd" id="1_d7u15"]
+[ext_resource type="Script" uid="uid://c8hmfle324qdp" path="res://scripts/gamemanager.gd" id="1_yhx8l"]
+[ext_resource type="Script" uid="uid://chskd2l34kiev" path="res://scripts/baraja.gd" id="2_myoha"]
 
-[node name="Main" type="Node2D" unique_id=1617940892]
-script = ExtResource("1_0kxa1")
+[node name="GameManager" type="Node2D" unique_id=1617940892]
+script = ExtResource("1_yhx8l")
 
 [node name="Baraja" type="Node" parent="." unique_id=357491028]
-script = ExtResource("1_d7u15")
+script = ExtResource("2_myoha")
 
 [node name="Timer" type="Timer" parent="Baraja" unique_id=83994421]
 one_shot = true
