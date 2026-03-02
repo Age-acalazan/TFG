@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c4q07m8nnmxng"]
 
 [ext_resource type="Script" uid="uid://ngr6bjdjnvnf" path="res://scripts/menu.gd" id="1_vdanu"]
+[ext_resource type="Script" uid="uid://drbp8gvrbbvra" path="res://escenas/save_manager.gd" id="2_d7r87"]
 
 [node name="Menu" type="Node2D" unique_id=2043182576]
 script = ExtResource("1_vdanu")
@@ -19,6 +20,84 @@ offset_right = 421.0
 offset_bottom = 349.0
 text = "TABLA DE CLASIFICACIONES"
 
+[node name="Leaderboard" type="VBoxContainer" parent="TablaClasificacion" unique_id=1129719187]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 488.0
+offset_top = -192.0
+offset_right = 1080.0
+offset_bottom = 264.0
+script = ExtResource("2_d7r87")
+
+[node name="Score1" type="RichTextLabel" parent="TablaClasificacion/Leaderboard" unique_id=786635872]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Score"
+fit_content = true
+
+[node name="Score2" type="RichTextLabel" parent="TablaClasificacion/Leaderboard" unique_id=795616159]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Score"
+fit_content = true
+
+[node name="Score3" type="RichTextLabel" parent="TablaClasificacion/Leaderboard" unique_id=501226533]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Score"
+fit_content = true
+
+[node name="Score4" type="RichTextLabel" parent="TablaClasificacion/Leaderboard" unique_id=1363975622]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Score"
+fit_content = true
+
+[node name="Score5" type="RichTextLabel" parent="TablaClasificacion/Leaderboard" unique_id=1238687438]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Score"
+fit_content = true
+
+[node name="Score6" type="RichTextLabel" parent="TablaClasificacion/Leaderboard" unique_id=915495814]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Score"
+fit_content = true
+
+[node name="Score7" type="RichTextLabel" parent="TablaClasificacion/Leaderboard" unique_id=1099521995]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Score"
+fit_content = true
+
+[node name="Score8" type="RichTextLabel" parent="TablaClasificacion/Leaderboard" unique_id=2066315451]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Score"
+fit_content = true
+
+[node name="Score9" type="RichTextLabel" parent="TablaClasificacion/Leaderboard" unique_id=1501875016]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Score"
+fit_content = true
+
+[node name="Score10" type="RichTextLabel" parent="TablaClasificacion/Leaderboard" unique_id=488317284]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Score"
+fit_content = true
+
+[node name="Panel" type="Panel" parent="TablaClasificacion" unique_id=381544872]
+visible = false
+layout_mode = 0
+offset_left = 408.0
+offset_top = -248.0
+offset_right = 1080.0
+offset_bottom = 384.0
+
 [node name="ComoJugar" type="Button" parent="." unique_id=919301113]
 offset_left = 64.0
 offset_top = 384.0
@@ -29,6 +108,7 @@ text = "CÓMO JUGAR
 
 [node name="PopupComoJugar" type="RichTextLabel" parent="ComoJugar" unique_id=1532880347]
 visible = false
+z_index = 1
 layout_mode = 0
 offset_left = 408.0
 offset_top = -376.0
@@ -38,6 +118,7 @@ theme_override_font_sizes/normal_font_size = 40
 text = "TUTORIAL DE CÓMO JUGARRRRR"
 
 [node name="Panel" type="Panel" parent="ComoJugar/PopupComoJugar" unique_id=1917885997]
+z_as_relative = false
 layout_mode = 0
 offset_right = 672.0
 offset_bottom = 632.0
@@ -51,6 +132,7 @@ text = "CREDITOS"
 
 [node name="PopupCreditos" type="RichTextLabel" parent="Creditos" unique_id=1749266686]
 visible = false
+z_index = 1
 layout_mode = 0
 offset_left = 408.0
 offset_top = -504.0
@@ -60,10 +142,12 @@ theme_override_font_sizes/normal_font_size = 40
 text = "CREDITOSSSSSSSSSSSSSSSS"
 
 [node name="Panel" type="Panel" parent="Creditos/PopupCreditos" unique_id=1949611291]
+z_as_relative = false
 layout_mode = 0
 offset_right = 672.0
 offset_bottom = 632.0
 
 [connection signal="button_up" from="Jugar" to="." method="_on_jugar_button_up"]
+[connection signal="button_up" from="TablaClasificacion" to="." method="_on_tabla_clasificacion_button_up"]
 [connection signal="button_up" from="ComoJugar" to="." method="_on_como_jugar_button_up"]
 [connection signal="button_up" from="Creditos" to="." method="_on_creditos_button_up"]

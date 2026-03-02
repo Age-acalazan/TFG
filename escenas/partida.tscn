@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c8hmfle324qdp" path="res://scripts/gamemanager.gd" id="1_yhx8l"]
 [ext_resource type="Script" uid="uid://chskd2l34kiev" path="res://scripts/baraja.gd" id="2_myoha"]
+[ext_resource type="Script" uid="uid://drbp8gvrbbvra" path="res://escenas/save_manager.gd" id="3_myoha"]
 
 [node name="GameManager" type="Node2D" unique_id=1617940892]
 script = ExtResource("1_yhx8l")
@@ -57,8 +58,86 @@ offset_bottom = 272.0
 theme_override_font_sizes/font_size = 35
 text = "Huir de la sala"
 
+[node name="FinPartida" type="Node2D" parent="." unique_id=4094195]
+visible = false
+
+[node name="Letrero" type="Label" parent="FinPartida" unique_id=704552941]
+offset_left = 224.0
+offset_top = 8.0
+offset_right = 928.0
+offset_bottom = 264.0
+theme_override_constants/outline_size = 34
+theme_override_font_sizes/font_size = 100
+text = "HAS MUERTO"
+horizontal_alignment = 1
+
+[node name="Menu" type="Button" parent="FinPartida" unique_id=1657026797]
+offset_left = 320.0
+offset_top = 488.0
+offset_right = 832.0
+offset_bottom = 624.0
+theme_override_font_sizes/font_size = 41
+text = "Volver al menú de inicio"
+
+[node name="Puntos" type="Label" parent="FinPartida" unique_id=356929357]
+offset_left = 256.0
+offset_top = 136.0
+offset_right = 899.0
+offset_bottom = 218.0
+theme_override_font_sizes/font_size = 59
+text = "0 puntos"
+horizontal_alignment = 1
+
+[node name="Leaderboard" type="VBoxContainer" parent="FinPartida" unique_id=229754716]
+offset_left = 408.0
+offset_top = 216.0
+offset_right = 744.0
+offset_bottom = 488.0
+script = ExtResource("3_myoha")
+
+[node name="Score1" type="RichTextLabel" parent="FinPartida/Leaderboard" unique_id=39049399]
+layout_mode = 2
+fit_content = true
+
+[node name="Score2" type="RichTextLabel" parent="FinPartida/Leaderboard" unique_id=969765591]
+layout_mode = 2
+fit_content = true
+
+[node name="Score3" type="RichTextLabel" parent="FinPartida/Leaderboard" unique_id=751894905]
+layout_mode = 2
+fit_content = true
+
+[node name="Score4" type="RichTextLabel" parent="FinPartida/Leaderboard" unique_id=1794278561]
+layout_mode = 2
+fit_content = true
+
+[node name="Score5" type="RichTextLabel" parent="FinPartida/Leaderboard" unique_id=755653218]
+layout_mode = 2
+fit_content = true
+
+[node name="Score6" type="RichTextLabel" parent="FinPartida/Leaderboard" unique_id=1643064686]
+layout_mode = 2
+fit_content = true
+
+[node name="Score7" type="RichTextLabel" parent="FinPartida/Leaderboard" unique_id=1975502891]
+layout_mode = 2
+fit_content = true
+
+[node name="Score8" type="RichTextLabel" parent="FinPartida/Leaderboard" unique_id=1755819005]
+layout_mode = 2
+fit_content = true
+
+[node name="Score9" type="RichTextLabel" parent="FinPartida/Leaderboard" unique_id=1002237563]
+layout_mode = 2
+fit_content = true
+
+[node name="Score10" type="RichTextLabel" parent="FinPartida/Leaderboard" unique_id=567677650]
+layout_mode = 2
+fit_content = true
+
 [connection signal="carta_clicada" from="Baraja" to="." method="_on_baraja_carta_clicada"]
 [connection signal="sala_recargada" from="Baraja" to="." method="_on_baraja_sala_recargada"]
 [connection signal="timeout" from="Baraja/Timer" to="Baraja" method="_on_timer_timeout"]
 [connection signal="pressed" from="HUD/CambiarArma" to="." method="_on_cambiar_arma_pressed"]
 [connection signal="pressed" from="HUD/Huir" to="." method="_on_huir_pressed"]
+[connection signal="button_up" from="FinPartida/Menu" to="." method="_on_menu_button_up"]

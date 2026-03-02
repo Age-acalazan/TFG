@@ -15,10 +15,6 @@ signal carta_clicada(carta : Carta)
 func _ready():
 	$Sprite2D.texture = img
 
-func _process(_delta: float) -> void:
-	pass
-
-
 # Cuando se clica
 func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed:
