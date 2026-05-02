@@ -83,8 +83,8 @@ func victoria():
 	$FinPartida/Letrero.text = "VICTORIA"
 	$FinPartida.visible = true
 	mostrar_puntuacion(vida)
-	$FinPartida.save_score(vida)
-	$FinPartida.show_leaderboard()
+	$FinPartida/Leaderboard.save_score(vida)
+	$FinPartida/Leaderboard.show_leaderboard()
 
 # Función que usa un tween para cambiar poco a poco la puntuación displayeada
 func mostrar_puntuacion(puntos : int):
