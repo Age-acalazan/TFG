@@ -107,7 +107,6 @@ text = "CÓMO JUGAR
 "
 
 [node name="PopupComoJugar" type="RichTextLabel" parent="ComoJugar" unique_id=1532880347]
-visible = false
 z_index = 1
 layout_mode = 0
 offset_left = 408.0
@@ -115,7 +114,36 @@ offset_top = -376.0
 offset_right = 1080.0
 offset_bottom = 256.0
 theme_override_font_sizes/normal_font_size = 40
-text = "TUTORIAL DE CÓMO JUGARRRRR"
+text = "OBJETIVO____________________________
+
+En Scoundrel te encuentras en una mazmorra llena de monstruos. Para ganar, tienes que eliminar a todos los monstruos y llegar al final de la mazmorra. Para lograr esto, tendrás que ir interactuando con distintas cartas que vayas encontrando a lo largo de la mazmorra.
+
+CARTAS______________________________
+
+Las cartas usadas son de la baraja francesa, con 4 palos:
+
+- Los corazones te recuperan vida (hasta 20 puntos). Van del 2 al 10.
+- Los diamantes son armas que te ayudarán a luchar contra monstruos. Van del 2 al 10.
+- Los tréboles y picas son monstruos. Van del 2 al As.
+
+SALAS________________________________
+
+La mazmorra está dividida en salas. Cada sala contiene 4 cartas, de las que tendrás que interactuar con 3 para pasar a la siguiente sala (la restante se \"arrastrará\" a la siguiente sala). Si una sala es muy difícil, mientras esté llena podrás huir de ella para pasar esas cartas al fondo de la mazmorra. No puedes huir 2 veces seguidas.
+
+COMBATE___________________________
+
+Puedes luchar contra un monstruo desarmado o armado.
+
+- Desarmado hará que a tu vida se le reste el daño (el valor de la carta) del 
+monstruo.
+- Armado hará que se ese daño recibido se reduzca según el valor del arma equipada. Si el valor del arma es superior al del mosntruo, se mitiga el daño recibido al completo.
+
+DURACIÓN DE ARMAS______________
+
+Cada vez que te equipes una arma se descarta la anterior.
+
+Cuando usas un arma contra un monstruo, no podrás volver a usar esa misma arma contra otro monstruo con un valor igual o mayor al anterior monstruo derrotado con el arma. En este caso tendrás que o bien equipar una arma nueva o bien luchar desarmado (de forma que no pierdes el arma, pero recibes todo el daño).
+"
 
 [node name="Panel" type="Panel" parent="ComoJugar/PopupComoJugar" unique_id=1917885997]
 z_as_relative = false

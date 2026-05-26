@@ -48,7 +48,7 @@ func _on_baraja_carta_clicada(carta: Carta) -> void:
 			usando_arma = true
 			cambiar_arma.text = "Usando arma"
 			valor_arma = carta.valor
-			valor_monstruo_sobre_arma = 14
+			valor_monstruo_sobre_arma = 15
 			monstruo_anterior.texture = null
 			label_arma.text = "Valor del arma: "+ str(valor_arma)
 			label_monstruo_anterior.text = "Último monstruo sobre arma: Ninguno"
