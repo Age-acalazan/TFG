@@ -4,6 +4,7 @@ extends Node2D
 
 enum PALO { PICAS, TREBOLES, CORAZONES, DIAMANTES, JOKER }
 signal carta_clicada(carta : Carta)
+signal cursor_entra_area_monstruo(carta : Carta)
 @onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var timer: Timer = $Timer
@@ -29,3 +30,14 @@ func poner_en_rojo():
 func _on_timer_timeout() -> void:
 	sprite_2d.set_modulate(Color(1,1,1,1))
 #________________________________________________________________
+
+
+
+func _on_area_2d_mouse_entered():
+	if palo_carta == PALO.PICAS or palo_carta == PALO.TREBOLES:
+		$PrediccionDaño.visible = true
+		emit_signal("cursor_entra_area_monstruo", self)
+
+
+func _on_area_2d_mouse_exited() -> void:
+	$PrediccionDaño.visible = false

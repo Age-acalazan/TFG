@@ -1,6 +1,5 @@
 extends VBoxContainer
 
-
 const SAVE_PATH := "user://leaderboard.json"
 
 func save_score(score: int) -> void:

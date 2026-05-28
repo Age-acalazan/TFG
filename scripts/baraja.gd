@@ -7,6 +7,7 @@ var disable_recargar_sala = false
 @onready var timer: Timer = $Timer
 
 signal carta_clicada(carta : Carta)
+signal _on_cursor_entra_area_monstruo2(carta : Carta)
 signal sala_recargada()
 
 # Called when the node enters the scene tree for the first time.
@@ -42,6 +43,7 @@ func crear_cartas():
 		#add_child(carta)
 		baraja.append(carta) # Añade la carta a la baraja
 		carta.connect("carta_clicada", _on_carta_clicada)
+		carta.connect("cursor_entra_area_monstruo", _on_cursor_entra_area_monstruo)
 		
 		
 		# Monstruo treboles
@@ -53,9 +55,10 @@ func crear_cartas():
 		#add_child(carta)
 		baraja.append(carta) # Añade la carta a la baraja
 		carta.connect("carta_clicada", _on_carta_clicada)
+		carta.connect("cursor_entra_area_monstruo", _on_cursor_entra_area_monstruo)
 		
 		# Los ases y figuras de las cartas rojas no se usan en este juego
-		if n >=2 and n <= 10:
+		if n >=1 and n <= 9:
 			# Vida corazones
 			carta = crear_una_carta(
 				load("res://assets/sprites/vida/"+str(n+1)+"c.png"),
@@ -137,6 +140,10 @@ func mostrar_sala():
 #La señal se reenvía al nodo main y se borra la carta de la baraja
 func _on_carta_clicada(carta: Carta):
 	emit_signal("carta_clicada", carta)
+
+func _on_cursor_entra_area_monstruo(carta: Carta):
+	emit_signal("_on_cursor_entra_area_monstruo2", carta)
+
 
 func huir():
 	#Añade las cartas de la sala al fondo de la baraja

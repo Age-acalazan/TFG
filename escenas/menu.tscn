@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c4q07m8nnmxng"]
 
 [ext_resource type="Script" uid="uid://ngr6bjdjnvnf" path="res://scripts/menu.gd" id="1_vdanu"]
-[ext_resource type="Script" uid="uid://drbp8gvrbbvra" path="res://escenas/save_manager.gd" id="2_d7r87"]
+[ext_resource type="Script" uid="uid://drbp8gvrbbvra" path="res://scripts/save_manager.gd" id="2_d7r87"]
 
 [node name="Menu" type="Node2D" unique_id=2043182576]
 script = ExtResource("1_vdanu")
@@ -107,6 +107,7 @@ text = "CÓMO JUGAR
 "
 
 [node name="PopupComoJugar" type="RichTextLabel" parent="ComoJugar" unique_id=1532880347]
+visible = false
 z_index = 1
 layout_mode = 0
 offset_left = 408.0
@@ -134,8 +135,7 @@ COMBATE___________________________
 
 Puedes luchar contra un monstruo desarmado o armado.
 
-- Desarmado hará que a tu vida se le reste el daño (el valor de la carta) del 
-monstruo.
+- Desarmado hará que a tu vida se le reste el daño (el valor de la carta) del monstruo.
 - Armado hará que se ese daño recibido se reduzca según el valor del arma equipada. Si el valor del arma es superior al del mosntruo, se mitiga el daño recibido al completo.
 
 DURACIÓN DE ARMAS______________
@@ -143,7 +143,10 @@ DURACIÓN DE ARMAS______________
 Cada vez que te equipes una arma se descarta la anterior.
 
 Cuando usas un arma contra un monstruo, no podrás volver a usar esa misma arma contra otro monstruo con un valor igual o mayor al anterior monstruo derrotado con el arma. En este caso tendrás que o bien equipar una arma nueva o bien luchar desarmado (de forma que no pierdes el arma, pero recibes todo el daño).
-"
+
+PUNTUACIÓN_______________________
+
+Cuando pierdas una partida tendrás -X puntos, siendo X la suma del valor de los monstruos que quedan en la mazmorra. Cuando ganes, los puntos serán positivos e iguales a tu vida restante."
 
 [node name="Panel" type="Panel" parent="ComoJugar/PopupComoJugar" unique_id=1917885997]
 z_as_relative = false

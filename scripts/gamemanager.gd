@@ -20,6 +20,7 @@ func _ready():
 	label_arma.text="Sin arma"
 	label_monstruo_anterior.text="Sin monstruo anterior"
 	cambiar_arma.text = "Desarmado"
+	$HUD/LabelRestantes.text = str(baraja.baraja.size()+baraja.sala.size())+"/44"
 
 func _on_baraja_carta_clicada(carta: Carta) -> void:
 	# Reduce o aumenta la vida
@@ -65,8 +66,13 @@ func _on_baraja_carta_clicada(carta: Carta) -> void:
 	baraja.mostrar_sala()
 	baraja.recargar_sala()
 	
+	# Contar cartas restantes
+	$HUD/LabelRestantes.text = str(baraja.baraja.size()+baraja.sala.size())+"/44"
+	
 	if baraja.check_no_mas_cartas() and vida > 0:
 		victoria()
+	
+	
 
 func muerte():
 	baraja.desactivar_cartas()
@@ -135,3 +141,12 @@ func _on_baraja_sala_recargada() -> void:
 
 func _on_menu_button_up() -> void:
 	get_tree().change_scene_to_file("res://escenas/menu.tscn")
+
+func _on_cursor_entra_area_monstruo2(carta: Carta) -> void:
+	var daño : int = 0
+	if usando_arma: # Arma equipada
+		daño = 0 - clampi(carta.valor - valor_arma,0, vidamax)
+	else: # Desarmado
+		daño = 0 - carta.valor
+	#carta.get_node("PrediccionDaño").text = str(daño)+"♥️"
+	#print(carta.get_node("PrediccionDaño").text)
