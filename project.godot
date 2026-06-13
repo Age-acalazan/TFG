@@ -19,6 +19,14 @@ run/main_scene="res://escenas/menu.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://6qbsmiof476l"
+
+[display]
+
+window/stretch/mode="canvas_items"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

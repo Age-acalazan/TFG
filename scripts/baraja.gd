@@ -4,6 +4,7 @@ var carta_escena = preload("res://escenas/carta.tscn")
 var baraja: Array[Carta] = []
 var sala : Array[Carta] = []
 var disable_recargar_sala = false
+var JQKA_numeros : bool = false
 @onready var timer: Timer = $Timer
 
 signal carta_clicada(carta : Carta)
@@ -35,8 +36,8 @@ func crear_cartas():
 			valor = 14
 		
 		# Monstruo picas
-		var carta = crear_una_carta(
-			load("res://assets/sprites/monstruos/"+str(n+1)+"p.png"),
+		var carta = crear_una_carta( #Carga los sprites con números o letras según la variable
+			load("res://assets/sprites/monstruos"+("_numeros/" if JQKA_numeros else "/")+str(n+1)+"p.png"),
 			valor,
 			Carta.PALO.PICAS)
 		#carta.position = Vector2(n*100,150)
@@ -47,8 +48,8 @@ func crear_cartas():
 		
 		
 		# Monstruo treboles
-		carta = crear_una_carta(
-			load("res://assets/sprites/monstruos/"+str(n+1)+"t.png"),
+		carta = crear_una_carta( #Carga los sprites con números o letras según la variable
+			load("res://assets/sprites/monstruos"+("_numeros/" if JQKA_numeros else "/")+str(n+1)+"t.png"),
 			valor,
 			Carta.PALO.TREBOLES)
 		#carta.position = Vector2(n*100+50,150)

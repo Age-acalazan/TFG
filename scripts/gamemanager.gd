@@ -145,8 +145,19 @@ func _on_menu_button_up() -> void:
 func _on_cursor_entra_area_monstruo2(carta: Carta) -> void:
 	var daño : int = 0
 	if usando_arma: # Arma equipada
-		daño = 0 - clampi(carta.valor - valor_arma,0, vidamax)
+		daño = clampi(carta.valor - valor_arma,0, vidamax)
 	else: # Desarmado
-		daño = 0 - carta.valor
-	#carta.get_node("PrediccionDaño").text = str(daño)+"♥️"
-	#print(carta.get_node("PrediccionDaño").text)
+		daño = carta.valor
+	carta.get_node("PrediccionDaño").text = "-"+str(daño)+"♥️"
+
+
+func _on_opciones_button_up() -> void:
+	$HUD.set_visible(false)
+	$Baraja.set_visible(false)
+	$SubmenuOpciones.set_visible(true)
+
+
+func _on_volver_button_up() -> void:
+	$HUD.set_visible(true)
+	$Baraja.set_visible(true)
+	$SubmenuOpciones.set_visible(false)

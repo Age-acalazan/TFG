@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://ngr6bjdjnvnf" path="res://scripts/menu.gd" id="1_vdanu"]
 [ext_resource type="Script" uid="uid://drbp8gvrbbvra" path="res://scripts/save_manager.gd" id="2_d7r87"]
+[ext_resource type="Script" uid="uid://qitdgvaeev8j" path="res://scripts/volumen_musica_slider.gd" id="3_5t3kx"]
+[ext_resource type="AudioStream" uid="uid://bn44ob28pq4c8" path="res://assets/sonidos/musica/More-8-Bit-Drama_Intro.ogg" id="3_6cq3m"]
+[ext_resource type="Script" uid="uid://behqkoko3lua2" path="res://scripts/audio_stream_player.gd" id="4_5t3kx"]
+[ext_resource type="Script" uid="uid://ryi0b7e1aotj" path="res://scripts/check_fullscreen.gd" id="4_56ah5"]
 
 [node name="Menu" type="Node2D" unique_id=2043182576]
 script = ExtResource("1_vdanu")
@@ -9,112 +13,142 @@ script = ExtResource("1_vdanu")
 [node name="Jugar" type="Button" parent="." unique_id=935869368]
 offset_left = 64.0
 offset_top = 128.0
-offset_right = 421.0
+offset_right = 424.0
 offset_bottom = 221.0
 text = "JUGAR"
+
+[node name="SubmenuModificadores" type="Node2D" parent="Jugar" unique_id=307628481 groups=["Submenus"]]
+visible = false
+position = Vector2(408, -120)
+
+[node name="Panel" type="Panel" parent="Jugar/SubmenuModificadores" unique_id=2083655635]
+z_as_relative = false
+offset_right = 672.0
+offset_bottom = 632.0
+
+[node name="JugarSimple" type="Button" parent="Jugar/SubmenuModificadores" unique_id=789509113]
+offset_left = 32.0
+offset_top = 504.0
+offset_right = 320.0
+offset_bottom = 597.0
+text = "PARTIDA SIMPLE"
+
+[node name="JugarModificadores" type="Button" parent="Jugar/SubmenuModificadores" unique_id=722516932]
+offset_left = 352.0
+offset_top = 504.0
+offset_right = 640.0
+offset_bottom = 597.0
+text = "PARTIDA CON MODIFICADORES"
 
 [node name="TablaClasificacion" type="Button" parent="." unique_id=52301222]
 offset_left = 64.0
 offset_top = 256.0
-offset_right = 421.0
+offset_right = 424.0
 offset_bottom = 349.0
 text = "TABLA DE CLASIFICACIONES"
 
-[node name="Leaderboard" type="VBoxContainer" parent="TablaClasificacion" unique_id=1129719187]
+[node name="SubmenuTablaClasificacion" type="Node2D" parent="TablaClasificacion" unique_id=1876467475 groups=["Submenus"]]
 visible = false
-z_index = 1
-layout_mode = 0
-offset_left = 488.0
-offset_top = -192.0
-offset_right = 1080.0
-offset_bottom = 264.0
-script = ExtResource("2_d7r87")
 
-[node name="Score1" type="RichTextLabel" parent="TablaClasificacion/Leaderboard" unique_id=786635872]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 30
-text = "Score"
-fit_content = true
-
-[node name="Score2" type="RichTextLabel" parent="TablaClasificacion/Leaderboard" unique_id=795616159]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 30
-text = "Score"
-fit_content = true
-
-[node name="Score3" type="RichTextLabel" parent="TablaClasificacion/Leaderboard" unique_id=501226533]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 30
-text = "Score"
-fit_content = true
-
-[node name="Score4" type="RichTextLabel" parent="TablaClasificacion/Leaderboard" unique_id=1363975622]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 30
-text = "Score"
-fit_content = true
-
-[node name="Score5" type="RichTextLabel" parent="TablaClasificacion/Leaderboard" unique_id=1238687438]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 30
-text = "Score"
-fit_content = true
-
-[node name="Score6" type="RichTextLabel" parent="TablaClasificacion/Leaderboard" unique_id=915495814]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 30
-text = "Score"
-fit_content = true
-
-[node name="Score7" type="RichTextLabel" parent="TablaClasificacion/Leaderboard" unique_id=1099521995]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 30
-text = "Score"
-fit_content = true
-
-[node name="Score8" type="RichTextLabel" parent="TablaClasificacion/Leaderboard" unique_id=2066315451]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 30
-text = "Score"
-fit_content = true
-
-[node name="Score9" type="RichTextLabel" parent="TablaClasificacion/Leaderboard" unique_id=1501875016]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 30
-text = "Score"
-fit_content = true
-
-[node name="Score10" type="RichTextLabel" parent="TablaClasificacion/Leaderboard" unique_id=488317284]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 30
-text = "Score"
-fit_content = true
-
-[node name="Panel" type="Panel" parent="TablaClasificacion" unique_id=381544872]
-visible = false
-layout_mode = 0
+[node name="Panel" type="Panel" parent="TablaClasificacion/SubmenuTablaClasificacion" unique_id=381544872]
 offset_left = 408.0
 offset_top = -248.0
 offset_right = 1080.0
 offset_bottom = 384.0
 
+[node name="Leaderboard" type="VBoxContainer" parent="TablaClasificacion/SubmenuTablaClasificacion" unique_id=1129719187]
+z_index = 1
+offset_left = 488.0
+offset_top = -192.0
+offset_right = 1080.0
+offset_bottom = 1944.0
+script = ExtResource("2_d7r87")
+
+[node name="Score1" type="RichTextLabel" parent="TablaClasificacion/SubmenuTablaClasificacion/Leaderboard" unique_id=786635872]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Score"
+fit_content = true
+
+[node name="Score2" type="RichTextLabel" parent="TablaClasificacion/SubmenuTablaClasificacion/Leaderboard" unique_id=795616159]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Score"
+fit_content = true
+
+[node name="Score3" type="RichTextLabel" parent="TablaClasificacion/SubmenuTablaClasificacion/Leaderboard" unique_id=501226533]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Score"
+fit_content = true
+
+[node name="Score4" type="RichTextLabel" parent="TablaClasificacion/SubmenuTablaClasificacion/Leaderboard" unique_id=1363975622]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Score"
+fit_content = true
+
+[node name="Score5" type="RichTextLabel" parent="TablaClasificacion/SubmenuTablaClasificacion/Leaderboard" unique_id=1238687438]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Score"
+fit_content = true
+
+[node name="Score6" type="RichTextLabel" parent="TablaClasificacion/SubmenuTablaClasificacion/Leaderboard" unique_id=915495814]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Score"
+fit_content = true
+
+[node name="Score7" type="RichTextLabel" parent="TablaClasificacion/SubmenuTablaClasificacion/Leaderboard" unique_id=1099521995]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Score"
+fit_content = true
+
+[node name="Score8" type="RichTextLabel" parent="TablaClasificacion/SubmenuTablaClasificacion/Leaderboard" unique_id=2066315451]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Score"
+fit_content = true
+
+[node name="Score9" type="RichTextLabel" parent="TablaClasificacion/SubmenuTablaClasificacion/Leaderboard" unique_id=1501875016]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Score"
+fit_content = true
+
+[node name="Score10" type="RichTextLabel" parent="TablaClasificacion/SubmenuTablaClasificacion/Leaderboard" unique_id=488317284]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Score"
+fit_content = true
+
 [node name="ComoJugar" type="Button" parent="." unique_id=919301113]
 offset_left = 64.0
 offset_top = 384.0
-offset_right = 421.0
+offset_right = 424.0
 offset_bottom = 477.0
 text = "CÓMO JUGAR
 "
 
-[node name="PopupComoJugar" type="RichTextLabel" parent="ComoJugar" unique_id=1532880347]
+[node name="SubmenuComoJugar" type="Node2D" parent="ComoJugar" unique_id=615448843 groups=["Submenus"]]
 visible = false
-z_index = 1
-layout_mode = 0
+
+[node name="Panel" type="Panel" parent="ComoJugar/SubmenuComoJugar" unique_id=1917885997]
+z_as_relative = false
 offset_left = 408.0
 offset_top = -376.0
 offset_right = 1080.0
 offset_bottom = 256.0
-theme_override_font_sizes/normal_font_size = 40
+
+[node name="PopupComoJugar" type="RichTextLabel" parent="ComoJugar/SubmenuComoJugar" unique_id=1532880347]
+z_index = 5
+offset_left = 411.0
+offset_top = -376.0
+offset_right = 1083.0
+offset_bottom = 112.0
+theme_override_font_sizes/normal_font_size = 29
 text = "OBJETIVO____________________________
 
 En Scoundrel te encuentras en una mazmorra llena de monstruos. Para ganar, tienes que eliminar a todos los monstruos y llegar al final de la mazmorra. Para lograr esto, tendrás que ir interactuando con distintas cartas que vayas encontrando a lo largo de la mazmorra.
@@ -125,18 +159,20 @@ Las cartas usadas son de la baraja francesa, con 4 palos:
 
 - Los corazones te recuperan vida (hasta 20 puntos). Van del 2 al 10.
 - Los diamantes son armas que te ayudarán a luchar contra monstruos. Van del 2 al 10.
-- Los tréboles y picas son monstruos. Van del 2 al As.
+- Los tréboles y picas son monstruos. Van del 2, pasando por J, Q, K hasta el As.
 
 SALAS________________________________
 
-La mazmorra está dividida en salas. Cada sala contiene 4 cartas, de las que tendrás que interactuar con 3 para pasar a la siguiente sala (la restante se \"arrastrará\" a la siguiente sala). Si una sala es muy difícil, mientras esté llena podrás huir de ella para pasar esas cartas al fondo de la mazmorra. No puedes huir 2 veces seguidas.
+La mazmorra está dividida en salas. Cada sala contiene 4 cartas, de las que tendrás que interactuar con 3 para pasar a la siguiente sala (la restante se \"arrastrará\" a la siguiente sala).
+
+Si una sala es muy difícil, *mientras esté llena* podrás huir de ella para pasar esas cartas al fondo de la mazmorra. No puedes huir 2 veces seguidas.
 
 COMBATE___________________________
 
-Puedes luchar contra un monstruo desarmado o armado.
+Puedes luchar estando desarmado o armado.
 
 - Desarmado hará que a tu vida se le reste el daño (el valor de la carta) del monstruo.
-- Armado hará que se ese daño recibido se reduzca según el valor del arma equipada. Si el valor del arma es superior al del mosntruo, se mitiga el daño recibido al completo.
+- Armado hará que se ese daño recibido se reduzca según el valor del arma equipada. Si el valor del arma es superior al del monstruo, se mitiga el daño recibido al completo.
 
 DURACIÓN DE ARMAS______________
 
@@ -148,37 +184,187 @@ PUNTUACIÓN_______________________
 
 Cuando pierdas una partida tendrás -X puntos, siendo X la suma del valor de los monstruos que quedan en la mazmorra. Cuando ganes, los puntos serán positivos e iguales a tu vida restante."
 
-[node name="Panel" type="Panel" parent="ComoJugar/PopupComoJugar" unique_id=1917885997]
-z_as_relative = false
-layout_mode = 0
-offset_right = 672.0
-offset_bottom = 632.0
+[node name="Button" type="Button" parent="ComoJugar/SubmenuComoJugar" unique_id=1049823264]
+offset_left = 600.0
+offset_top = 136.0
+offset_right = 888.0
+offset_bottom = 232.0
+text = "TUTORIAL"
 
 [node name="Creditos" type="Button" parent="." unique_id=2030521444]
 offset_left = 64.0
 offset_top = 512.0
-offset_right = 421.0
+offset_right = 240.0
 offset_bottom = 605.0
 text = "CREDITOS"
 
-[node name="PopupCreditos" type="RichTextLabel" parent="Creditos" unique_id=1749266686]
+[node name="SubmenuCreditos" type="Node2D" parent="Creditos" unique_id=455958130 groups=["Submenus"]]
 visible = false
-z_index = 1
-layout_mode = 0
+
+[node name="Panel" type="Panel" parent="Creditos/SubmenuCreditos" unique_id=1949611291]
+z_as_relative = false
+offset_left = 408.0
+offset_top = -504.0
+offset_right = 1080.0
+offset_bottom = 128.0
+
+[node name="PopupCreditos" type="RichTextLabel" parent="Creditos/SubmenuCreditos" unique_id=1749266686]
+z_index = 5
 offset_left = 408.0
 offset_top = -504.0
 offset_right = 1080.0
 offset_bottom = 128.0
 theme_override_font_sizes/normal_font_size = 40
-text = "CREDITOSSSSSSSSSSSSSSSS"
+text = "SCOUNDREL DUNGEON
 
-[node name="Panel" type="Panel" parent="Creditos/PopupCreditos" unique_id=1949611291]
+Creado por:
+Ángel Sánchez Ruiz
+
+Pogramación:
+Ángel Sánchez Ruiz
+
+Sistemas de gameplay:	
+Ángel Sánchez Ruiz
+
+Diseño de interfaz:
+Ángel Sánchez Ruiz
+
+Dirección de arte:
+Ángel Sánchez Ruiz
+
+Diseño gráfico:
+Ángel Sánchez Ruiz
+
+Música y efectos de sonido:
+----------
+
+Historia:
+Ángel Sánchez Ruiz
+"
+
+[node name="Opciones" type="Button" parent="." unique_id=105943881]
+offset_left = 248.0
+offset_top = 512.0
+offset_right = 424.00006
+offset_bottom = 605.0
+text = "OPCIONES"
+
+[node name="SubmenuOpciones" type="Node2D" parent="Opciones" unique_id=124461516 groups=["Submenus"]]
+visible = false
+
+[node name="Panel" type="Panel" parent="Opciones/SubmenuOpciones" unique_id=318333352]
 z_as_relative = false
-layout_mode = 0
-offset_right = 672.0
-offset_bottom = 632.0
+offset_left = 224.0
+offset_top = -504.0
+offset_right = 896.0
+offset_bottom = 128.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Opciones/SubmenuOpciones" unique_id=1306048735]
+offset_left = 280.0
+offset_top = -456.0
+offset_right = 832.0
+offset_bottom = -16.0
+mouse_filter = 2
+theme_override_constants/separation = 37
+alignment = 1
+
+[node name="Sonido" type="Label" parent="Opciones/SubmenuOpciones/VBoxContainer" unique_id=1314112968]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "SONIDO"
+horizontal_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Opciones/SubmenuOpciones/VBoxContainer" unique_id=1694832692]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="General" type="Label" parent="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer3" unique_id=1475560713]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "General"
+
+[node name="VolumenMasterSlider" type="HSlider" parent="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer3" unique_id=1911606504]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("3_5t3kx")
+audio_bus_name = "Master"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Opciones/SubmenuOpciones/VBoxContainer" unique_id=1375205173]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Música" type="Label" parent="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2" unique_id=19168325]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Música"
+
+[node name="VolumenMusicaSlider" type="HSlider" parent="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2" unique_id=1376388750]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("3_5t3kx")
+audio_bus_name = "Musica"
+
+[node name="SFX" type="Label" parent="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2" unique_id=1741359848]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "SFX"
+
+[node name="VolumenSFXSlider" type="HSlider" parent="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2" unique_id=1544233301]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("3_5t3kx")
+audio_bus_name = "SFX"
+
+[node name="Miscelánea" type="Label" parent="Opciones/SubmenuOpciones/VBoxContainer" unique_id=1442971073]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "MISCELÁNEA"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Opciones/SubmenuOpciones/VBoxContainer" unique_id=327772245]
+layout_mode = 2
+alignment = 1
+
+[node name="CheckFullscreen" type="CheckButton" parent="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer" unique_id=1248212099]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Pantalla completa"
+script = ExtResource("4_56ah5")
+
+[node name="CheckJQKANumbers" type="CheckButton" parent="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer" unique_id=531501343]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+button_pressed = true
+text = "Modo JQKA en números"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1595024224]
+stream = ExtResource("3_6cq3m")
+autoplay = true
+bus = &"Musica"
+parameters/looping = false
+script = ExtResource("4_5t3kx")
 
 [connection signal="button_up" from="Jugar" to="." method="_on_jugar_button_up"]
+[connection signal="button_up" from="Jugar/SubmenuModificadores/JugarSimple" to="." method="_on_jugar_simple_button_up"]
 [connection signal="button_up" from="TablaClasificacion" to="." method="_on_tabla_clasificacion_button_up"]
 [connection signal="button_up" from="ComoJugar" to="." method="_on_como_jugar_button_up"]
 [connection signal="button_up" from="Creditos" to="." method="_on_creditos_button_up"]
+[connection signal="button_up" from="Opciones" to="." method="_on_opciones_button_up"]
+[connection signal="value_changed" from="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer3/VolumenMasterSlider" to="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer3/VolumenMasterSlider" method="_on_value_changed"]
+[connection signal="value_changed" from="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider" to="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider" method="_on_value_changed"]
+[connection signal="value_changed" from="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" to="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" method="_on_value_changed"]
+[connection signal="toggled" from="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen" to="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen" method="_on_toggled"]
+[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]

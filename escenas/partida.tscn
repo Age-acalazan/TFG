@@ -3,11 +3,15 @@
 [ext_resource type="Script" uid="uid://c8hmfle324qdp" path="res://scripts/gamemanager.gd" id="1_yhx8l"]
 [ext_resource type="Script" uid="uid://chskd2l34kiev" path="res://scripts/baraja.gd" id="2_myoha"]
 [ext_resource type="Script" uid="uid://drbp8gvrbbvra" path="res://scripts/save_manager.gd" id="3_myoha"]
+[ext_resource type="AudioStream" uid="uid://bn44ob28pq4c8" path="res://assets/sonidos/musica/More-8-Bit-Drama_Intro.ogg" id="4_g11qw"]
+[ext_resource type="Script" uid="uid://behqkoko3lua2" path="res://scripts/audio_stream_player.gd" id="5_phb60"]
+[ext_resource type="Script" uid="uid://qitdgvaeev8j" path="res://scripts/volumen_musica_slider.gd" id="6_aagfl"]
+[ext_resource type="Script" uid="uid://ryi0b7e1aotj" path="res://scripts/check_fullscreen.gd" id="7_st6j4"]
 
 [node name="GameManager" type="Node2D" unique_id=1617940892]
 script = ExtResource("1_yhx8l")
 
-[node name="Baraja" type="Node" parent="." unique_id=357491028]
+[node name="Baraja" type="Node2D" parent="." unique_id=325732177]
 script = ExtResource("2_myoha")
 
 [node name="Timer" type="Timer" parent="Baraja" unique_id=83994421]
@@ -24,7 +28,6 @@ offset_right = 289.0
 offset_bottom = 472.0
 theme_override_font_sizes/font_size = 55
 text = "LabelVida"
-script = ExtResource("3_myoha")
 
 [node name="LabelArma" type="Label" parent="HUD" unique_id=1376989841]
 offset_top = 476.0
@@ -61,11 +64,21 @@ text = "Huir de la sala"
 
 [node name="LabelRestantes" type="Label" parent="HUD" unique_id=2081352172]
 offset_left = 744.0
+offset_top = -10.0
 offset_right = 1149.0
-offset_bottom = 78.0
+offset_bottom = 68.0
 theme_override_font_sizes/font_size = 55
 text = "LabelRestantes"
 horizontal_alignment = 2
+
+[node name="Opciones" type="Button" parent="HUD" unique_id=597074135]
+offset_left = 8.0
+offset_top = 5.0
+offset_right = 98.0
+offset_bottom = 96.0
+theme_override_font_sizes/font_size = 60
+text = "⚙️"
+icon_alignment = 1
 
 [node name="FinPartida" type="Node2D" parent="." unique_id=4094195]
 visible = false
@@ -144,10 +157,126 @@ fit_content = true
 layout_mode = 2
 fit_content = true
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1219734776]
+stream = ExtResource("4_g11qw")
+autoplay = true
+bus = &"Musica"
+parameters/looping = false
+script = ExtResource("5_phb60")
+
+[node name="SubmenuOpciones" type="Node2D" parent="." unique_id=2105574429]
+visible = false
+position = Vector2(1, -1)
+
+[node name="Panel" type="Panel" parent="SubmenuOpciones" unique_id=923375752]
+z_as_relative = false
+offset_left = 280.0
+offset_top = 71.0
+offset_right = 873.0
+offset_bottom = 521.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubmenuOpciones" unique_id=513645519]
+offset_left = 299.0
+offset_top = 69.0
+offset_right = 851.0
+offset_bottom = 509.0
+size_flags_horizontal = 4
+mouse_filter = 2
+theme_override_constants/separation = 37
+alignment = 1
+
+[node name="Sonido" type="Label" parent="SubmenuOpciones/VBoxContainer" unique_id=1942822591]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "SONIDO"
+horizontal_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="SubmenuOpciones/VBoxContainer" unique_id=268359690]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="General" type="Label" parent="SubmenuOpciones/VBoxContainer/HBoxContainer3" unique_id=323140506]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "General"
+
+[node name="VolumenMasterSlider" type="HSlider" parent="SubmenuOpciones/VBoxContainer/HBoxContainer3" unique_id=1628883481]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("6_aagfl")
+audio_bus_name = "Master"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="SubmenuOpciones/VBoxContainer" unique_id=1323390375]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Música" type="Label" parent="SubmenuOpciones/VBoxContainer/HBoxContainer2" unique_id=1477009669]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Música"
+
+[node name="VolumenMusicaSlider" type="HSlider" parent="SubmenuOpciones/VBoxContainer/HBoxContainer2" unique_id=1825721675]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("6_aagfl")
+audio_bus_name = "Musica"
+
+[node name="SFX" type="Label" parent="SubmenuOpciones/VBoxContainer/HBoxContainer2" unique_id=461921722]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "SFX"
+
+[node name="VolumenSFXSlider" type="HSlider" parent="SubmenuOpciones/VBoxContainer/HBoxContainer2" unique_id=1975091348]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("6_aagfl")
+audio_bus_name = "SFX"
+
+[node name="Miscelánea" type="Label" parent="SubmenuOpciones/VBoxContainer" unique_id=660451062]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "MISCELÁNEA"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SubmenuOpciones/VBoxContainer" unique_id=296907504]
+layout_mode = 2
+alignment = 1
+
+[node name="CheckFullscreen" type="CheckButton" parent="SubmenuOpciones/VBoxContainer/HBoxContainer" unique_id=210846202]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Pantalla completa"
+script = ExtResource("7_st6j4")
+
+[node name="Volver" type="Button" parent="SubmenuOpciones/VBoxContainer" unique_id=91776890]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Volver"
+
 [connection signal="_on_cursor_entra_area_monstruo2" from="Baraja" to="." method="_on_cursor_entra_area_monstruo2"]
 [connection signal="carta_clicada" from="Baraja" to="." method="_on_baraja_carta_clicada"]
 [connection signal="sala_recargada" from="Baraja" to="." method="_on_baraja_sala_recargada"]
 [connection signal="timeout" from="Baraja/Timer" to="Baraja" method="_on_timer_timeout"]
 [connection signal="pressed" from="HUD/CambiarArma" to="." method="_on_cambiar_arma_pressed"]
 [connection signal="pressed" from="HUD/Huir" to="." method="_on_huir_pressed"]
+[connection signal="button_up" from="HUD/Opciones" to="." method="_on_opciones_button_up"]
 [connection signal="button_up" from="FinPartida/Menu" to="." method="_on_menu_button_up"]
+[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]
+[connection signal="value_changed" from="SubmenuOpciones/VBoxContainer/HBoxContainer3/VolumenMasterSlider" to="SubmenuOpciones/VBoxContainer/HBoxContainer3/VolumenMasterSlider" method="_on_value_changed"]
+[connection signal="value_changed" from="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider" to="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider" method="_on_value_changed"]
+[connection signal="value_changed" from="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" to="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" method="_on_value_changed"]
+[connection signal="toggled" from="SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen" to="SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen" method="_on_toggled"]
+[connection signal="button_up" from="SubmenuOpciones/VBoxContainer/Volver" to="." method="_on_volver_button_up"]
