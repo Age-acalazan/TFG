@@ -2,7 +2,7 @@ class_name Carta
 
 extends Node2D
 
-enum PALO { PICAS, TREBOLES, CORAZONES, DIAMANTES, JOKER }
+enum PALO { PICAS, TREBOLES, CORAZONES, DIAMANTES, TIENDA, HERRERIA, BOMBA }
 signal carta_clicada(carta : Carta)
 signal cursor_entra_area_monstruo(carta : Carta)
 @onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
@@ -10,7 +10,7 @@ signal cursor_entra_area_monstruo(carta : Carta)
 @onready var timer: Timer = $Timer
 
 @export var palo_carta : PALO
-@export_range(1,13) var valor : int
+@export_range(0,14) var valor : int
 @export var img : Texture2D
 
 func _ready():

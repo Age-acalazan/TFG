@@ -12,6 +12,7 @@
 script = ExtResource("1_yhx8l")
 
 [node name="Baraja" type="Node2D" parent="." unique_id=325732177]
+position = Vector2(400, 300)
 script = ExtResource("2_myoha")
 
 [node name="Timer" type="Timer" parent="Baraja" unique_id=83994421]
@@ -71,6 +72,15 @@ theme_override_font_sizes/font_size = 55
 text = "LabelRestantes"
 horizontal_alignment = 2
 
+[node name="Oro" type="Label" parent="HUD" unique_id=2061341664]
+offset_left = 742.0
+offset_top = 50.0
+offset_right = 1147.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 55
+text = "Oro"
+horizontal_alignment = 2
+
 [node name="Opciones" type="Button" parent="HUD" unique_id=597074135]
 offset_left = 8.0
 offset_top = 5.0
@@ -95,9 +105,9 @@ horizontal_alignment = 1
 
 [node name="Menu" type="Button" parent="FinPartida" unique_id=1657026797]
 offset_left = 320.0
-offset_top = 488.0
+offset_top = 514.0
 offset_right = 832.0
-offset_bottom = 624.0
+offset_bottom = 598.0
 theme_override_font_sizes/font_size = 41
 text = "Volver al menú de inicio"
 
@@ -173,7 +183,7 @@ z_as_relative = false
 offset_left = 280.0
 offset_top = 71.0
 offset_right = 873.0
-offset_bottom = 521.0
+offset_bottom = 594.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SubmenuOpciones" unique_id=513645519]
 offset_left = 299.0
@@ -261,10 +271,16 @@ theme_override_font_sizes/font_size = 20
 text = "Pantalla completa"
 script = ExtResource("7_st6j4")
 
-[node name="Volver" type="Button" parent="SubmenuOpciones/VBoxContainer" unique_id=91776890]
+[node name="Continuar" type="Button" parent="SubmenuOpciones/VBoxContainer" unique_id=91776890]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
-text = "Volver"
+text = "Continuar"
+
+[node name="SalirDePartida" type="Button" parent="SubmenuOpciones/VBoxContainer" unique_id=795877704]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Salir de la partida
+"
 
 [connection signal="_on_cursor_entra_area_monstruo2" from="Baraja" to="." method="_on_cursor_entra_area_monstruo2"]
 [connection signal="carta_clicada" from="Baraja" to="." method="_on_baraja_carta_clicada"]
@@ -279,4 +295,5 @@ text = "Volver"
 [connection signal="value_changed" from="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider" to="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider" method="_on_value_changed"]
 [connection signal="value_changed" from="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" to="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" method="_on_value_changed"]
 [connection signal="toggled" from="SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen" to="SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen" method="_on_toggled"]
-[connection signal="button_up" from="SubmenuOpciones/VBoxContainer/Volver" to="." method="_on_volver_button_up"]
+[connection signal="button_up" from="SubmenuOpciones/VBoxContainer/Continuar" to="." method="_on_volver_button_up"]
+[connection signal="button_up" from="SubmenuOpciones/VBoxContainer/SalirDePartida" to="." method="_on_salir_de_partida_button_up"]

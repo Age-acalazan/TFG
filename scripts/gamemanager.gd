@@ -1,10 +1,17 @@
 extends Node2D
 
 var vida : int
-const vidamax : int = 20
+var vida_max : int = 20
 var valor_monstruo_sobre_arma : int
 var valor_arma : int
 var usando_arma : bool
+var numero_total_cartas : int
+var oro : int = 0:
+	set(valor):
+		oro = valor
+		$HUD/Oro.set_text(str(oro)+"🪙")
+		
+
 @onready var label_vida: Label = $HUD/LabelVida
 @onready var label_arma: Label = $HUD/LabelArma
 @onready var label_monstruo_anterior: Label = $HUD/LabelMonstruoAnterior
@@ -14,13 +21,16 @@ var usando_arma : bool
 
 func _ready():
 	baraja.inicializar_partida()
-	vida = vidamax
+	vida = vida_max
+	oro = 0
 	label_vida.text="HP: "+ str(vida)
 	usando_arma = false
 	label_arma.text="Sin arma"
 	label_monstruo_anterior.text="Sin monstruo anterior"
 	cambiar_arma.text = "Desarmado"
-	$HUD/LabelRestantes.text = str(baraja.baraja.size()+baraja.sala.size())+"/44"
+	numero_total_cartas = baraja.baraja.size()+4
+	$HUD/LabelRestantes.text = str(baraja.baraja.size()+baraja.sala.size())+"/"+str(numero_total_cartas)
+	$HUD/Oro.visible = true if baraja.modificadores_activos else false
 
 func _on_baraja_carta_clicada(carta: Carta) -> void:
 	# Reduce o aumenta la vida
@@ -33,12 +43,14 @@ func _on_baraja_carta_clicada(carta: Carta) -> void:
 					valor_monstruo_sobre_arma = carta.valor
 					label_monstruo_anterior.text = "Último monstruo sobre arma: "+ str(valor_monstruo_sobre_arma)
 					# Se le resta a la vida el daño del monstruo menos lo mitigado con el arma
-					vida -= clampi(carta.valor - valor_arma,0, vidamax)
+					vida -= clampi(carta.valor - valor_arma,0, vida_max)
+					oro += carta.valor
 					borrar_carta(carta)
 				else: # Arma equipada y no aplicable
 					carta.poner_en_rojo()
 			else: # Desarmado
 				vida -= carta.valor
+				oro += carta.valor
 				borrar_carta(carta)
 		
 		Carta.PALO.CORAZONES:
@@ -55,8 +67,11 @@ func _on_baraja_carta_clicada(carta: Carta) -> void:
 			label_monstruo_anterior.text = "Último monstruo sobre arma: Ninguno"
 			borrar_carta(carta)
 		
+		Carta.PALO.TIENDA, Carta.PALO.HERRERIA, Carta.PALO.BOMBA:
+			borrar_carta(carta)
+		
 	# Limita el valor de la vida por arriba y por abajo
-	vida = clampi(vida, 0, vidamax)
+	vida = clampi(vida, 0, vida_max)
 	label_vida.text="HP: "+ str(vida)
 	
 	# Caso de muerte
@@ -67,7 +82,7 @@ func _on_baraja_carta_clicada(carta: Carta) -> void:
 	baraja.recargar_sala()
 	
 	# Contar cartas restantes
-	$HUD/LabelRestantes.text = str(baraja.baraja.size()+baraja.sala.size())+"/44"
+	$HUD/LabelRestantes.text = str(baraja.baraja.size()+baraja.sala.size())+"/"+str(numero_total_cartas)
 	
 	if baraja.check_no_mas_cartas() and vida > 0:
 		victoria()
@@ -142,10 +157,13 @@ func _on_baraja_sala_recargada() -> void:
 func _on_menu_button_up() -> void:
 	get_tree().change_scene_to_file("res://escenas/menu.tscn")
 
+func _on_salir_de_partida_button_up() -> void:
+	get_tree().change_scene_to_file("res://escenas/menu.tscn")
+
 func _on_cursor_entra_area_monstruo2(carta: Carta) -> void:
 	var daño : int = 0
 	if usando_arma: # Arma equipada
-		daño = clampi(carta.valor - valor_arma,0, vidamax)
+		daño = clampi(carta.valor - valor_arma,0, vida_max)
 	else: # Desarmado
 		daño = carta.valor
 	carta.get_node("PrediccionDaño").text = "-"+str(daño)+"♥️"

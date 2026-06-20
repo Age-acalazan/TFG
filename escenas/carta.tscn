@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://201tv4dy3mr2"]
 
 [ext_resource type="Script" uid="uid://clq22wtips7ws" path="res://scripts/carta.gd" id="1_yo80u"]
-[ext_resource type="Texture2D" uid="uid://dl1gg4bdqfjxi" path="res://assets/sprites/monstruos/1p.png" id="2_sllcx"]
+[ext_resource type="Texture2D" uid="uid://dl1gg4bdqfjxi" path="res://assets/sprites/monstruos/14p.png" id="2_sllcx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_up28s"]
 size = Vector2(17.592592, 17.543861)

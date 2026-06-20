@@ -4,7 +4,12 @@ var carta_escena = preload("res://escenas/carta.tscn")
 var baraja: Array[Carta] = []
 var sala : Array[Carta] = []
 var disable_recargar_sala = false
+
 var JQKA_numeros : bool = false
+var modificadores_activos : bool = false
+var flags_cartas : Dictionary[String,bool] = {}
+var num_cartas_extra : Dictionary[String,int] = {}
+
 @onready var timer: Timer = $Timer
 
 signal carta_clicada(carta : Carta)
@@ -29,19 +34,14 @@ func inicializar_partida():
 
 # Crea las cartas y las mete a la baraja
 func crear_cartas():
-	for n in 13:
-		
-		var valor = n+1
-		if n == 0:
-			valor = 14
+	var carta
+	for n in range(2,15):
 		
 		# Monstruo picas
-		var carta = crear_una_carta( #Carga los sprites con números o letras según la variable
-			load("res://assets/sprites/monstruos"+("_numeros/" if JQKA_numeros else "/")+str(n+1)+"p.png"),
-			valor,
+		carta = crear_una_carta( #Carga los sprites con números o letras según la variable
+			load("res://assets/sprites/monstruos"+("_numeros/" if JQKA_numeros else "/")+str(n)+"p.png"),
+			n, #valor de la carta
 			Carta.PALO.PICAS)
-		#carta.position = Vector2(n*100,150)
-		#add_child(carta)
 		baraja.append(carta) # Añade la carta a la baraja
 		carta.connect("carta_clicada", _on_carta_clicada)
 		carta.connect("cursor_entra_area_monstruo", _on_cursor_entra_area_monstruo)
@@ -49,34 +49,59 @@ func crear_cartas():
 		
 		# Monstruo treboles
 		carta = crear_una_carta( #Carga los sprites con números o letras según la variable
-			load("res://assets/sprites/monstruos"+("_numeros/" if JQKA_numeros else "/")+str(n+1)+"t.png"),
-			valor,
+			load("res://assets/sprites/monstruos"+("_numeros/" if JQKA_numeros else "/")+str(n)+"t.png"),
+			n, #valor de la carta
 			Carta.PALO.TREBOLES)
-		#carta.position = Vector2(n*100+50,150)
-		#add_child(carta)
 		baraja.append(carta) # Añade la carta a la baraja
 		carta.connect("carta_clicada", _on_carta_clicada)
 		carta.connect("cursor_entra_area_monstruo", _on_cursor_entra_area_monstruo)
 		
 		# Los ases y figuras de las cartas rojas no se usan en este juego
-		if n >=1 and n <= 9:
+		if n >=2 and n <= 10:
 			# Vida corazones
 			carta = crear_una_carta(
-				load("res://assets/sprites/vida/"+str(n+1)+"c.png"),
-				valor,
+				load("res://assets/sprites/vida/"+str(n)+"c.png"),
+				n, #valor de la carta
 				Carta.PALO.CORAZONES)
-			#carta.position = Vector2(n*100+50,150)
-			#add_child(carta)
 			baraja.append(carta) # Añade la carta a la baraja
 			carta.connect("carta_clicada", _on_carta_clicada)
 		
 			# Armas diamantes
 			carta = crear_una_carta(
-				load("res://assets/sprites/armas/"+str(n+1)+"d.png"),
-				valor,
+				load("res://assets/sprites/armas/"+str(n)+"d.png"),
+				n, #valor de la carta
 				Carta.PALO.DIAMANTES)
-			#carta.position = Vector2(n*100+50,150)
-			#add_child(carta)
+			baraja.append(carta) # Añade la carta a la baraja
+			carta.connect("carta_clicada", _on_carta_clicada)
+		
+		# Cartas extra
+	
+	if modificadores_activos:
+		
+		# Tienda
+		for s in range(0,num_cartas_extra.get("Tienda")):
+			carta = crear_una_carta(
+				load("res://assets/sprites/extras/tienda.png"),
+				0, #valor de la carta
+				Carta.PALO.TIENDA)
+			baraja.append(carta) # Añade la carta a la baraja
+			carta.connect("carta_clicada", _on_carta_clicada)
+		
+		# Herreria
+		for s in range(0,num_cartas_extra.get("Herreria")):
+			carta = crear_una_carta(
+				load("res://assets/sprites/extras/herreria.png"),
+				0, #valor de la carta
+				Carta.PALO.HERRERIA)
+			baraja.append(carta) # Añade la carta a la baraja
+			carta.connect("carta_clicada", _on_carta_clicada)
+		
+		# Bomba
+		for s in range(0,num_cartas_extra.get("Bomba")):
+			carta = crear_una_carta(
+				load("res://assets/sprites/extras/bomba.png"),
+				0, #valor de la carta
+				Carta.PALO.BOMBA)
 			baraja.append(carta) # Añade la carta a la baraja
 			carta.connect("carta_clicada", _on_carta_clicada)
 
@@ -133,7 +158,7 @@ func forzar_recargar_sala():
 func mostrar_sala():
 	for c in sala:
 		#La posicion de la carta en sala es sala.rfind(c)
-		c.position = Vector2(sala.rfind(c)*200,0) + Vector2(400,200)
+		c.position = Vector2(sala.rfind(c)*200,0)
 		if !c.is_visible_in_tree():
 			add_child(c)
 		

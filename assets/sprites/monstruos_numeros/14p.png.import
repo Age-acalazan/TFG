@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ciwqwd1aw5kbb"
-path="res://.godot/imported/1t.png-d390d6ac3fc60310dcc937ccbd19120f.ctex"
+uid="uid://brsfjh8wb11md"
+path="res://.godot/imported/14p.png-7f6d0258e20b1a39ffb9ee43a35ab979.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/monstruos_numeros/1t.png"
-dest_files=["res://.godot/imported/1t.png-d390d6ac3fc60310dcc937ccbd19120f.ctex"]
+source_file="res://assets/sprites/monstruos_numeros/14p.png"
+dest_files=["res://.godot/imported/14p.png-7f6d0258e20b1a39ffb9ee43a35ab979.ctex"]
 
 [params]
 
