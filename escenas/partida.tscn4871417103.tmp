@@ -301,5 +301,5 @@ text = "Salir de la partida
 [connection signal="value_changed" from="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider" to="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider" method="_on_value_changed"]
 [connection signal="value_changed" from="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" to="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" method="_on_value_changed"]
 [connection signal="toggled" from="SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen" to="SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen" method="_on_toggled"]
-[connection signal="button_up" from="SubmenuOpciones/VBoxContainer/Continuar" to="." method="_on_continuar_button_up"]
+[connection signal="button_up" from="SubmenuOpciones/VBoxContainer/Continuar" to="." method="_on_volver_button_up"]
 [connection signal="button_up" from="SubmenuOpciones/VBoxContainer/SalirDePartida" to="." method="_on_salir_de_partida_button_up"]

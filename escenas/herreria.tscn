@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://bq1pvrtpsgkqu"]
+
+[ext_resource type="Script" uid="uid://btdk44o1sdvi3" path="res://scripts/herreria.gd" id="1_rourp"]
+[ext_resource type="Texture2D" uid="uid://cekjmoa2r1e6e" path="res://assets/sprites/armas/7d.png" id="2_440oh"]
+
+[node name="Herreria" type="Node2D" unique_id=1538194671]
+script = ExtResource("1_rourp")
+
+[node name="Panel" type="Panel" parent="." unique_id=647262977]
+offset_right = 680.0
+offset_bottom = 312.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Salir" type="Button" parent="Panel" unique_id=654379088]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -84.0
+offset_top = -56.0
+offset_right = 84.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "Salir"
+
+[node name="TieneArma" type="Node2D" parent="." unique_id=1390611666]
+visible = false
+
+[node name="Reparar" type="Button" parent="TieneArma" unique_id=961270807]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 256.0
+offset_top = 128.0
+offset_right = 424.0
+offset_bottom = 208.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "Reparar"
+
+[node name="ImagenArma" type="Sprite2D" parent="TieneArma" unique_id=535903038]
+position = Vector2(136, 144)
+texture = ExtResource("2_440oh")
+
+[node name="LabelActual" type="Label" parent="TieneArma" unique_id=27032666]
+offset_left = 448.0
+offset_top = 56.0
+offset_right = 656.0
+offset_bottom = 208.0
+theme_override_font_sizes/font_size = 30
+text = "Durabilidad
+actual:
+Máxima"
+horizontal_alignment = 1
+
+[node name="Precio" type="Label" parent="TieneArma" unique_id=531989969]
+offset_left = 240.0
+offset_top = 56.0
+offset_right = 440.0
+offset_bottom = 98.0
+theme_override_font_sizes/font_size = 30
+text = "Precio: "
+horizontal_alignment = 1
+
+[node name="NoTieneArma" type="Node2D" parent="." unique_id=1692532591]
+visible = false
+
+[node name="Label" type="Label" parent="NoTieneArma" unique_id=172763871]
+offset_left = 104.0
+offset_top = 44.0
+offset_right = 578.0
+offset_bottom = 106.0
+theme_override_font_sizes/font_size = 40
+text = "No dispones de un arma
+
+😔"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="NoTieneArma" unique_id=1570733033]
+offset_left = 304.0
+offset_top = 104.0
+offset_right = 378.0
+offset_bottom = 130.0
+text = "(aún...)"
+horizontal_alignment = 1
+
+[connection signal="button_up" from="Panel/Salir" to="." method="_on_salir_button_up"]
+[connection signal="button_up" from="TieneArma/Reparar" to="." method="_on_reparar_button_up"]

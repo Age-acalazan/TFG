@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://b8yjjjauy3oud"]
+
+[ext_resource type="Texture2D" uid="uid://d0h621di2qepj" path="res://assets/sprites/extras/tienda.png" id="1_5ur6e"]
+[ext_resource type="Script" uid="uid://bbuewudtq4dmh" path="res://scripts/tienda.gd" id="1_idaph"]
+
+[node name="Tienda" type="Node2D" unique_id=374293017]
+script = ExtResource("1_idaph")
+
+[node name="Panel" type="Panel" parent="." unique_id=1623141506]
+offset_right = 680.0
+offset_bottom = 312.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel" unique_id=1009763740]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 680.0
+offset_bottom = 224.0
+theme_override_constants/separation = 22
+alignment = 1
+
+[node name="0" type="TextureButton" parent="Panel/HBoxContainer" unique_id=1104818249]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture_normal = ExtResource("1_5ur6e")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="oro" type="Label" parent="Panel/HBoxContainer/0" unique_id=1270230315]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 200.0
+offset_right = 118.0
+offset_bottom = 223.0
+text = "oro"
+horizontal_alignment = 1
+
+[node name="1" type="TextureButton" parent="Panel/HBoxContainer" unique_id=195411426]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture_normal = ExtResource("1_5ur6e")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="oro" type="Label" parent="Panel/HBoxContainer/1" unique_id=2066710926]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 200.0
+offset_right = 118.0
+offset_bottom = 223.0
+text = "oro"
+horizontal_alignment = 1
+
+[node name="2" type="TextureButton" parent="Panel/HBoxContainer" unique_id=391139853]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture_normal = ExtResource("1_5ur6e")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="oro" type="Label" parent="Panel/HBoxContainer/2" unique_id=505580835]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 200.0
+offset_right = 118.0
+offset_bottom = 223.0
+text = "oro"
+horizontal_alignment = 1
+
+[node name="Salir" type="Button" parent="Panel" unique_id=1718661453]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -84.0
+offset_top = -56.0
+offset_right = 84.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "Salir"
+
+[connection signal="button_up" from="Panel/HBoxContainer/0" to="." method="presionado_0"]
+[connection signal="button_up" from="Panel/HBoxContainer/1" to="." method="presionado_1"]
+[connection signal="button_up" from="Panel/HBoxContainer/2" to="." method="presionado_2"]
+[connection signal="button_up" from="Panel/Salir" to="." method="_on_salir_button_up"]

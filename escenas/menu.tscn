@@ -169,7 +169,7 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.0
-max_value = 3.0
+max_value = 30.0
 scrollable = false
 script = ExtResource("3_2syjm")
 
@@ -207,7 +207,7 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.0
-max_value = 3.0
+max_value = 30.0
 scrollable = false
 script = ExtResource("3_2syjm")
 
@@ -247,7 +247,7 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.0
-max_value = 3.0
+max_value = 30.0
 scrollable = false
 script = ExtResource("3_2syjm")
 

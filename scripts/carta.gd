@@ -7,7 +7,6 @@ signal carta_clicada(carta : Carta)
 signal cursor_entra_area_monstruo(carta : Carta)
 @onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var timer: Timer = $Timer
 
 @export var palo_carta : PALO
 @export_range(0,14) var valor : int
@@ -24,11 +23,21 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 #________________________________________________________________
 # Enrojece el sprite para dar feedback de que no se puede clicar con el arma
 func poner_en_rojo():
-	timer.start()
-	sprite_2d.set_modulate(Color(1,0,0,0.8))
-
-func _on_timer_timeout() -> void:
-	sprite_2d.set_modulate(Color(1,1,1,1))
+	var tween = create_tween()
+	
+	tween.tween_property(
+		self,
+		"modulate",
+		Color(1,0,0,1),
+		0.0
+	)
+	
+	tween.tween_property(
+		self,
+		"modulate",
+		Color.WHITE,
+		0.2
+	)
 #________________________________________________________________
 
 

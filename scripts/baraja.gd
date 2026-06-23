@@ -2,15 +2,15 @@ extends Node
 
 var carta_escena = preload("res://escenas/carta.tscn")
 var baraja: Array[Carta] = []
-var sala : Array[Carta] = []
+var sala : Array[Carta] = []:
+	set(valor):
+		print(str(valor))
 var disable_recargar_sala = false
 
 var JQKA_numeros : bool = false
 var modificadores_activos : bool = false
 var flags_cartas : Dictionary[String,bool] = {}
 var num_cartas_extra : Dictionary[String,int] = {}
-
-@onready var timer: Timer = $Timer
 
 signal carta_clicada(carta : Carta)
 signal _on_cursor_entra_area_monstruo2(carta : Carta)
@@ -136,12 +136,12 @@ func iniciar_sala():
 # _____________________________________________________________
 # Tras 2 segundos, se ejecuta la "segunda" parte de la función
 func recargar_sala():
-	if sala.size() == 1 and baraja.size() != 0 and timer.is_stopped() and !disable_recargar_sala:
-		timer.start()
+	if sala.size() == 1 and baraja.size() != 0 and $Timer.is_stopped() and !disable_recargar_sala:
+		$Timer.start()
 		# Desactiva que el area2d detecte clicks mediante su CollisionShape2D
 		sala.get(0).find_child("CollisionShape2D").disabled = true
 
-func _on_timer_timeout() -> void:
+func tras_recargar_sala() -> void:
 	while baraja.size() != 0 and sala.size() < 4:
 		sala.append(baraja.pop_front())
 	mostrar_sala()
@@ -150,16 +150,12 @@ func _on_timer_timeout() -> void:
 	emit_signal("sala_recargada")
 # _____________________________________________________________
 
-func forzar_recargar_sala():
-	while sala.size() < 4:
-		sala.append(baraja.pop_front())
-	mostrar_sala()
 
 func mostrar_sala():
 	for c in sala:
 		#La posicion de la carta en sala es sala.rfind(c)
 		c.position = Vector2(sala.rfind(c)*200,0)
-		if !c.is_visible_in_tree():
+		if !c.is_inside_tree():
 			add_child(c)
 		
 
@@ -168,8 +164,7 @@ func _on_carta_clicada(carta: Carta):
 	emit_signal("carta_clicada", carta)
 
 func _on_cursor_entra_area_monstruo(carta: Carta):
-	emit_signal("_on_cursor_entra_area_monstruo2", carta)
-
+	emit_signal("_on_cursor_entra_area_monstruo2", carta)	
 
 func huir():
 	#Añade las cartas de la sala al fondo de la baraja
@@ -179,7 +174,23 @@ func huir():
 	#Vacía la sala
 	sala.clear()
 	#Recarga
-	forzar_recargar_sala()
+	while sala.size() < 4:
+		sala.append(baraja.pop_front())
+	mostrar_sala()
+
+func bomba():
+	for carta in sala:
+		remove_child(carta)
+		carta.queue_free()
+	#Vacía la sala
+	sala.clear()
+	$Timer2.start()
+
+func tras_bomba() -> void:
+	while sala.size() < 4 and !baraja.is_empty():
+		sala.append(baraja.pop_front())
+	mostrar_sala()
+	emit_signal("sala_recargada")
 
 func desactivar_cartas():
 	for c in sala:
@@ -188,7 +199,7 @@ func desactivar_cartas():
 
 func check_no_mas_cartas() -> bool:
 	return sala.is_empty() and baraja.is_empty()
-	
+
 func calcular_puntuacion_muerte() -> int:
 	for carta in sala:
 		remove_child(carta)
@@ -200,15 +211,5 @@ func calcular_puntuacion_muerte() -> int:
 		if carta.palo_carta == Carta.PALO.TREBOLES or carta.palo_carta == Carta.PALO.PICAS:
 			puntos -= carta.valor
 	return puntos
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
