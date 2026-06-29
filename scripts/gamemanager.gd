@@ -29,13 +29,14 @@ func _ready():
 	baraja.inicializar_partida()
 	vida = vida_max
 	usando_arma = false
-	oro = 100
+	oro = 0
 	$HUD/LabelVida.text=str(vida)+"♥️"
 	label_arma.text="Sin arma"
 	label_monstruo_anterior.text="Sin monstruo anterior"
 	numero_total_cartas = baraja.baraja.size()+4
 	$HUD/LabelRestantes.text = str(baraja.baraja.size()+baraja.sala.size())+"/"+str(numero_total_cartas)
 	$HUD/Oro.visible = true if baraja.modificadores_activos else false
+	$AudioStreamPlayerBGM.play()
 
 func _on_baraja_carta_clicada(carta: Carta) -> void:
 	# Reduce o aumenta la vida
@@ -98,7 +99,7 @@ func _on_baraja_carta_clicada(carta: Carta) -> void:
 			borrar_carta(carta)
 			
 		Carta.PALO.BOMBA:#####################################################
-			vida -= randi_range(0,1)
+			vida -= randi_range(0,10)
 			baraja.bomba()
 	
 	
@@ -128,6 +129,10 @@ func muerte():
 	if !baraja.modificadores_activos:
 		$FinPartida/Leaderboard.save_score(baraja.calcular_puntuacion_muerte())
 	$FinPartida/Leaderboard.show_leaderboard()
+	
+	$AudioStreamPlayerBGM.stop()
+	$AudioStreamPlayerFinPartida.stream = preload("uid://byob06le748u7")
+	$AudioStreamPlayerFinPartida.play()
 
 func victoria():
 	baraja.desactivar_cartas()
@@ -138,6 +143,10 @@ func victoria():
 	if !baraja.modificadores_activos:
 		$FinPartida/Leaderboard.save_score(vida)
 	$FinPartida/Leaderboard.show_leaderboard()
+	
+	$AudioStreamPlayerBGM.stop()
+	$AudioStreamPlayerFinPartida.stream = preload("uid://cdqt0oe741oie")
+	$AudioStreamPlayerFinPartida.play()
 
 # Función que usa un tween para cambiar poco a poco la puntuación displayeada
 func mostrar_puntuacion(puntos : int):

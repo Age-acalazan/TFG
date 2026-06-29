@@ -1,15 +1,25 @@
 [gd_scene format=3 uid="uid://d2cvg4o47gmft"]
 
 [ext_resource type="Script" uid="uid://c8hmfle324qdp" path="res://scripts/gamemanager.gd" id="1_yhx8l"]
+[ext_resource type="Script" uid="uid://behqkoko3lua2" path="res://scripts/musica_fondo_looping.gd" id="2_6ifge"]
 [ext_resource type="Script" uid="uid://chskd2l34kiev" path="res://scripts/baraja.gd" id="2_myoha"]
 [ext_resource type="Script" uid="uid://drbp8gvrbbvra" path="res://scripts/save_manager.gd" id="3_myoha"]
-[ext_resource type="AudioStream" uid="uid://bn44ob28pq4c8" path="res://assets/sonidos/musica/More-8-Bit-Drama_Intro.ogg" id="4_g11qw"]
-[ext_resource type="Script" uid="uid://behqkoko3lua2" path="res://scripts/audio_stream_player.gd" id="5_phb60"]
+[ext_resource type="AudioStream" uid="uid://cn8l7it3npj0v" path="res://assets/sonidos/musica/Coin-Op-Chaos_Intro.ogg" id="3_phb60"]
+[ext_resource type="AudioStream" uid="uid://xdt1q8r8dio" path="res://assets/sonidos/musica/Coin-Op-Chaos_Looping.ogg" id="4_aagfl"]
 [ext_resource type="Script" uid="uid://qitdgvaeev8j" path="res://scripts/volumen_musica_slider.gd" id="6_aagfl"]
 [ext_resource type="Script" uid="uid://ryi0b7e1aotj" path="res://scripts/check_fullscreen.gd" id="7_st6j4"]
 
 [node name="GameManager" type="Node2D" unique_id=1617940892]
 script = ExtResource("1_yhx8l")
+
+[node name="AudioStreamPlayerBGM" type="AudioStreamPlayer" parent="." unique_id=1219734776]
+bus = &"Musica"
+script = ExtResource("2_6ifge")
+audioInicio = ExtResource("3_phb60")
+audioLoop = ExtResource("4_aagfl")
+
+[node name="AudioStreamPlayerFinPartida" type="AudioStreamPlayer" parent="." unique_id=1799534980]
+bus = &"Musica"
 
 [node name="Baraja" type="Node2D" parent="." unique_id=325732177]
 position = Vector2(400, 300)
@@ -172,13 +182,6 @@ fit_content = true
 layout_mode = 2
 fit_content = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1219734776]
-stream = ExtResource("4_g11qw")
-autoplay = true
-bus = &"Musica"
-parameters/looping = false
-script = ExtResource("5_phb60")
-
 [node name="SubmenuOpciones" type="Node2D" parent="." unique_id=2105574429]
 visible = false
 position = Vector2(1, -1)
@@ -287,6 +290,7 @@ theme_override_font_sizes/font_size = 25
 text = "Salir de la partida
 "
 
+[connection signal="finished" from="AudioStreamPlayerBGM" to="AudioStreamPlayerBGM" method="_on_finished"]
 [connection signal="_on_cursor_entra_area_monstruo2" from="Baraja" to="." method="_on_cursor_entra_area_monstruo2"]
 [connection signal="carta_clicada" from="Baraja" to="." method="_on_baraja_carta_clicada"]
 [connection signal="sala_recargada" from="Baraja" to="." method="_on_baraja_sala_recargada"]
@@ -296,7 +300,6 @@ text = "Salir de la partida
 [connection signal="pressed" from="HUD/Huir" to="." method="_on_huir_pressed"]
 [connection signal="button_up" from="HUD/Opciones" to="." method="_on_opciones_button_up"]
 [connection signal="button_up" from="FinPartida/Menu" to="." method="_on_menu_button_up"]
-[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]
 [connection signal="value_changed" from="SubmenuOpciones/VBoxContainer/HBoxContainer3/VolumenMasterSlider" to="SubmenuOpciones/VBoxContainer/HBoxContainer3/VolumenMasterSlider" method="_on_value_changed"]
 [connection signal="value_changed" from="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider" to="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider" method="_on_value_changed"]
 [connection signal="value_changed" from="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" to="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" method="_on_value_changed"]

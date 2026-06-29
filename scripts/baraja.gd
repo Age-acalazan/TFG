@@ -38,44 +38,48 @@ func crear_cartas():
 	for n in range(2,15):
 		
 		# Monstruo picas
-		carta = crear_una_carta( #Carga los sprites con números o letras según la variable
-			load("res://assets/sprites/monstruos"+("_numeros/" if JQKA_numeros else "/")+str(n)+"p.png"),
-			n, #valor de la carta
-			Carta.PALO.PICAS)
-		baraja.append(carta) # Añade la carta a la baraja
-		carta.connect("carta_clicada", _on_carta_clicada)
-		carta.connect("cursor_entra_area_monstruo", _on_cursor_entra_area_monstruo)
+		if !modificadores_activos or flags_cartas.get(str(n)+"p"): # Mira si es una partida con modificadores y en ese caso si la carta está activa
+			carta = crear_una_carta( #Carga los sprites con números o letras según la variable
+				load("res://assets/sprites/monstruos"+("_numeros/" if JQKA_numeros else "/")+str(n)+"p.png"),
+				n, #valor de la carta
+				Carta.PALO.PICAS)
+			baraja.append(carta) # Añade la carta a la baraja
+			carta.connect("carta_clicada", _on_carta_clicada)
+			carta.connect("cursor_entra_area_monstruo", _on_cursor_entra_area_monstruo)
 		
 		
 		# Monstruo treboles
-		carta = crear_una_carta( #Carga los sprites con números o letras según la variable
-			load("res://assets/sprites/monstruos"+("_numeros/" if JQKA_numeros else "/")+str(n)+"t.png"),
-			n, #valor de la carta
-			Carta.PALO.TREBOLES)
-		baraja.append(carta) # Añade la carta a la baraja
-		carta.connect("carta_clicada", _on_carta_clicada)
-		carta.connect("cursor_entra_area_monstruo", _on_cursor_entra_area_monstruo)
+		if !modificadores_activos or flags_cartas.get(str(n)+"t"):
+			carta = crear_una_carta( #Carga los sprites con números o letras según la variable
+				load("res://assets/sprites/monstruos"+("_numeros/" if JQKA_numeros else "/")+str(n)+"t.png"),
+				n, #valor de la carta
+				Carta.PALO.TREBOLES)
+			baraja.append(carta) # Añade la carta a la baraja
+			carta.connect("carta_clicada", _on_carta_clicada)
+			carta.connect("cursor_entra_area_monstruo", _on_cursor_entra_area_monstruo)
 		
 		# Los ases y figuras de las cartas rojas no se usan en este juego
 		if n >=2 and n <= 10:
 			# Vida corazones
-			carta = crear_una_carta(
-				load("res://assets/sprites/vida/"+str(n)+"c.png"),
-				n, #valor de la carta
-				Carta.PALO.CORAZONES)
-			baraja.append(carta) # Añade la carta a la baraja
-			carta.connect("carta_clicada", _on_carta_clicada)
+			if !modificadores_activos or flags_cartas.get(str(n)+"c"):
+				carta = crear_una_carta(
+					load("res://assets/sprites/vida/"+str(n)+"c.png"),
+					n, #valor de la carta
+					Carta.PALO.CORAZONES)
+				baraja.append(carta) # Añade la carta a la baraja
+				carta.connect("carta_clicada", _on_carta_clicada)
 		
 			# Armas diamantes
-			carta = crear_una_carta(
-				load("res://assets/sprites/armas/"+str(n)+"d.png"),
-				n, #valor de la carta
-				Carta.PALO.DIAMANTES)
-			baraja.append(carta) # Añade la carta a la baraja
-			carta.connect("carta_clicada", _on_carta_clicada)
-		
-		# Cartas extra
+			if !modificadores_activos or flags_cartas.get(str(n)+"d"):
+				carta = crear_una_carta(
+					load("res://assets/sprites/armas/"+str(n)+"d.png"),
+					n, #valor de la carta
+					Carta.PALO.DIAMANTES)
+				baraja.append(carta) # Añade la carta a la baraja
+				carta.connect("carta_clicada", _on_carta_clicada)
 	
+	
+	# Cartas extra
 	if modificadores_activos:
 		
 		# Tienda

@@ -5,14 +5,15 @@
 [ext_resource type="PackedScene" uid="uid://di4a2lthucimf" path="res://escenas/toggle_cartas.tscn" id="2_xqndx"]
 [ext_resource type="Script" uid="uid://b7mermhg446f5" path="res://scripts/contador_slider.gd" id="3_2syjm"]
 [ext_resource type="Script" uid="uid://qitdgvaeev8j" path="res://scripts/volumen_musica_slider.gd" id="3_5t3kx"]
-[ext_resource type="AudioStream" uid="uid://bn44ob28pq4c8" path="res://assets/sonidos/musica/More-8-Bit-Drama_Intro.ogg" id="3_6cq3m"]
 [ext_resource type="Texture2D" uid="uid://dvq8ncm5eh77j" path="res://assets/sprites/monstruos/2p.png" id="3_cliqe"]
+[ext_resource type="AudioStream" uid="uid://bn44ob28pq4c8" path="res://assets/sonidos/musica/More-8-Bit-Drama_Intro.ogg" id="3_mg5w1"]
 [ext_resource type="Texture2D" uid="uid://d0h621di2qepj" path="res://assets/sprites/extras/tienda.png" id="3_tatqo"]
-[ext_resource type="Script" uid="uid://behqkoko3lua2" path="res://scripts/audio_stream_player.gd" id="4_5t3kx"]
+[ext_resource type="Script" uid="uid://behqkoko3lua2" path="res://scripts/musica_fondo_looping.gd" id="4_5t3kx"]
 [ext_resource type="Texture2D" uid="uid://h3noc08i0yd7" path="res://assets/sprites/monstruos/2t.png" id="4_6vh20"]
 [ext_resource type="Texture2D" uid="uid://dixv588wdrnfy" path="res://assets/sprites/vida/3c.png" id="4_8jdmi"]
 [ext_resource type="Script" uid="uid://ryi0b7e1aotj" path="res://scripts/check_fullscreen.gd" id="4_56ah5"]
 [ext_resource type="Texture2D" uid="uid://nwpafjehw28d" path="res://assets/sprites/extras/herreria.png" id="4_mg5w1"]
+[ext_resource type="AudioStream" uid="uid://ctlo7a2wsmh2w" path="res://assets/sonidos/musica/More-8-Bit-Drama_Looping.ogg" id="4_v6ae4"]
 [ext_resource type="Texture2D" uid="uid://bnooyltncr4ig" path="res://assets/sprites/monstruos/3p.png" id="5_pm8pu"]
 [ext_resource type="Texture2D" uid="uid://dedm6lrpyuaad" path="res://assets/sprites/extras/bomba.png" id="5_v6ae4"]
 [ext_resource type="Texture2D" uid="uid://c554nqmkuqm2k" path="res://assets/sprites/monstruos/3t.png" id="6_2syjm"]
@@ -59,6 +60,13 @@
 
 [node name="Menu" type="Node2D" unique_id=2043182576]
 script = ExtResource("1_vdanu")
+
+[node name="AudioStreamPlayerBGM" type="AudioStreamPlayer" parent="." unique_id=1595024224]
+autoplay = true
+bus = &"Musica"
+script = ExtResource("4_5t3kx")
+audioInicio = ExtResource("3_mg5w1")
+audioLoop = ExtResource("4_v6ae4")
 
 [node name="Jugar" type="Button" parent="." unique_id=935869368]
 offset_left = 64.0
@@ -124,7 +132,7 @@ layout_mode = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.0
 min_value = 1.0
-max_value = 40.0
+max_value = 50.0
 value = 20.0
 scrollable = false
 script = ExtResource("3_2syjm")
@@ -169,7 +177,7 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.0
-max_value = 30.0
+max_value = 5.0
 scrollable = false
 script = ExtResource("3_2syjm")
 
@@ -207,7 +215,7 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.0
-max_value = 30.0
+max_value = 5.0
 scrollable = false
 script = ExtResource("3_2syjm")
 
@@ -247,7 +255,7 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.0
-max_value = 30.0
+max_value = 5.0
 scrollable = false
 script = ExtResource("3_2syjm")
 
@@ -661,7 +669,9 @@ Diseño gráfico:
 Ángel Sánchez Ruiz
 
 Música y efectos de sonido:
-----------
+Eric Matyas www.soundimage.org
+\"Victory Fanfare (8-Bit Thunder) 3\" by Dylan Kelk/SilverIllusionist (Freesound)
+8-bit Game Over Sound/Tune by EVRetro -- https://freesound.org/s/533034/ -- License: Creative Commons 0
 
 Historia:
 Ángel Sánchez Ruiz
@@ -775,13 +785,7 @@ theme_override_font_sizes/font_size = 20
 button_pressed = true
 text = "Modo JQKA en números"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1595024224]
-stream = ExtResource("3_6cq3m")
-autoplay = true
-bus = &"Musica"
-parameters/looping = false
-script = ExtResource("4_5t3kx")
-
+[connection signal="finished" from="AudioStreamPlayerBGM" to="AudioStreamPlayerBGM" method="_on_finished"]
 [connection signal="button_up" from="Jugar" to="." method="_on_jugar_button_up"]
 [connection signal="button_up" from="Jugar/SubmenuModificadores/JugarSimple" to="." method="_on_jugar_simple_button_up"]
 [connection signal="button_up" from="Jugar/SubmenuModificadores/JugarModificadores" to="." method="_on_jugar_modificadores_button_up"]
@@ -797,4 +801,3 @@ script = ExtResource("4_5t3kx")
 [connection signal="value_changed" from="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider" to="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider" method="_on_value_changed"]
 [connection signal="value_changed" from="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" to="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" method="_on_value_changed"]
 [connection signal="toggled" from="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen" to="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen" method="_on_toggled"]
-[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]

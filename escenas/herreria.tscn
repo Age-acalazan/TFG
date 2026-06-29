@@ -70,7 +70,6 @@ text = "Precio: "
 horizontal_alignment = 1
 
 [node name="NoTieneArma" type="Node2D" parent="." unique_id=1692532591]
-visible = false
 
 [node name="Label" type="Label" parent="NoTieneArma" unique_id=172763871]
 offset_left = 104.0
