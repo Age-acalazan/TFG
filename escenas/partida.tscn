@@ -6,8 +6,18 @@
 [ext_resource type="Script" uid="uid://drbp8gvrbbvra" path="res://scripts/save_manager.gd" id="3_myoha"]
 [ext_resource type="AudioStream" uid="uid://cn8l7it3npj0v" path="res://assets/sonidos/musica/Coin-Op-Chaos_Intro.ogg" id="3_phb60"]
 [ext_resource type="AudioStream" uid="uid://xdt1q8r8dio" path="res://assets/sonidos/musica/Coin-Op-Chaos_Looping.ogg" id="4_aagfl"]
-[ext_resource type="Script" uid="uid://qitdgvaeev8j" path="res://scripts/volumen_musica_slider.gd" id="6_aagfl"]
-[ext_resource type="Script" uid="uid://ryi0b7e1aotj" path="res://scripts/check_fullscreen.gd" id="7_st6j4"]
+[ext_resource type="Script" uid="uid://qitdgvaeev8j" path="res://scripts/volumen_slider.gd" id="6_aagfl"]
+[ext_resource type="Texture2D" uid="uid://d0xsrpc8m3y3v" path="res://assets/sprites/ui/moneda.png" id="6_phb60"]
+[ext_resource type="Script" uid="uid://ckime8det72x7" path="res://scripts/camera_3d_scroll.gd" id="9_aagfl"]
+[ext_resource type="Texture2D" uid="uid://blo8ylxkveggb" path="res://assets/sprites/pasillo techo.png" id="11_jx5bc"]
+[ext_resource type="Texture2D" uid="uid://bmj84634ph15o" path="res://assets/sprites/pasillo suelo.png" id="12_a6o65"]
+[ext_resource type="Texture2D" uid="uid://5vkficdrui53" path="res://assets/sprites/pasillo pared.png" id="13_tcd4i"]
+
+[sub_resource type="Environment" id="Environment_yf5fn"]
+background_mode = 1
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yf5fn"]
+viewport_path = NodePath("HUD/SubViewport")
 
 [node name="GameManager" type="Node2D" unique_id=1617940892]
 script = ExtResource("1_yhx8l")
@@ -25,11 +35,22 @@ bus = &"Musica"
 position = Vector2(400, 300)
 script = ExtResource("2_myoha")
 
-[node name="Timer" type="Timer" parent="Baraja" unique_id=83994421]
+[node name="TimerRecargarSala" type="Timer" parent="Baraja" unique_id=83994421]
+wait_time = 2.0
 one_shot = true
 
-[node name="Timer2" type="Timer" parent="Baraja" unique_id=163707707]
+[node name="TimerBomba" type="Timer" parent="Baraja" unique_id=163707707]
 one_shot = true
+
+[node name="Polygon2D" type="Polygon2D" parent="Baraja" unique_id=947889853]
+position = Vector2(-1.9073486e-05, -4.0000305)
+scale = Vector2(1.1409187, 1.1409189)
+color = Color(0.1749846, 0.17498463, 0.1749846, 1)
+offset = Vector2(49.083282, 14.023804)
+invert_enabled = true
+invert_border = 10.0
+polygon = PackedVector2Array(-134.38968, 70.38968, -134.38971, -94.38965, 30.389732, -94.38977, 30.389732, 70.38977)
+uv = PackedVector2Array(-136.00003, 56.000076, -136.00003, -80.00008, 8.392334e-05, -80.00008, 8.392334e-05, 56.000076)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=902615965]
 position = Vector2(576, 324)
@@ -61,40 +82,45 @@ theme_override_font_sizes/font_size = 55
 text = "LabelMonstruoAnterior"
 
 [node name="MonstruoAnterior" type="Sprite2D" parent="HUD" unique_id=992342788]
-position = Vector2(968, 536)
+position = Vector2(984, 536)
 
 [node name="CambiarArma" type="Button" parent="HUD" unique_id=792360863]
 offset_left = 16.0
 offset_top = 296.0
-offset_right = 232.0
+offset_right = 240.0
 offset_bottom = 384.0
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 31
 
 [node name="Huir" type="Button" parent="HUD" unique_id=529073074]
 offset_left = 16.0
 offset_top = 184.0
-offset_right = 263.0
+offset_right = 240.0
 offset_bottom = 272.0
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 31
 text = "Huir de la sala"
 
 [node name="LabelRestantes" type="Label" parent="HUD" unique_id=2081352172]
-offset_left = 744.0
+offset_left = 728.0
 offset_top = -10.0
-offset_right = 1149.0
+offset_right = 1133.0
 offset_bottom = 68.0
 theme_override_font_sizes/font_size = 55
 text = "LabelRestantes"
 horizontal_alignment = 2
 
 [node name="Oro" type="Label" parent="HUD" unique_id=2061341664]
-offset_left = 742.0
+offset_left = 760.0
 offset_top = 50.0
-offset_right = 1147.0
+offset_right = 1075.0
 offset_bottom = 128.0
 theme_override_font_sizes/font_size = 55
 text = "Oro"
 horizontal_alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="HUD/Oro" unique_id=272330798]
+position = Vector2(344, 37.999992)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("6_phb60")
 
 [node name="Opciones" type="Button" parent="HUD" unique_id=597074135]
 offset_left = 8.0
@@ -104,6 +130,25 @@ offset_bottom = 96.0
 theme_override_font_sizes/font_size = 60
 text = "⚙️"
 icon_alignment = 1
+
+[node name="SubViewport" type="SubViewport" parent="HUD" unique_id=393046654]
+handle_input_locally = false
+size = Vector2i(896, 512)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="HUD/SubViewport" unique_id=948487776]
+far = 10.0
+script = ExtResource("9_aagfl")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="HUD/SubViewport/Camera3D" unique_id=1750428832]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+light_color = Color(1, 0.902, 0.72, 1)
+distance_fade_enabled = true
+distance_fade_begin = 0.0
+omni_range = 7.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="HUD/SubViewport" unique_id=250456575]
+environment = SubResource("Environment_yf5fn")
 
 [node name="FinPartida" type="Node2D" parent="." unique_id=4094195]
 visible = false
@@ -277,7 +322,6 @@ alignment = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Pantalla completa"
-script = ExtResource("7_st6j4")
 
 [node name="Continuar" type="Button" parent="SubmenuOpciones/VBoxContainer" unique_id=91776890]
 layout_mode = 2
@@ -290,12 +334,92 @@ theme_override_font_sizes/font_size = 25
 text = "Salir de la partida
 "
 
+[node name="Pasillo1" type="Node3D" parent="." unique_id=1810209856]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="Sprite3D" type="Sprite3D" parent="Pasillo1" unique_id=2077277186]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1, 0, 0)
+shaded = true
+texture = ExtResource("13_tcd4i")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Pasillo1/Sprite3D" unique_id=786898469]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.19999999)
+light_color = Color(1, 0.64705884, 0, 1)
+light_specular = 2.84
+omni_range = 1.7
+omni_attenuation = 2.415
+
+[node name="Sprite3D2" type="Sprite3D" parent="Pasillo1" unique_id=63162284]
+transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, 1, 0, 0)
+shaded = true
+texture = ExtResource("13_tcd4i")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Pasillo1/Sprite3D2" unique_id=459361860]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.19999999)
+light_color = Color(1, 0.64705884, 0, 1)
+light_specular = 2.84
+omni_range = 1.7
+omni_attenuation = 2.415
+
+[node name="Sprite3D3" type="Sprite3D" parent="Pasillo1" unique_id=58526143]
+transform = Transform3D(-4.371139e-08, 1.01, -4.371139e-08, 0, -4.4148504e-08, -1, -1, -4.4148504e-08, 1.9106855e-15, 0, 1, 0)
+shaded = true
+texture = ExtResource("11_jx5bc")
+
+[node name="Sprite3D4" type="Sprite3D" parent="Pasillo1" unique_id=1704180911]
+transform = Transform3D(-4.371139e-08, 1.01, -4.371139e-08, 0, -4.4148504e-08, -1, -1, -4.4148504e-08, 1.9106855e-15, 0, -1, 0)
+shaded = true
+texture = ExtResource("12_a6o65")
+
+[node name="Pasillo2" type="Node3D" parent="." unique_id=257887723]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
+
+[node name="Sprite3D" type="Sprite3D" parent="Pasillo2" unique_id=1158716632]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1, 0, 0)
+shaded = true
+texture = ExtResource("13_tcd4i")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Pasillo2/Sprite3D" unique_id=1452389542]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.19999999)
+light_color = Color(1, 0.64705884, 0, 1)
+light_specular = 2.84
+omni_range = 1.7
+omni_attenuation = 2.415
+
+[node name="Sprite3D2" type="Sprite3D" parent="Pasillo2" unique_id=817717341]
+transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, 1, 0, 0)
+shaded = true
+texture = ExtResource("13_tcd4i")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Pasillo2/Sprite3D2" unique_id=1130927776]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.19999999)
+light_color = Color(1, 0.64705884, 0, 1)
+light_specular = 2.84
+omni_range = 1.7
+omni_attenuation = 2.415
+
+[node name="Sprite3D3" type="Sprite3D" parent="Pasillo2" unique_id=144485136]
+transform = Transform3D(-4.371139e-08, 1.01, -4.371139e-08, 0, -4.4148504e-08, -1, -1, -4.4148504e-08, 1.9106855e-15, 0, 1, 0)
+shaded = true
+texture = ExtResource("11_jx5bc")
+
+[node name="Sprite3D4" type="Sprite3D" parent="Pasillo2" unique_id=802342114]
+transform = Transform3D(-4.371139e-08, 1.01, -4.371139e-08, 0, -4.4148504e-08, -1, -1, -4.4148504e-08, 1.9106855e-15, 0, -1, 0)
+shaded = true
+texture = ExtResource("12_a6o65")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1242498960]
+z_index = -1
+position = Vector2(704, 256)
+texture = SubResource("ViewportTexture_yf5fn")
+
 [connection signal="finished" from="AudioStreamPlayerBGM" to="AudioStreamPlayerBGM" method="_on_finished"]
 [connection signal="_on_cursor_entra_area_monstruo2" from="Baraja" to="." method="_on_cursor_entra_area_monstruo2"]
 [connection signal="carta_clicada" from="Baraja" to="." method="_on_baraja_carta_clicada"]
+[connection signal="empezando_recargar_sala" from="Baraja" to="." method="_on_baraja_empezando_recargar_sala"]
 [connection signal="sala_recargada" from="Baraja" to="." method="_on_baraja_sala_recargada"]
-[connection signal="timeout" from="Baraja/Timer" to="Baraja" method="tras_recargar_sala"]
-[connection signal="timeout" from="Baraja/Timer2" to="Baraja" method="tras_bomba"]
+[connection signal="timeout" from="Baraja/TimerRecargarSala" to="Baraja" method="tras_recargar_sala"]
+[connection signal="timeout" from="Baraja/TimerBomba" to="Baraja" method="tras_bomba"]
 [connection signal="pressed" from="HUD/CambiarArma" to="." method="_on_cambiar_arma_pressed"]
 [connection signal="pressed" from="HUD/Huir" to="." method="_on_huir_pressed"]
 [connection signal="button_up" from="HUD/Opciones" to="." method="_on_opciones_button_up"]
@@ -303,6 +427,6 @@ text = "Salir de la partida
 [connection signal="value_changed" from="SubmenuOpciones/VBoxContainer/HBoxContainer3/VolumenMasterSlider" to="SubmenuOpciones/VBoxContainer/HBoxContainer3/VolumenMasterSlider" method="_on_value_changed"]
 [connection signal="value_changed" from="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider" to="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider" method="_on_value_changed"]
 [connection signal="value_changed" from="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" to="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" method="_on_value_changed"]
-[connection signal="toggled" from="SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen" to="SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen" method="_on_toggled"]
+[connection signal="toggled" from="SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen" to="." method="_on_check_fullscreen_toggled"]
 [connection signal="button_up" from="SubmenuOpciones/VBoxContainer/Continuar" to="." method="_on_continuar_button_up"]
 [connection signal="button_up" from="SubmenuOpciones/VBoxContainer/SalirDePartida" to="." method="_on_salir_de_partida_button_up"]

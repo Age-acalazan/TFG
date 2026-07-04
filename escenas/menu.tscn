@@ -4,14 +4,13 @@
 [ext_resource type="Script" uid="uid://drbp8gvrbbvra" path="res://scripts/save_manager.gd" id="2_d7r87"]
 [ext_resource type="PackedScene" uid="uid://di4a2lthucimf" path="res://escenas/toggle_cartas.tscn" id="2_xqndx"]
 [ext_resource type="Script" uid="uid://b7mermhg446f5" path="res://scripts/contador_slider.gd" id="3_2syjm"]
-[ext_resource type="Script" uid="uid://qitdgvaeev8j" path="res://scripts/volumen_musica_slider.gd" id="3_5t3kx"]
+[ext_resource type="Script" uid="uid://qitdgvaeev8j" path="res://scripts/volumen_slider.gd" id="3_5t3kx"]
 [ext_resource type="Texture2D" uid="uid://dvq8ncm5eh77j" path="res://assets/sprites/monstruos/2p.png" id="3_cliqe"]
 [ext_resource type="AudioStream" uid="uid://bn44ob28pq4c8" path="res://assets/sonidos/musica/More-8-Bit-Drama_Intro.ogg" id="3_mg5w1"]
 [ext_resource type="Texture2D" uid="uid://d0h621di2qepj" path="res://assets/sprites/extras/tienda.png" id="3_tatqo"]
 [ext_resource type="Script" uid="uid://behqkoko3lua2" path="res://scripts/musica_fondo_looping.gd" id="4_5t3kx"]
 [ext_resource type="Texture2D" uid="uid://h3noc08i0yd7" path="res://assets/sprites/monstruos/2t.png" id="4_6vh20"]
 [ext_resource type="Texture2D" uid="uid://dixv588wdrnfy" path="res://assets/sprites/vida/3c.png" id="4_8jdmi"]
-[ext_resource type="Script" uid="uid://ryi0b7e1aotj" path="res://scripts/check_fullscreen.gd" id="4_56ah5"]
 [ext_resource type="Texture2D" uid="uid://nwpafjehw28d" path="res://assets/sprites/extras/herreria.png" id="4_mg5w1"]
 [ext_resource type="AudioStream" uid="uid://ctlo7a2wsmh2w" path="res://assets/sonidos/musica/More-8-Bit-Drama_Looping.ogg" id="4_v6ae4"]
 [ext_resource type="Texture2D" uid="uid://bnooyltncr4ig" path="res://assets/sprites/monstruos/3p.png" id="5_pm8pu"]
@@ -55,8 +54,16 @@
 [ext_resource type="Texture2D" uid="uid://dvh4vnvrohoqg" path="res://assets/sprites/vida/8c.png" id="41_yn48n"]
 [ext_resource type="Texture2D" uid="uid://bckppx1ja5six" path="res://assets/sprites/vida/9c.png" id="42_k56m0"]
 [ext_resource type="Texture2D" uid="uid://d06p8s8fagyb3" path="res://assets/sprites/vida/10c.png" id="43_yu7te"]
+[ext_resource type="Texture2D" uid="uid://dddqqgpgufuhq" path="res://assets/sprites/monstruos_numeros/11t.png" id="55_mg5w1"]
 
 [sub_resource type="Theme" id="Theme_2syjm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6ae4"]
+bg_color = Color(0, 0, 0, 0.4117647)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
 
 [node name="Menu" type="Node2D" unique_id=2043182576]
 script = ExtResource("1_vdanu")
@@ -495,6 +502,7 @@ offset_left = 488.0
 offset_top = -192.0
 offset_right = 1080.0
 offset_bottom = 1944.0
+mouse_filter = 0
 script = ExtResource("2_d7r87")
 
 [node name="Score1" type="RichTextLabel" parent="TablaClasificacion/SubmenuTablaClasificacion/Leaderboard" unique_id=786635872]
@@ -605,7 +613,7 @@ COMBATE___________________________
 Puedes luchar estando desarmado o armado.
 
 - Desarmado hará que a tu vida se le reste el daño (el valor de la carta) del monstruo.
-- Armado hará que se ese daño recibido se reduzca según el valor del arma equipada. Si el valor del arma es superior al del monstruo, se mitiga el daño recibido al completo.
+- Armado hará que ese daño recibido se reduzca según el valor del arma equipada. Si el valor del arma es superior al del monstruo, se mitiga el daño recibido al completo.
 
 DURACIÓN DE ARMAS______________
 
@@ -669,9 +677,12 @@ Diseño gráfico:
 Ángel Sánchez Ruiz
 
 Música y efectos de sonido:
-Eric Matyas www.soundimage.org
-\"Victory Fanfare (8-Bit Thunder) 3\" by Dylan Kelk/SilverIllusionist (Freesound)
-8-bit Game Over Sound/Tune by EVRetro -- https://freesound.org/s/533034/ -- License: Creative Commons 0
+
+· Eric Matyas www.soundimage.org
+
+· \"Victory Fanfare (8-Bit Thunder) 3\" by Dylan Kelk/SilverIllusionist (Freesound)
+
+· 8-bit Game Over Sound/Tune by EVRetro -- https://freesound.org/s/533034/ -- License: Creative Commons 0
 
 Historia:
 Ángel Sánchez Ruiz
@@ -699,7 +710,7 @@ offset_left = 280.0
 offset_top = -456.0
 offset_right = 832.0
 offset_bottom = -16.0
-mouse_filter = 2
+mouse_filter = 0
 theme_override_constants/separation = 37
 alignment = 1
 
@@ -777,13 +788,28 @@ alignment = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Pantalla completa"
-script = ExtResource("4_56ah5")
 
 [node name="CheckJQKANumbers" type="CheckButton" parent="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer" unique_id=531501343]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 button_pressed = true
-text = "Modo JQKA en números"
+text = "Mostrar JQKA como números"
+
+[node name="SpriteJKQA" type="Sprite2D" parent="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers" unique_id=1640436627]
+position = Vector2(163, 103)
+scale = Vector2(0.68999976, 0.68999976)
+texture = ExtResource("55_mg5w1")
+
+[node name="Panel" type="Panel" parent="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers" unique_id=1800019029]
+z_index = -1
+z_as_relative = false
+layout_mode = 0
+offset_left = -1.0
+offset_top = -4.0
+offset_right = 332.0
+offset_bottom = 175.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v6ae4")
 
 [connection signal="finished" from="AudioStreamPlayerBGM" to="AudioStreamPlayerBGM" method="_on_finished"]
 [connection signal="button_up" from="Jugar" to="." method="_on_jugar_button_up"]
@@ -800,4 +826,5 @@ text = "Modo JQKA en números"
 [connection signal="value_changed" from="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer3/VolumenMasterSlider" to="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer3/VolumenMasterSlider" method="_on_value_changed"]
 [connection signal="value_changed" from="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider" to="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider" method="_on_value_changed"]
 [connection signal="value_changed" from="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" to="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" method="_on_value_changed"]
-[connection signal="toggled" from="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen" to="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen" method="_on_toggled"]
+[connection signal="toggled" from="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen" to="." method="_on_check_fullscreen_toggled"]
+[connection signal="toggled" from="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers" to="." method="_on_check_jqka_numbers_toggled"]

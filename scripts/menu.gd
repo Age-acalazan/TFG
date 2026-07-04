@@ -2,11 +2,22 @@ extends Node2D
 
 func _ready() -> void:
 	$TablaClasificacion/SubmenuTablaClasificacion/Leaderboard.show_leaderboard()
+	actualizar_interfaz_ajustes()
+
+func  actualizar_interfaz_ajustes() -> void:
+	#Ajusta la interfaz del menú de opciones
+	$Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer3/VolumenMasterSlider.value = Configuracion.volumen_general
+	$Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider.value = Configuracion.volumen_musica
+	$Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider.value = Configuracion.volumen_sfx
+	$Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen.button_pressed = Configuracion.pantalla_completa
+	$Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers.button_pressed = Configuracion.JQKA_numeros
+	if Configuracion.JQKA_numeros:
+		$Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers/SpriteJKQA.texture = preload("uid://dddqqgpgufuhq")
+	else:
+		$Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers/SpriteJKQA.texture = preload("uid://bsodmfm4l6vab")
 
 func _on_jugar_simple_button_up():
 	var partida = preload("res://escenas/partida.tscn").instantiate()
-	var baraja_nodo = partida.get_node("Baraja")
-	baraja_nodo.JQKA_numeros = $Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers.is_pressed()
 	get_tree().root.add_child(partida)
 	queue_free()
 	get_tree().current_scene = partida
@@ -27,22 +38,35 @@ func _on_jugar_modificadores_button_up() -> void:
 	for nodo in nodos_sliders_cartas_extra:
 		num_cartas_extra.set(nodo.get_name(),nodo.get_value())
 	
-	vida_max = $Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/VidaMaxima/SliderVidaMax.get_value()
-	
-	# Se precarga la escena...
-	var partida = preload("res://escenas/partida.tscn").instantiate()
-	var baraja_nodo = partida.get_node("Baraja")
-	baraja_nodo.JQKA_numeros = $Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers.is_pressed()
-	# ...para seguidamente adignarlo los valores obtenidos
-	baraja_nodo.modificadores_activos = modificadores_activos
-	baraja_nodo.flags_cartas = flags_cartas
-	baraja_nodo.num_cartas_extra = num_cartas_extra
-	partida.vida_max = vida_max
-	
-	# Se cambia de escena
-	get_tree().root.add_child(partida)
-	queue_free()
-	get_tree().current_scene = partida
+	if num_cartas_extra.values().reduce(func(accum, n): return accum + n) + \
+	 flags_cartas.values().count(true) >= 4 : # El primer elemento del if suma el nº de cartas extra
+		
+		vida_max = $Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/VidaMaxima/SliderVidaMax.get_value()
+		
+		# Se precarga la escena...
+		var partida = preload("res://escenas/partida.tscn").instantiate()
+		var baraja_nodo = partida.get_node("Baraja")
+		# ...para seguidamente adignarlo los valores obtenidos
+		baraja_nodo.modificadores_activos = modificadores_activos
+		baraja_nodo.flags_cartas = flags_cartas
+		baraja_nodo.num_cartas_extra = num_cartas_extra
+		partida.vida_max = vida_max
+		
+		# Se cambia de escena
+		get_tree().root.add_child(partida)
+		queue_free()
+		get_tree().current_scene = partida
+	else:
+		mostrar_error_numero_cartas()
+
+func mostrar_error_numero_cartas():
+	$Jugar/SubmenuModificadores/JugarModificadores.text = "NECESITAS AL MENOS 4 CARTAS"
+	$Jugar/SubmenuModificadores/JugarModificadores.disabled = true
+
+	await get_tree().create_timer(1.0).timeout
+
+	$Jugar/SubmenuModificadores/JugarModificadores.text = "PARTIDA CON MODIFICADORES"
+	$Jugar/SubmenuModificadores/JugarModificadores.disabled = false
 
 func esconder_submenus():
 	get_tree().get_nodes_in_group("Submenus").map(func(e):e.set_visible(false))
@@ -84,3 +108,18 @@ func _on_opciones_button_up() -> void:
 	else:
 		esconder_submenus()
 		$Opciones/SubmenuOpciones.visible = true
+
+
+func _on_check_fullscreen_toggled(toggled_on: bool) -> void:
+	if toggled_on == true:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	Configuracion.pantalla_completa = toggled_on
+
+func _on_check_jqka_numbers_toggled(toggled_on: bool) -> void:
+	Configuracion.JQKA_numeros = toggled_on
+	if toggled_on:
+		$Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers/SpriteJKQA.texture = preload("uid://dddqqgpgufuhq")
+	else:
+		$Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers/SpriteJKQA.texture = preload("uid://bsodmfm4l6vab")

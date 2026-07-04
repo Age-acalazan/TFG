@@ -7,7 +7,6 @@ var sala : Array[Carta] = []:
 		print(str(valor))
 var disable_recargar_sala = false
 
-var JQKA_numeros : bool = false
 var modificadores_activos : bool = false
 var flags_cartas : Dictionary[String,bool] = {}
 var num_cartas_extra : Dictionary[String,int] = {}
@@ -15,6 +14,7 @@ var num_cartas_extra : Dictionary[String,int] = {}
 signal carta_clicada(carta : Carta)
 signal _on_cursor_entra_area_monstruo2(carta : Carta)
 signal sala_recargada()
+signal empezando_recargar_sala()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -40,7 +40,7 @@ func crear_cartas():
 		# Monstruo picas
 		if !modificadores_activos or flags_cartas.get(str(n)+"p"): # Mira si es una partida con modificadores y en ese caso si la carta está activa
 			carta = crear_una_carta( #Carga los sprites con números o letras según la variable
-				load("res://assets/sprites/monstruos"+("_numeros/" if JQKA_numeros else "/")+str(n)+"p.png"),
+				load("res://assets/sprites/monstruos"+("_numeros/" if Configuracion.JQKA_numeros else "/")+str(n)+"p.png"),
 				n, #valor de la carta
 				Carta.PALO.PICAS)
 			baraja.append(carta) # Añade la carta a la baraja
@@ -51,7 +51,7 @@ func crear_cartas():
 		# Monstruo treboles
 		if !modificadores_activos or flags_cartas.get(str(n)+"t"):
 			carta = crear_una_carta( #Carga los sprites con números o letras según la variable
-				load("res://assets/sprites/monstruos"+("_numeros/" if JQKA_numeros else "/")+str(n)+"t.png"),
+				load("res://assets/sprites/monstruos"+("_numeros/" if Configuracion.JQKA_numeros else "/")+str(n)+"t.png"),
 				n, #valor de la carta
 				Carta.PALO.TREBOLES)
 			baraja.append(carta) # Añade la carta a la baraja
@@ -140,8 +140,9 @@ func iniciar_sala():
 # _____________________________________________________________
 # Tras 2 segundos, se ejecuta la "segunda" parte de la función
 func recargar_sala():
-	if sala.size() == 1 and baraja.size() != 0 and $Timer.is_stopped() and !disable_recargar_sala:
-		$Timer.start()
+	if sala.size() == 1 and baraja.size() != 0 and $TimerRecargarSala.is_stopped() and !disable_recargar_sala:
+		$TimerRecargarSala.start()
+		empezando_recargar_sala.emit()
 		# Desactiva que el area2d detecte clicks mediante su CollisionShape2D
 		sala.get(0).find_child("CollisionShape2D").disabled = true
 
@@ -188,7 +189,8 @@ func bomba():
 		carta.queue_free()
 	#Vacía la sala
 	sala.clear()
-	$Timer2.start()
+	$TimerBomba.start()
+	empezando_recargar_sala.emit()
 
 func tras_bomba() -> void:
 	while sala.size() < 4 and !baraja.is_empty():

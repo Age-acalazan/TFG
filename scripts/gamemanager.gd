@@ -4,7 +4,7 @@ var vida : int:
 	set(valor):
 		vida = valor
 		$HUD/LabelVida.set_text(str(vida)+"♥️")
-var vida_max : int = 20
+var vida_max : int = 1000
 var valor_monstruo_sobre_arma : int
 var valor_arma : int = 0
 var usando_arma : bool:
@@ -18,7 +18,7 @@ var numero_total_cartas : int
 var oro : int:
 	set(valor):
 		oro = valor
-		$HUD/Oro.set_text(str(oro)+"🪙")
+		$HUD/Oro.set_text(str(oro))
 
 @onready var label_arma: Label = $HUD/LabelArma
 @onready var label_monstruo_anterior: Label = $HUD/LabelMonstruoAnterior
@@ -30,13 +30,25 @@ func _ready():
 	vida = vida_max
 	usando_arma = false
 	oro = 0
-	$HUD/LabelVida.text=str(vida)+"♥️"
+	#$HUD/LabelVida.text=str(vida)+"♥️"
 	label_arma.text="Sin arma"
 	label_monstruo_anterior.text="Sin monstruo anterior"
 	numero_total_cartas = baraja.baraja.size()+4
 	$HUD/LabelRestantes.text = str(baraja.baraja.size()+baraja.sala.size())+"/"+str(numero_total_cartas)
 	$HUD/Oro.visible = true if baraja.modificadores_activos else false
 	$AudioStreamPlayerBGM.play()
+	actualizar_interfaz_ajustes()
+	#crear_cartas()
+	#baraja.shuffle()
+	#iniciar_sala()
+	#mostrar_baraja()
+	#mostrar_sala()
+
+func actualizar_interfaz_ajustes() -> void:
+	$SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen.button_pressed = Configuracion.pantalla_completa
+	$SubmenuOpciones/VBoxContainer/HBoxContainer3/VolumenMasterSlider.value = Configuracion.volumen_general
+	$SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider.value = Configuracion.volumen_musica
+	$SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider.value = Configuracion.volumen_sfx
 
 func _on_baraja_carta_clicada(carta: Carta) -> void:
 	# Reduce o aumenta la vida
@@ -110,8 +122,12 @@ func _on_baraja_carta_clicada(carta: Carta) -> void:
 	if vida == 0:
 		muerte()
 	
+	
 	baraja.mostrar_sala()
 	baraja.recargar_sala()
+	
+	# Una vez la sala no está completa, huir se desactiva
+	$HUD/Huir.disabled = true
 	
 	# Contar cartas restantes
 	$HUD/LabelRestantes.text = str(baraja.baraja.size()+baraja.sala.size())+"/"+str(numero_total_cartas)
@@ -121,7 +137,7 @@ func _on_baraja_carta_clicada(carta: Carta) -> void:
 
 
 func muerte():
-	baraja.desactivar_cartas()
+	$Baraja.visible = false
 	$HUD.visible = false
 	$FinPartida/Letrero.text = "HAS MUERTO"
 	$FinPartida.visible = true
@@ -135,7 +151,7 @@ func muerte():
 	$AudioStreamPlayerFinPartida.play()
 
 func victoria():
-	baraja.desactivar_cartas()
+	$Baraja.visible = false
 	$HUD.visible = false
 	$FinPartida/Letrero.text = "VICTORIA"
 	$FinPartida.visible = true
@@ -182,14 +198,16 @@ func _on_cambiar_arma_pressed() -> void:
 		usando_arma = !usando_arma
 
 func _on_huir_pressed() -> void:
-	if baraja.sala.size() == 4:
-		baraja.huir()
-		#Para que no puedas huir dos veces seguidas
-		$HUD/Huir.disabled = true
+	baraja.huir()
+	#Para que no puedas huir dos veces seguidas
+	$HUD/Huir.disabled = true
 
 #Reactiva tras recargarse la sala
 func _on_baraja_sala_recargada() -> void:
-	$HUD/Huir.disabled = false
+	if baraja.sala.size() == 4:
+		$HUD/Huir.disabled = false
+	else:
+		$HUD/Huir.disabled = true
 
 func _on_menu_button_up() -> void:
 	get_tree().change_scene_to_file("res://escenas/menu.tscn")
@@ -244,3 +262,15 @@ func tienda_herreria_salida():
 	$HUD/CambiarArma.disabled = false
 	$HUD/Huir.disabled = false
 	$Baraja.set_visible(true)
+
+
+func _on_check_fullscreen_toggled(toggled_on: bool) -> void:
+	if toggled_on == true:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	Configuracion.pantalla_completa = toggled_on
+
+
+func _on_baraja_empezando_recargar_sala() -> void:
+	$HUD/SubViewport/Camera3D.avanzar_sala()
