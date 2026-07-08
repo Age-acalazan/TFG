@@ -4,7 +4,7 @@ var vida : int:
 	set(valor):
 		vida = valor
 		$HUD/LabelVida.set_text(str(vida)+"♥️")
-var vida_max : int = 1000
+@export var vida_max : int = 2000
 var valor_monstruo_sobre_arma : int
 var valor_arma : int = 0
 var usando_arma : bool:
@@ -88,12 +88,14 @@ func _on_baraja_carta_clicada(carta: Carta) -> void:
 			var tienda = preload("res://escenas/tienda.tscn").instantiate()
 			tienda.oro = oro
 			tienda.connect("compra_realizada", compra_realizada)
-			tienda.connect("tienda_salida", tienda_herreria_salida)
+			#tienda.connect("tienda_salida", tienda_herreria_salida)
 			tienda.position = Vector2(380,180)
 			$HUD.add_child(tienda, true)
 			$HUD/CambiarArma.disabled = true
 			$HUD/Huir.disabled = true
 			$Baraja.visible = false
+			await tienda.tree_exited
+			tienda_herreria_salida()
 			borrar_carta(carta)
 		
 		Carta.PALO.HERRERIA:#####################################################
@@ -101,13 +103,15 @@ func _on_baraja_carta_clicada(carta: Carta) -> void:
 			herreria.valor_arma = valor_arma
 			herreria.oro = oro
 			herreria.durabilidad_actual = valor_monstruo_sobre_arma
-			herreria.connect("herreria_salida", tienda_herreria_salida)
 			herreria.connect("reparacion_hecha", reparacion_hecha)
+			#herreria.connect("herreria_salida", tienda_herreria_salida)
 			herreria.position = Vector2(380,180)
 			$HUD.add_child(herreria, true)
 			$HUD/CambiarArma.disabled = true
 			$HUD/Huir.disabled = true
 			$Baraja.visible = false
+			await herreria.tree_exited
+			tienda_herreria_salida()
 			borrar_carta(carta)
 			
 		Carta.PALO.BOMBA:#####################################################
@@ -151,6 +155,16 @@ func muerte():
 	$AudioStreamPlayerFinPartida.play()
 
 func victoria():
+	# Espera a que termine el tween de esa función
+	await $HUD/SubViewport/Camera3D.secuencia_victoria()
+	
+	# lógica del fade a negro
+	$FadeNegro.visible = true
+	var tween = create_tween()
+	tween.tween_property($FadeNegro, "color", Color(0,0,0,1),5)
+	# Espera a que termine el tween del fade a negro
+	await tween.finished
+	
 	$Baraja.visible = false
 	$HUD.visible = false
 	$FinPartida/Letrero.text = "VICTORIA"
@@ -248,7 +262,7 @@ func compra_realizada(datos : Array):
 		monstruo_anterior.texture = null
 		label_arma.text = "Valor del arma: "+ str(valor_arma)
 		label_monstruo_anterior.text = "Último monstruo sobre arma: Ninguno"
-	tienda_herreria_salida()
+
 
 func reparacion_hecha(precio : int): 
 	usando_arma = true
@@ -256,7 +270,6 @@ func reparacion_hecha(precio : int):
 	monstruo_anterior.texture = null
 	label_monstruo_anterior.text = "Último monstruo sobre arma: Ninguno"
 	oro -= precio
-	tienda_herreria_salida()
 
 func tienda_herreria_salida():
 	$HUD/CambiarArma.disabled = false

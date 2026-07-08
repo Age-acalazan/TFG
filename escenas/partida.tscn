@@ -9,15 +9,63 @@
 [ext_resource type="Script" uid="uid://qitdgvaeev8j" path="res://scripts/volumen_slider.gd" id="6_aagfl"]
 [ext_resource type="Texture2D" uid="uid://d0xsrpc8m3y3v" path="res://assets/sprites/ui/moneda.png" id="6_phb60"]
 [ext_resource type="Script" uid="uid://ckime8det72x7" path="res://scripts/camera_3d_scroll.gd" id="9_aagfl"]
-[ext_resource type="Texture2D" uid="uid://blo8ylxkveggb" path="res://assets/sprites/pasillo techo.png" id="11_jx5bc"]
-[ext_resource type="Texture2D" uid="uid://bmj84634ph15o" path="res://assets/sprites/pasillo suelo.png" id="12_a6o65"]
-[ext_resource type="Texture2D" uid="uid://5vkficdrui53" path="res://assets/sprites/pasillo pared.png" id="13_tcd4i"]
+[ext_resource type="Texture2D" uid="uid://82b366pi17r5" path="res://assets/sprites/pasillo pared2.png" id="10_a6o65"]
+[ext_resource type="Script" uid="uid://ee7y7hqkuivu" path="res://scripts/antorcha.gd" id="11_a6o65"]
+[ext_resource type="Texture2D" uid="uid://cd1rsos3wllg" path="res://assets/sprites/pasillo pared2_n.png" id="11_tcd4i"]
+[ext_resource type="Texture2D" uid="uid://bqg3c45b4ktqh" path="res://assets/sprites/llama2.png" id="12_a6o65"]
+[ext_resource type="Texture2D" uid="uid://cum2cxr2mow5b" path="res://assets/sprites/pasillo techo2.png" id="13_ultml"]
+[ext_resource type="Texture2D" uid="uid://bxxka5fhamtub" path="res://assets/sprites/pasillo puerta.png" id="13_wqd22"]
+[ext_resource type="Texture2D" uid="uid://mt4dmbwnfsrx" path="res://assets/sprites/pasillo suelo2.png" id="14_n6xck"]
+[ext_resource type="Texture2D" uid="uid://d4fxgyriidxsg" path="res://assets/sprites/pasillo techo2_n.png" id="15_n6xck"]
+[ext_resource type="Texture2D" uid="uid://b8o5kuy3r41ux" path="res://assets/sprites/pasillo suelo2_n.png" id="17_ot0qb"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yf5fn"]
+viewport_path = NodePath("HUD/SubViewport")
 
 [sub_resource type="Environment" id="Environment_yf5fn"]
 background_mode = 1
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_yf5fn"]
-viewport_path = NodePath("HUD/SubViewport")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57qmd"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("10_a6o65")
+normal_enabled = true
+normal_scale = 3.47
+normal_texture = ExtResource("11_tcd4i")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yf5fn"]
+material = SubResource("StandardMaterial3D_57qmd")
+size = Vector2(8, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a6o65"]
+albedo_color = Color(0.39, 0.2145, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+size = Vector3(0.6, 0.6, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ku0o"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("13_ultml")
+normal_enabled = true
+normal_scale = 5.12
+normal_texture = ExtResource("15_n6xck")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2v3tg"]
+material = SubResource("StandardMaterial3D_5ku0o")
+size = Vector2(8, 2.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j41xx"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("14_n6xck")
+normal_enabled = true
+normal_scale = 2.48
+normal_texture = ExtResource("17_ot0qb")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
+material = SubResource("StandardMaterial3D_j41xx")
+size = Vector2(8, 2.05)
 
 [node name="GameManager" type="Node2D" unique_id=1617940892]
 script = ExtResource("1_yhx8l")
@@ -43,6 +91,7 @@ one_shot = true
 one_shot = true
 
 [node name="Polygon2D" type="Polygon2D" parent="Baraja" unique_id=947889853]
+visible = false
 position = Vector2(-1.9073486e-05, -4.0000305)
 scale = Vector2(1.1409187, 1.1409189)
 color = Color(0.1749846, 0.17498463, 0.1749846, 1)
@@ -131,10 +180,14 @@ theme_override_font_sizes/font_size = 60
 text = "⚙️"
 icon_alignment = 1
 
+[node name="SpriteSubViewport" type="Sprite2D" parent="HUD" unique_id=1242498960]
+z_index = -1
+position = Vector2(704, 256)
+texture = SubResource("ViewportTexture_yf5fn")
+
 [node name="SubViewport" type="SubViewport" parent="HUD" unique_id=393046654]
 handle_input_locally = false
 size = Vector2i(896, 512)
-render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="HUD/SubViewport" unique_id=948487776]
 far = 10.0
@@ -150,8 +203,16 @@ omni_range = 7.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="HUD/SubViewport" unique_id=250456575]
 environment = SubResource("Environment_yf5fn")
 
+[node name="FadeNegro" type="ColorRect" parent="." unique_id=1282061690]
+visible = false
+z_as_relative = false
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0)
+
 [node name="FinPartida" type="Node2D" parent="." unique_id=4094195]
 visible = false
+z_index = 1
 
 [node name="Letrero" type="Label" parent="FinPartida" unique_id=704552941]
 offset_left = 224.0
@@ -337,81 +398,134 @@ text = "Salir de la partida
 [node name="Pasillo1" type="Node3D" parent="." unique_id=1810209856]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 
-[node name="Sprite3D" type="Sprite3D" parent="Pasillo1" unique_id=2077277186]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1, 0, 0)
-shaded = true
-texture = ExtResource("13_tcd4i")
+[node name="ParedD" type="MeshInstance3D" parent="Pasillo1" unique_id=1383352098]
+transform = Transform3D(0, 1, -4.371139e-08, 4.371139e-08, -4.371139e-08, -1, -1, 0, -4.3711385e-08, -1, 0, 0)
+mesh = SubResource("PlaneMesh_yf5fn")
+skeleton = NodePath("")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Pasillo1/Sprite3D" unique_id=786898469]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.19999999)
+[node name="OmniLight3D" type="OmniLight3D" parent="Pasillo1/ParedD" unique_id=786898469]
+transform = Transform3D(1, 4.3711385e-08, 4.3711392e-08, -4.3711385e-08, -4.371139e-08, 1, 4.3711392e-08, -1, -4.3711385e-08, 0, 0.19999999, -8.7422904e-09)
 light_color = Color(1, 0.64705884, 0, 1)
 light_specular = 2.84
 omni_range = 1.7
 omni_attenuation = 2.415
+script = ExtResource("11_a6o65")
 
-[node name="Sprite3D2" type="Sprite3D" parent="Pasillo1" unique_id=63162284]
-transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, 1, 0, 0)
-shaded = true
-texture = ExtResource("13_tcd4i")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Pasillo1/Sprite3D2" unique_id=459361860]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.19999999)
-light_color = Color(1, 0.64705884, 0, 1)
-light_specular = 2.84
-omni_range = 1.7
-omni_attenuation = 2.415
-
-[node name="Sprite3D3" type="Sprite3D" parent="Pasillo1" unique_id=58526143]
-transform = Transform3D(-4.371139e-08, 1.01, -4.371139e-08, 0, -4.4148504e-08, -1, -1, -4.4148504e-08, 1.9106855e-15, 0, 1, 0)
-shaded = true
-texture = ExtResource("11_jx5bc")
-
-[node name="Sprite3D4" type="Sprite3D" parent="Pasillo1" unique_id=1704180911]
-transform = Transform3D(-4.371139e-08, 1.01, -4.371139e-08, 0, -4.4148504e-08, -1, -1, -4.4148504e-08, 1.9106855e-15, 0, -1, 0)
-shaded = true
+[node name="Sprite3D" type="Sprite3D" parent="Pasillo1/ParedD/OmniLight3D" unique_id=642227684]
+transform = Transform3D(0.3, 9.272587e-09, 3.8408308e-09, -9.272587e-09, 0.21213205, 0.21213204, 3.8408317e-09, -0.21213204, 0.21213205, 0, 0.042494677, -0.057769537)
+billboard = 1
+no_depth_test = true
 texture = ExtResource("12_a6o65")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pasillo1/ParedD/OmniLight3D" unique_id=442187752]
+transform = Transform3D(0.070710644, 0.056568544, 3.6362756e-08, -0.06123723, 0.04898978, 0.20000002, 0.03535533, -0.028284281, 0.34641016, 0.021566391, -0.09238123, -0.20439887)
+material_override = SubResource("StandardMaterial3D_a6o65")
+mesh = SubResource("BoxMesh_g4v7s")
+skeleton = NodePath("")
+
+[node name="ParedI" type="MeshInstance3D" parent="Pasillo1" unique_id=327725332]
+transform = Transform3D(-8.742278e-08, -1, 4.3711385e-08, 4.371139e-08, -4.371139e-08, -1, 1, -8.742278e-08, 4.371139e-08, 1, 0, 0)
+mesh = SubResource("PlaneMesh_yf5fn")
+skeleton = NodePath("")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Pasillo1/ParedI" unique_id=877972151]
+transform = Transform3D(1, 4.3711385e-08, 4.3711392e-08, -4.3711385e-08, -4.371139e-08, 1, 4.3711392e-08, -1, -4.3711385e-08, 0, 0.19999999, -8.7422904e-09)
+light_color = Color(1, 0.64705884, 0, 1)
+light_specular = 2.84
+omni_range = 1.7
+omni_attenuation = 2.415
+script = ExtResource("11_a6o65")
+
+[node name="Sprite3D" type="Sprite3D" parent="Pasillo1/ParedI/OmniLight3D" unique_id=52249644]
+transform = Transform3D(0.3, 9.272587e-09, 3.8408308e-09, -9.272587e-09, 0.21213205, 0.21213204, 3.8408317e-09, -0.21213204, 0.21213205, 0, 0.042494677, -0.057769537)
+billboard = 1
+no_depth_test = true
+texture = ExtResource("12_a6o65")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pasillo1/ParedI/OmniLight3D" unique_id=455971929]
+transform = Transform3D(0.070710644, 0.056568544, 3.6362756e-08, -0.06123723, 0.04898978, 0.20000002, 0.03535533, -0.028284281, 0.34641016, 0.021566391, -0.09238123, -0.20439887)
+material_override = SubResource("StandardMaterial3D_a6o65")
+mesh = SubResource("BoxMesh_g4v7s")
+skeleton = NodePath("")
+
+[node name="Techo" type="MeshInstance3D" parent="Pasillo1" unique_id=334068083]
+transform = Transform3D(-4.371139e-08, 8.829701e-08, 1, -3.3655302e-30, -1.01, 8.742278e-08, 1, 3.859585e-15, 4.371139e-08, 0, 1, 0)
+mesh = SubResource("PlaneMesh_2v3tg")
+
+[node name="Suelo" type="MeshInstance3D" parent="Pasillo1" unique_id=2123681161]
+transform = Transform3D(4.371139e-08, 0, -1, -3.821371e-15, 1.01, 0, 1, 3.859585e-15, 4.371139e-08, 0, -1, 0)
+mesh = SubResource("PlaneMesh_g4v7s")
 
 [node name="Pasillo2" type="Node3D" parent="." unique_id=257887723]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
 
-[node name="Sprite3D" type="Sprite3D" parent="Pasillo2" unique_id=1158716632]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1, 0, 0)
-shaded = true
-texture = ExtResource("13_tcd4i")
+[node name="ParedD" type="MeshInstance3D" parent="Pasillo2" unique_id=1417793443]
+transform = Transform3D(0, 1, -4.371139e-08, 4.371139e-08, -4.371139e-08, -1, -1, 0, -4.3711385e-08, -1, 0, 0)
+mesh = SubResource("PlaneMesh_yf5fn")
+skeleton = NodePath("")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Pasillo2/Sprite3D" unique_id=1452389542]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.19999999)
+[node name="OmniLight3D" type="OmniLight3D" parent="Pasillo2/ParedD" unique_id=738161850]
+transform = Transform3D(1, 4.3711385e-08, 4.3711392e-08, -4.3711385e-08, -4.371139e-08, 1, 4.3711392e-08, -1, -4.3711385e-08, 0, 0.19999999, -8.7422904e-09)
 light_color = Color(1, 0.64705884, 0, 1)
 light_specular = 2.84
 omni_range = 1.7
 omni_attenuation = 2.415
+script = ExtResource("11_a6o65")
 
-[node name="Sprite3D2" type="Sprite3D" parent="Pasillo2" unique_id=817717341]
-transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, 1, 0, 0)
-shaded = true
-texture = ExtResource("13_tcd4i")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Pasillo2/Sprite3D2" unique_id=1130927776]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.19999999)
-light_color = Color(1, 0.64705884, 0, 1)
-light_specular = 2.84
-omni_range = 1.7
-omni_attenuation = 2.415
-
-[node name="Sprite3D3" type="Sprite3D" parent="Pasillo2" unique_id=144485136]
-transform = Transform3D(-4.371139e-08, 1.01, -4.371139e-08, 0, -4.4148504e-08, -1, -1, -4.4148504e-08, 1.9106855e-15, 0, 1, 0)
-shaded = true
-texture = ExtResource("11_jx5bc")
-
-[node name="Sprite3D4" type="Sprite3D" parent="Pasillo2" unique_id=802342114]
-transform = Transform3D(-4.371139e-08, 1.01, -4.371139e-08, 0, -4.4148504e-08, -1, -1, -4.4148504e-08, 1.9106855e-15, 0, -1, 0)
-shaded = true
+[node name="Sprite3D" type="Sprite3D" parent="Pasillo2/ParedD/OmniLight3D" unique_id=229156629]
+transform = Transform3D(0.3, 9.272587e-09, 3.8408308e-09, -9.272587e-09, 0.21213205, 0.21213204, 3.8408317e-09, -0.21213204, 0.21213205, 0, 0.042494677, -0.057769537)
+billboard = 1
+no_depth_test = true
 texture = ExtResource("12_a6o65")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1242498960]
-z_index = -1
-position = Vector2(704, 256)
-texture = SubResource("ViewportTexture_yf5fn")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pasillo2/ParedD/OmniLight3D" unique_id=1396800479]
+transform = Transform3D(0.070710644, 0.056568544, 3.6362756e-08, -0.06123723, 0.04898978, 0.20000002, 0.03535533, -0.028284281, 0.34641016, 0.021566391, -0.09238123, -0.20439887)
+material_override = SubResource("StandardMaterial3D_a6o65")
+mesh = SubResource("BoxMesh_g4v7s")
+skeleton = NodePath("")
+
+[node name="ParedI" type="MeshInstance3D" parent="Pasillo2" unique_id=1309081798]
+transform = Transform3D(-8.742278e-08, -1, 4.3711385e-08, 4.371139e-08, -4.371139e-08, -1, 1, -8.742278e-08, 4.371139e-08, 1, 0, 0)
+mesh = SubResource("PlaneMesh_yf5fn")
+skeleton = NodePath("")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Pasillo2/ParedI" unique_id=627708595]
+transform = Transform3D(1, 4.3711385e-08, 4.3711392e-08, -4.3711385e-08, -4.371139e-08, 1, 4.3711392e-08, -1, -4.3711385e-08, 0, 0.19999999, -8.7422904e-09)
+light_color = Color(1, 0.64705884, 0, 1)
+light_specular = 2.84
+omni_range = 1.7
+omni_attenuation = 2.415
+script = ExtResource("11_a6o65")
+
+[node name="Sprite3D" type="Sprite3D" parent="Pasillo2/ParedI/OmniLight3D" unique_id=899864422]
+transform = Transform3D(0.3, 9.272587e-09, 3.8408308e-09, -9.272587e-09, 0.21213205, 0.21213204, 3.8408317e-09, -0.21213204, 0.21213205, 0, 0.042494677, -0.057769537)
+billboard = 1
+no_depth_test = true
+texture = ExtResource("12_a6o65")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pasillo2/ParedI/OmniLight3D" unique_id=1491827937]
+transform = Transform3D(0.070710644, 0.056568544, 3.6362756e-08, -0.06123723, 0.04898978, 0.20000002, 0.03535533, -0.028284281, 0.34641016, 0.021566391, -0.09238123, -0.20439887)
+material_override = SubResource("StandardMaterial3D_a6o65")
+mesh = SubResource("BoxMesh_g4v7s")
+skeleton = NodePath("")
+
+[node name="Techo" type="MeshInstance3D" parent="Pasillo2" unique_id=1472760209]
+transform = Transform3D(-4.371139e-08, 8.829701e-08, 1, -3.3655302e-30, -1.01, 8.742278e-08, 1, 3.859585e-15, 4.371139e-08, 0, 1, 0)
+mesh = SubResource("PlaneMesh_2v3tg")
+
+[node name="Suelo" type="MeshInstance3D" parent="Pasillo2" unique_id=1391548298]
+transform = Transform3D(4.371139e-08, 0, -1, -3.821371e-15, 1.01, 0, 1, 3.859585e-15, 4.371139e-08, 0, -1, 0)
+mesh = SubResource("PlaneMesh_g4v7s")
+
+[node name="ParedPuerta" type="MeshInstance3D" parent="Pasillo2" unique_id=19465246]
+transform = Transform3D(1, -4.371139e-08, 4.371139e-08, 4.371139e-08, -4.371139e-08, -1, 4.371139e-08, 1, -4.3711385e-08, 3, 0, -4)
+mesh = SubResource("PlaneMesh_yf5fn")
+skeleton = NodePath("")
+
+[node name="Puerta" type="Sprite3D" parent="Pasillo2" unique_id=1241204756]
+transform = Transform3D(-1, 0, -8.7422784e-08, 0, 1, 0, 8.742277e-08, 0, -1, 5.1947417e-15, 1.0658141e-14, -3.921627)
+shaded = true
+texture = ExtResource("13_wqd22")
 
 [connection signal="finished" from="AudioStreamPlayerBGM" to="AudioStreamPlayerBGM" method="_on_finished"]
 [connection signal="_on_cursor_entra_area_monstruo2" from="Baraja" to="." method="_on_cursor_entra_area_monstruo2"]
