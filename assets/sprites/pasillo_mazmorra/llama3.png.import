@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2no1ev3sx3gy"
-path.s3tc="res://.godot/imported/llama1.png-e85135d3a225a22909eb6a12e235ab1b.s3tc.ctex"
+uid="uid://csmiqe5yo5xh8"
+path.s3tc="res://.godot/imported/llama3.png-9da15b8135e89a1b259bd916888a1fd7.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/sprites/llama1.png"
-dest_files=["res://.godot/imported/llama1.png-e85135d3a225a22909eb6a12e235ab1b.s3tc.ctex"]
+source_file="res://assets/sprites/pasillo_mazmorra/llama3.png"
+dest_files=["res://.godot/imported/llama3.png-9da15b8135e89a1b259bd916888a1fd7.s3tc.ctex"]
 
 [params]
 

@@ -1,8 +1,23 @@
 extends Node2D
 
+@onready var hover: AudioStreamPlayer = $Hover
+@onready var click_button: AudioStreamPlayer = $ClickButton
+
 func _ready() -> void:
 	$TablaClasificacion/SubmenuTablaClasificacion/Leaderboard.show_leaderboard()
 	actualizar_interfaz_ajustes()
+	var botones = find_children("*", "Button")
+	botones.append_array(find_children("*", "TextureButton"))
+	for boton in botones:
+		boton.connect("button_up",button_pressed)
+		boton.connect("mouse_entered",button_mouse_entered)
+
+# Conectamos por otra parte todos los botones para que hagan sonidos
+func button_mouse_entered() -> void:
+	hover.play()
+
+func button_pressed() -> void:
+	click_button.play()
 
 func  actualizar_interfaz_ajustes() -> void:
 	#Ajusta la interfaz del menú de opciones
@@ -71,12 +86,14 @@ func mostrar_error_numero_cartas():
 func esconder_submenus():
 	get_tree().get_nodes_in_group("Submenus").map(func(e):e.set_visible(false))
 
+
 func _on_jugar_button_up():
 	if $Jugar/SubmenuModificadores.visible:
 		esconder_submenus()
 	else:
 		esconder_submenus()
 		$Jugar/SubmenuModificadores.visible = true
+
 
 func _on_tabla_clasificacion_button_up() -> void:
 	if $TablaClasificacion/SubmenuTablaClasificacion.visible:
@@ -116,6 +133,7 @@ func _on_check_fullscreen_toggled(toggled_on: bool) -> void:
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	Configuracion.pantalla_completa = toggled_on
+
 
 func _on_check_jqka_numbers_toggled(toggled_on: bool) -> void:
 	Configuracion.JQKA_numeros = toggled_on

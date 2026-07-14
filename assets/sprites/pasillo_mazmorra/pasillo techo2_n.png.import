@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csmiqe5yo5xh8"
-path.s3tc="res://.godot/imported/llama3.png-abfd1f0404a3b0a0f95a55bd5aa22095.s3tc.ctex"
+uid="uid://d4fxgyriidxsg"
+path.s3tc="res://.godot/imported/pasillo techo2_n.png-d1da013dfcaa6f3bd6a90547436e80a9.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/sprites/llama3.png"
-dest_files=["res://.godot/imported/llama3.png-abfd1f0404a3b0a0f95a55bd5aa22095.s3tc.ctex"]
+source_file="res://assets/sprites/pasillo_mazmorra/pasillo techo2_n.png"
+dest_files=["res://.godot/imported/pasillo techo2_n.png-d1da013dfcaa6f3bd6a90547436e80a9.s3tc.ctex"]
 
 [params]
 
@@ -22,12 +22,12 @@ compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://assets/sprites/pasillo techo2_n.png"
 process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2

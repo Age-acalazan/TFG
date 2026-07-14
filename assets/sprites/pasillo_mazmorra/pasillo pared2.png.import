@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blo8ylxkveggb"
-path.s3tc="res://.godot/imported/pasillo techo.png-2391702e261d1506dbc2cd9a92879ede.s3tc.ctex"
+uid="uid://82b366pi17r5"
+path.s3tc="res://.godot/imported/pasillo pared2.png-d008cc03d4cddef0a5d705842f4377f0.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/sprites/pasillo techo.png"
-dest_files=["res://.godot/imported/pasillo techo.png-2391702e261d1506dbc2cd9a92879ede.s3tc.ctex"]
+source_file="res://assets/sprites/pasillo_mazmorra/pasillo pared2.png"
+dest_files=["res://.godot/imported/pasillo pared2.png-d008cc03d4cddef0a5d705842f4377f0.s3tc.ctex"]
 
 [params]
 

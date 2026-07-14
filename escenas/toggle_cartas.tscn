@@ -2,13 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://djy6fwgo6od1" path="res://assets/sprites/vida/2c.png" id="1_ma6gd"]
 [ext_resource type="Script" uid="uid://c5lyk06kwmfw6" path="res://scripts/toggle_cartas.gd" id="2_4dhhi"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4v7s"]
-bg_color = Color(0, 0, 0, 0.4117647)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
+[ext_resource type="StyleBox" uid="uid://cggbrq0141nq0" path="res://themes/style_box_sin_borde.tres" id="3_4dhhi"]
 
 [node name="TextureButton" type="TextureButton" unique_id=1710672053]
 z_index = 1
@@ -27,6 +21,8 @@ layout_mode = 0
 offset_right = 120.0
 offset_bottom = 120.0
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_g4v7s")
+theme_override_styles/panel = ExtResource("3_4dhhi")
 
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="toggled" from="." to="." method="_on_toggled"]

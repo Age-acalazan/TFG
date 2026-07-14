@@ -6,7 +6,13 @@ var vida : int:
 		$HUD/LabelVida.set_text(str(vida)+"♥️")
 @export var vida_max : int = 2000
 var valor_monstruo_sobre_arma : int
-var valor_arma : int = 0
+var valor_arma : int = 0:
+	set(valor):
+		valor_arma = valor
+		
+		#match valor:
+			#2:
+				#sonido_arma.stream
 var usando_arma : bool:
 	set(valor):
 		usando_arma = valor
@@ -24,6 +30,11 @@ var oro : int:
 @onready var label_monstruo_anterior: Label = $HUD/LabelMonstruoAnterior
 @onready var monstruo_anterior: Sprite2D = $HUD/MonstruoAnterior
 @onready var baraja: Node = $Baraja
+@onready var sonido_hover: AudioStreamPlayer = $Sonido/Hover
+@onready var sonido_click_button: AudioStreamPlayer = $Sonido/ClickButton
+@onready var sonido_negar: AudioStreamPlayer = $Sonido/Negar
+@onready var sonido_arma: AudioStreamPlayer = $Sonido/Arma
+
 
 func _ready():
 	baraja.inicializar_partida()
@@ -36,13 +47,24 @@ func _ready():
 	numero_total_cartas = baraja.baraja.size()+4
 	$HUD/LabelRestantes.text = str(baraja.baraja.size()+baraja.sala.size())+"/"+str(numero_total_cartas)
 	$HUD/Oro.visible = true if baraja.modificadores_activos else false
-	$AudioStreamPlayerBGM.play()
+	$Sonido/BGM.play()
 	actualizar_interfaz_ajustes()
+	var botones = find_children("*", "Button")
+	botones.append_array(find_children("*", "TextureButton"))
+	for boton in botones:
+		boton.connect("button_up",button_pressed)
+		boton.connect("mouse_entered",button_mouse_entered)
 	#crear_cartas()
 	#baraja.shuffle()
 	#iniciar_sala()
 	#mostrar_baraja()
 	#mostrar_sala()
+
+func button_mouse_entered() -> void:
+	sonido_hover.play()
+
+func button_pressed() -> void:
+	sonido_click_button.play()
 
 func actualizar_interfaz_ajustes() -> void:
 	$SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen.button_pressed = Configuracion.pantalla_completa
@@ -66,6 +88,7 @@ func _on_baraja_carta_clicada(carta: Carta) -> void:
 					borrar_carta(carta)
 				else: # Arma equipada y no aplicable
 					carta.poner_en_rojo()
+					sonido_negar.play()
 			else: # Desarmado
 				vida -= carta.valor
 				oro += carta.valor
@@ -88,7 +111,6 @@ func _on_baraja_carta_clicada(carta: Carta) -> void:
 			var tienda = preload("res://escenas/tienda.tscn").instantiate()
 			tienda.oro = oro
 			tienda.connect("compra_realizada", compra_realizada)
-			#tienda.connect("tienda_salida", tienda_herreria_salida)
 			tienda.position = Vector2(380,180)
 			$HUD.add_child(tienda, true)
 			$HUD/CambiarArma.disabled = true
@@ -104,7 +126,6 @@ func _on_baraja_carta_clicada(carta: Carta) -> void:
 			herreria.oro = oro
 			herreria.durabilidad_actual = valor_monstruo_sobre_arma
 			herreria.connect("reparacion_hecha", reparacion_hecha)
-			#herreria.connect("herreria_salida", tienda_herreria_salida)
 			herreria.position = Vector2(380,180)
 			$HUD.add_child(herreria, true)
 			$HUD/CambiarArma.disabled = true
@@ -150,9 +171,9 @@ func muerte():
 		$FinPartida/Leaderboard.save_score(baraja.calcular_puntuacion_muerte())
 	$FinPartida/Leaderboard.show_leaderboard()
 	
-	$AudioStreamPlayerBGM.stop()
-	$AudioStreamPlayerFinPartida.stream = preload("uid://byob06le748u7")
-	$AudioStreamPlayerFinPartida.play()
+	$BGM.stop()
+	$Sonido/MusicaFinPartida.stream = preload("uid://byob06le748u7")
+	$Sonido/MusicaFinPartida.play()
 
 func victoria():
 	# Espera a que termine el tween de esa función
@@ -174,9 +195,9 @@ func victoria():
 		$FinPartida/Leaderboard.save_score(vida)
 	$FinPartida/Leaderboard.show_leaderboard()
 	
-	$AudioStreamPlayerBGM.stop()
-	$AudioStreamPlayerFinPartida.stream = preload("uid://cdqt0oe741oie")
-	$AudioStreamPlayerFinPartida.play()
+	$BGM.stop()
+	$Sonido/MusicaFinPartida.stream = preload("uid://cdqt0oe741oie")
+	$Sonido/MusicaFinPartida.play()
 
 # Función que usa un tween para cambiar poco a poco la puntuación displayeada
 func mostrar_puntuacion(puntos : int):
@@ -287,3 +308,4 @@ func _on_check_fullscreen_toggled(toggled_on: bool) -> void:
 
 func _on_baraja_empezando_recargar_sala() -> void:
 	$HUD/SubViewport/Camera3D.avanzar_sala()
+	

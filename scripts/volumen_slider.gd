@@ -1,6 +1,7 @@
 extends HSlider
 
 @export var audio_bus_name : String
+@onready var audio_stream_player: AudioStreamPlayer = $"../../HBoxContainer2/VolumenSFXSlider/AudioStreamPlayer"
 var audio_bus_id
 
 func _ready():
@@ -16,3 +17,5 @@ func _on_value_changed(nuevo_valor: float) -> void:
 			Configuracion.volumen_musica = nuevo_valor
 		"SFX":
 			Configuracion.volumen_sfx = nuevo_valor
+			audio_stream_player.play()
+			

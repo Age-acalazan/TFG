@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://b7mermhg446f5" path="res://scripts/contador_slider.gd" id="3_2syjm"]
 [ext_resource type="Script" uid="uid://qitdgvaeev8j" path="res://scripts/volumen_slider.gd" id="3_5t3kx"]
 [ext_resource type="Texture2D" uid="uid://dvq8ncm5eh77j" path="res://assets/sprites/monstruos/2p.png" id="3_cliqe"]
-[ext_resource type="AudioStream" uid="uid://bn44ob28pq4c8" path="res://assets/sonidos/musica/More-8-Bit-Drama_Intro.ogg" id="3_mg5w1"]
+[ext_resource type="AudioStream" uid="uid://3nccvl82eed4" path="res://assets/sonidos/musica/More-8-Bit-Drama_Intro.ogg" id="3_mg5w1"]
 [ext_resource type="Texture2D" uid="uid://d0h621di2qepj" path="res://assets/sprites/extras/tienda.png" id="3_tatqo"]
 [ext_resource type="Script" uid="uid://behqkoko3lua2" path="res://scripts/musica_fondo_looping.gd" id="4_5t3kx"]
 [ext_resource type="Texture2D" uid="uid://h3noc08i0yd7" path="res://assets/sprites/monstruos/2t.png" id="4_6vh20"]
@@ -14,8 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://nwpafjehw28d" path="res://assets/sprites/extras/herreria.png" id="4_mg5w1"]
 [ext_resource type="AudioStream" uid="uid://ctlo7a2wsmh2w" path="res://assets/sonidos/musica/More-8-Bit-Drama_Looping.ogg" id="4_v6ae4"]
 [ext_resource type="Texture2D" uid="uid://bnooyltncr4ig" path="res://assets/sprites/monstruos/3p.png" id="5_pm8pu"]
+[ext_resource type="AudioStream" uid="uid://b7uqtde54jtb1" path="res://assets/sonidos/efectos/sfx_menu_move1.wav" id="5_t4hmd"]
 [ext_resource type="Texture2D" uid="uid://dedm6lrpyuaad" path="res://assets/sprites/extras/bomba.png" id="5_v6ae4"]
 [ext_resource type="Texture2D" uid="uid://c554nqmkuqm2k" path="res://assets/sprites/monstruos/3t.png" id="6_2syjm"]
+[ext_resource type="AudioStream" uid="uid://dnwaxfq6fdfgk" path="res://assets/sonidos/efectos/sfx_menu_move4.wav" id="6_t6u78"]
 [ext_resource type="Texture2D" uid="uid://bd4pbq2m3apu0" path="res://assets/sprites/monstruos/4p.png" id="7_f5v4n"]
 [ext_resource type="Texture2D" uid="uid://b4tljv6b7khk" path="res://assets/sprites/monstruos/4t.png" id="8_mxagn"]
 [ext_resource type="Texture2D" uid="uid://cbkjb64yfiygm" path="res://assets/sprites/monstruos/5p.png" id="9_tatqo"]
@@ -55,6 +57,7 @@
 [ext_resource type="Texture2D" uid="uid://bckppx1ja5six" path="res://assets/sprites/vida/9c.png" id="42_k56m0"]
 [ext_resource type="Texture2D" uid="uid://d06p8s8fagyb3" path="res://assets/sprites/vida/10c.png" id="43_yu7te"]
 [ext_resource type="Texture2D" uid="uid://dddqqgpgufuhq" path="res://assets/sprites/monstruos_numeros/11t.png" id="55_mg5w1"]
+[ext_resource type="AudioStream" uid="uid://bws3t3777y4fj" path="res://assets/sonidos/efectos/sfx_sounds_button10.wav" id="57_t6u78"]
 
 [sub_resource type="Theme" id="Theme_2syjm"]
 
@@ -68,12 +71,22 @@ corner_radius_bottom_left = 25
 [node name="Menu" type="Node2D" unique_id=2043182576]
 script = ExtResource("1_vdanu")
 
-[node name="AudioStreamPlayerBGM" type="AudioStreamPlayer" parent="." unique_id=1595024224]
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1595024224]
+volume_db = -2.0
 autoplay = true
 bus = &"Musica"
 script = ExtResource("4_5t3kx")
 audioInicio = ExtResource("3_mg5w1")
 audioLoop = ExtResource("4_v6ae4")
+
+[node name="Hover" type="AudioStreamPlayer" parent="." unique_id=1283363007]
+stream = ExtResource("5_t4hmd")
+bus = &"SFX"
+
+[node name="ClickButton" type="AudioStreamPlayer" parent="." unique_id=490478549]
+stream = ExtResource("6_t6u78")
+volume_db = -1.0
+bus = &"SFX"
 
 [node name="Jugar" type="Button" parent="." unique_id=935869368]
 offset_left = 64.0
@@ -774,6 +787,10 @@ value = 1.0
 script = ExtResource("3_5t3kx")
 audio_bus_name = "SFX"
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" unique_id=1614526377]
+stream = ExtResource("57_t6u78")
+bus = &"SFX"
+
 [node name="Miscelánea" type="Label" parent="Opciones/SubmenuOpciones/VBoxContainer" unique_id=1442971073]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
@@ -811,7 +828,7 @@ offset_bottom = 175.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_v6ae4")
 
-[connection signal="finished" from="AudioStreamPlayerBGM" to="AudioStreamPlayerBGM" method="_on_finished"]
+[connection signal="finished" from="BGM" to="BGM" method="_on_finished"]
 [connection signal="button_up" from="Jugar" to="." method="_on_jugar_button_up"]
 [connection signal="button_up" from="Jugar/SubmenuModificadores/JugarSimple" to="." method="_on_jugar_simple_button_up"]
 [connection signal="button_up" from="Jugar/SubmenuModificadores/JugarModificadores" to="." method="_on_jugar_modificadores_button_up"]

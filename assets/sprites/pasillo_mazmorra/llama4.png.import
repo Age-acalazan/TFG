@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxxka5fhamtub"
-path.s3tc="res://.godot/imported/pasillo puerta.png-c83b36c278cba67fa070944ae13cd31c.s3tc.ctex"
+uid="uid://b3hmaalap1ktu"
+path.s3tc="res://.godot/imported/llama4.png-ea2075c95e89b933ebdd0d7a3c9a5727.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/sprites/pasillo puerta.png"
-dest_files=["res://.godot/imported/pasillo puerta.png-c83b36c278cba67fa070944ae13cd31c.s3tc.ctex"]
+source_file="res://assets/sprites/pasillo_mazmorra/llama4.png"
+dest_files=["res://.godot/imported/llama4.png-ea2075c95e89b933ebdd0d7a3c9a5727.s3tc.ctex"]
 
 [params]
 

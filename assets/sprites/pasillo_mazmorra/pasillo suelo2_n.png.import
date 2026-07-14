@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqg3c45b4ktqh"
-path.s3tc="res://.godot/imported/llama2.png-1ac49df9625649ba4095a1f8c900f47c.s3tc.ctex"
+uid="uid://b8o5kuy3r41ux"
+path.s3tc="res://.godot/imported/pasillo suelo2_n.png-2bc121a5e33ee4a65c50543d3f9ed11d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/sprites/llama2.png"
-dest_files=["res://.godot/imported/llama2.png-1ac49df9625649ba4095a1f8c900f47c.s3tc.ctex"]
+source_file="res://assets/sprites/pasillo_mazmorra/pasillo suelo2_n.png"
+dest_files=["res://.godot/imported/pasillo suelo2_n.png-2bc121a5e33ee4a65c50543d3f9ed11d.s3tc.ctex"]
 
 [params]
 
@@ -22,12 +22,12 @@ compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://assets/sprites/pasillo suelo2_n.png"
 process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2
