@@ -11,16 +11,26 @@
 [ext_resource type="Script" uid="uid://qitdgvaeev8j" path="res://scripts/volumen_slider.gd" id="6_aagfl"]
 [ext_resource type="Texture2D" uid="uid://d0xsrpc8m3y3v" path="res://assets/sprites/ui/moneda.png" id="6_phb60"]
 [ext_resource type="AudioStream" uid="uid://do7mf7mhvrdqa" path="res://assets/sonidos/efectos/sfx_sounds_error9.wav" id="7_j41xx"]
+[ext_resource type="AudioStream" uid="uid://cfvvr5mfjyeqw" path="res://assets/sonidos/efectos/sfx_wpn_punch4.wav" id="8_5imjb"]
+[ext_resource type="AudioStream" uid="uid://b1nqcertohn5o" path="res://assets/sonidos/efectos/sfx_sounds_pause1_in.wav" id="9_5a3hp"]
 [ext_resource type="Script" uid="uid://ckime8det72x7" path="res://scripts/camera_3d_scroll.gd" id="9_aagfl"]
 [ext_resource type="Texture2D" uid="uid://82b366pi17r5" path="res://assets/sprites/pasillo_mazmorra/pasillo pared2.png" id="10_a6o65"]
+[ext_resource type="AudioStream" uid="uid://c4vttcf5eilqm" path="res://assets/sonidos/efectos/sfx_sounds_pause1_out.wav" id="10_w2ek0"]
 [ext_resource type="Script" uid="uid://ee7y7hqkuivu" path="res://scripts/antorcha.gd" id="11_a6o65"]
+[ext_resource type="AudioStream" uid="uid://b8k6aelg0fdmn" path="res://assets/sonidos/efectos/weapon_equip_crunchy.wav" id="11_jtea1"]
 [ext_resource type="Texture2D" uid="uid://cd1rsos3wllg" path="res://assets/sprites/pasillo_mazmorra/pasillo pared2_n.png" id="11_tcd4i"]
 [ext_resource type="AudioStream" uid="uid://bws3t3777y4fj" path="res://assets/sonidos/efectos/sfx_sounds_button10.wav" id="12_2v3tg"]
 [ext_resource type="Texture2D" uid="uid://bqg3c45b4ktqh" path="res://assets/sprites/pasillo_mazmorra/llama2.png" id="12_a6o65"]
+[ext_resource type="AudioStream" uid="uid://dm1fmtn5da3dj" path="res://assets/sonidos/efectos/weapon_unequip_crunchy.wav" id="12_ge6em"]
+[ext_resource type="AudioStream" uid="uid://ck0dd2oxfcx31" path="res://assets/sonidos/efectos/15_human_dash_2.wav" id="13_ge6em"]
 [ext_resource type="Texture2D" uid="uid://cum2cxr2mow5b" path="res://assets/sprites/pasillo_mazmorra/pasillo techo2.png" id="13_ultml"]
 [ext_resource type="Texture2D" uid="uid://bxxka5fhamtub" path="res://assets/sprites/pasillo_mazmorra/pasillo puerta.png" id="13_wqd22"]
+[ext_resource type="AudioStream" uid="uid://7bg21th34mx5" path="res://assets/sonidos/efectos/munching_food_crunchy.wav" id="14_5b64g"]
 [ext_resource type="Texture2D" uid="uid://mt4dmbwnfsrx" path="res://assets/sprites/pasillo_mazmorra/pasillo suelo2.png" id="14_n6xck"]
+[ext_resource type="AudioStream" uid="uid://cb7ctx31v5txp" path="res://assets/sonidos/efectos/drink_slurp_crunchy.wav" id="15_g05uf"]
 [ext_resource type="Texture2D" uid="uid://d4fxgyriidxsg" path="res://assets/sprites/pasillo_mazmorra/pasillo techo2_n.png" id="15_n6xck"]
+[ext_resource type="AudioStream" uid="uid://d125tq247ougk" path="res://assets/sonidos/efectos/sfx_sounds_powerup3.wav" id="16_mkwfn"]
+[ext_resource type="AudioStream" uid="uid://bpb4qtghd6bmm" path="res://assets/sonidos/efectos/audio_stream_randomizar_pasos.tres" id="17_g05uf"]
 [ext_resource type="Texture2D" uid="uid://b8o5kuy3r41ux" path="res://assets/sprites/pasillo_mazmorra/pasillo suelo2_n.png" id="17_ot0qb"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yf5fn"]
@@ -91,22 +101,55 @@ bus = &"SFX"
 
 [node name="ClickButton" type="AudioStreamPlayer" parent="Sonido" unique_id=1609120709]
 stream = ExtResource("6_2v3tg")
-volume_db = -1.0
 bus = &"SFX"
 
 [node name="Negar" type="AudioStreamPlayer" parent="Sonido" unique_id=961962103]
 stream = ExtResource("7_j41xx")
-volume_db = -1.0
+volume_db = -3.0
 bus = &"SFX"
 
 [node name="Puño" type="AudioStreamPlayer" parent="Sonido" unique_id=1107931781]
-stream = ExtResource("7_j41xx")
-volume_db = -1.0
+stream = ExtResource("8_5imjb")
 bus = &"SFX"
 
 [node name="Arma" type="AudioStreamPlayer" parent="Sonido" unique_id=576544251]
 stream = ExtResource("7_j41xx")
-volume_db = -1.0
+bus = &"SFX"
+
+[node name="PausaIn" type="AudioStreamPlayer" parent="Sonido" unique_id=1842831412]
+stream = ExtResource("9_5a3hp")
+bus = &"SFX"
+
+[node name="PausaOut" type="AudioStreamPlayer" parent="Sonido" unique_id=2052167074]
+stream = ExtResource("10_w2ek0")
+bus = &"SFX"
+
+[node name="Equipar" type="AudioStreamPlayer" parent="Sonido" unique_id=1503153834]
+stream = ExtResource("11_jtea1")
+pitch_scale = 1.1
+bus = &"SFX"
+
+[node name="Desequipar" type="AudioStreamPlayer" parent="Sonido" unique_id=388515333]
+stream = ExtResource("12_ge6em")
+pitch_scale = 0.9
+bus = &"SFX"
+
+[node name="Huir" type="AudioStreamPlayer" parent="Sonido" unique_id=679619838]
+stream = ExtResource("13_ge6em")
+volume_db = 2.0
+bus = &"SFX"
+
+[node name="Comer" type="AudioStreamPlayer" parent="Sonido" unique_id=974950727]
+stream = ExtResource("14_5b64g")
+bus = &"SFX"
+
+[node name="Beber" type="AudioStreamPlayer" parent="Sonido" unique_id=1574667288]
+stream = ExtResource("15_g05uf")
+bus = &"SFX"
+
+[node name="Sanar" type="AudioStreamPlayer" parent="Sonido" unique_id=577338374]
+stream = ExtResource("16_mkwfn")
+volume_db = -12.0
 bus = &"SFX"
 
 [node name="Baraja" type="Node2D" parent="." unique_id=325732177]
@@ -169,6 +212,7 @@ offset_top = 296.0
 offset_right = 240.0
 offset_bottom = 384.0
 theme_override_font_sizes/font_size = 31
+disabled = true
 
 [node name="Huir" type="Button" parent="HUD" unique_id=529073074]
 offset_left = 16.0
@@ -229,6 +273,12 @@ light_color = Color(1, 0.902, 0.72, 1)
 distance_fade_enabled = true
 distance_fade_begin = 0.0
 omni_range = 7.0
+
+[node name="Caminar" type="AudioStreamPlayer" parent="HUD/SubViewport/Camera3D" unique_id=2125695893]
+stream = ExtResource("17_g05uf")
+volume_db = 8.0
+pitch_scale = 0.8
+bus = &"SFX"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="HUD/SubViewport" unique_id=250456575]
 environment = SubResource("Environment_yf5fn")

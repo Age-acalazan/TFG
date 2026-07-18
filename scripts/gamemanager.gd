@@ -1,18 +1,12 @@
 extends Node2D
 
+@export var vida_max : int = 2000
 var vida : int:
 	set(valor):
 		vida = valor
 		$HUD/LabelVida.set_text(str(vida)+"♥️")
-@export var vida_max : int = 2000
 var valor_monstruo_sobre_arma : int
-var valor_arma : int = 0:
-	set(valor):
-		valor_arma = valor
-		
-		#match valor:
-			#2:
-				#sonido_arma.stream
+var valor_arma : int = 0
 var usando_arma : bool:
 	set(valor):
 		usando_arma = valor
@@ -30,10 +24,21 @@ var oro : int:
 @onready var label_monstruo_anterior: Label = $HUD/LabelMonstruoAnterior
 @onready var monstruo_anterior: Sprite2D = $HUD/MonstruoAnterior
 @onready var baraja: Node = $Baraja
+@onready var camera_3d: Camera3D = $HUD/SubViewport/Camera3D
+
 @onready var sonido_hover: AudioStreamPlayer = $Sonido/Hover
 @onready var sonido_click_button: AudioStreamPlayer = $Sonido/ClickButton
 @onready var sonido_negar: AudioStreamPlayer = $Sonido/Negar
 @onready var sonido_arma: AudioStreamPlayer = $Sonido/Arma
+@onready var sonido_puño: AudioStreamPlayer = $Sonido/Puño
+@onready var sonido_pausa_in: AudioStreamPlayer = $Sonido/PausaIn
+@onready var sonido_pausa_out: AudioStreamPlayer = $Sonido/PausaOut
+@onready var sonido_equipar: AudioStreamPlayer = $Sonido/Equipar
+@onready var sonido_desequipar: AudioStreamPlayer = $Sonido/Desequipar
+@onready var sonido_huir: AudioStreamPlayer = $Sonido/Huir
+@onready var sonido_comer: AudioStreamPlayer = $Sonido/Comer
+@onready var sonido_beber: AudioStreamPlayer = $Sonido/Beber
+@onready var sonido_sanar: AudioStreamPlayer = $Sonido/Sanar
 
 
 func _ready():
@@ -41,7 +46,6 @@ func _ready():
 	vida = vida_max
 	usando_arma = false
 	oro = 0
-	#$HUD/LabelVida.text=str(vida)+"♥️"
 	label_arma.text="Sin arma"
 	label_monstruo_anterior.text="Sin monstruo anterior"
 	numero_total_cartas = baraja.baraja.size()+4
@@ -49,22 +53,48 @@ func _ready():
 	$HUD/Oro.visible = true if baraja.modificadores_activos else false
 	$Sonido/BGM.play()
 	actualizar_interfaz_ajustes()
-	var botones = find_children("*", "Button")
-	botones.append_array(find_children("*", "TextureButton"))
-	for boton in botones:
-		boton.connect("button_up",button_pressed)
-		boton.connect("mouse_entered",button_mouse_entered)
-	#crear_cartas()
-	#baraja.shuffle()
-	#iniciar_sala()
-	#mostrar_baraja()
-	#mostrar_sala()
+	conectar_botones_con_sonido()
 
-func button_mouse_entered() -> void:
-	sonido_hover.play()
+func conectar_botones_con_sonido():
+	# Lista de nodos tipo boton cuyos sonidos de hover o click son los básicos
+	var botones_hover_normal = [
+		$HUD/CambiarArma,
+		$HUD/Huir,
+		$HUD/Opciones,
+		$FinPartida/Menu,
+		$SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen,
+		$SubmenuOpciones/VBoxContainer/Continuar,
+		$SubmenuOpciones/VBoxContainer/SalirDePartida
+	]
+	for boton in botones_hover_normal:
+		boton.mouse_entered.connect(button_mouse_entered.bind(sonido_hover,boton))
+	
+	var botones_click_normal = [
+		$FinPartida/Menu,
+		$SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen
+	]
+	for boton in botones_click_normal:
+		boton.button_up.connect(button_pressed.bind(sonido_click_button))
+	
+	# Lista de nodos tipo boton cuyos sonidos de hover o click son especiales
+	$HUD/Opciones.button_up.connect(button_pressed.bind(sonido_pausa_in))
+	$SubmenuOpciones/VBoxContainer/Continuar.button_up.connect(button_pressed.bind(sonido_pausa_out))
+	$HUD/CambiarArma.button_up.connect(button_pressed_cambiar_arma)
+	$HUD/Huir.button_up.connect(button_pressed.bind(sonido_huir))
 
-func button_pressed() -> void:
-	sonido_click_button.play()
+
+func button_mouse_entered(player: AudioStreamPlayer, boton: Node):
+	if not boton.disabled:
+		player.play()
+
+func button_pressed(player: AudioStreamPlayer):
+	player.play()
+
+func button_pressed_cambiar_arma():
+	if usando_arma:
+		sonido_equipar.play()
+	else:
+		sonido_desequipar.play()
 
 func actualizar_interfaz_ajustes() -> void:
 	$SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen.button_pressed = Configuracion.pantalla_completa
@@ -86,6 +116,7 @@ func _on_baraja_carta_clicada(carta: Carta) -> void:
 					vida -= clampi(carta.valor - valor_arma,0, vida_max)
 					oro += carta.valor
 					borrar_carta(carta)
+					sonido_arma.play()
 				else: # Arma equipada y no aplicable
 					carta.poner_en_rojo()
 					sonido_negar.play()
@@ -93,9 +124,16 @@ func _on_baraja_carta_clicada(carta: Carta) -> void:
 				vida -= carta.valor
 				oro += carta.valor
 				borrar_carta(carta)
+				sonido_puño.play()
 		
 		Carta.PALO.CORAZONES:#####################################################
-			vida += carta.valor
+			if carta.valor == 10:
+				sonido_beber.play()
+			else:
+				sonido_comer.play()
+			if vida != vida_max:
+				vida += carta.valor
+				sonido_sanar.play()
 			borrar_carta(carta)
 			
 		Carta.PALO.DIAMANTES:#####################################################
@@ -105,6 +143,28 @@ func _on_baraja_carta_clicada(carta: Carta) -> void:
 			monstruo_anterior.texture = null
 			label_arma.text = "Valor del arma: "+ str(valor_arma)
 			label_monstruo_anterior.text = "Último monstruo sobre arma: Ninguno"
+			sonido_equipar.play()
+			if $HUD/CambiarArma.disabled:
+				$HUD/CambiarArma.disabled = false
+			sonido_arma.volume_db = 0.0
+			match valor_arma:
+				2:
+					sonido_arma.stream = load("res://assets/sonidos/efectos/explosion_quick.wav")
+					sonido_arma.volume_db = -5.0
+				3, 6:
+					sonido_arma.stream = load("res://assets/sonidos/efectos/27_sword_miss_2.wav")
+					sonido_arma.volume_db = 2.0
+				4:
+					sonido_arma.stream = load("res://assets/sonidos/efectos/511490__lydmakeren__fx_bowarrow.wav")
+				5:
+					sonido_arma.stream = load("res://assets/sonidos/efectos/14_human_death_spin_mod.wav")
+				7:
+					sonido_arma.stream = load("res://assets/sonidos/efectos/07_human_atk_sword_2.wav")
+					sonido_arma.volume_db = 2.0
+				8, 9:
+					sonido_arma.stream = load("res://assets/sonidos/efectos/21_orc_damage_2.wav")
+				10:
+					sonido_arma.stream = load("res://assets/sonidos/efectos/17_orc_atk_sword_2.wav")
 			borrar_carta(carta)
 		
 		Carta.PALO.TIENDA:#####################################################
@@ -171,7 +231,7 @@ func muerte():
 		$FinPartida/Leaderboard.save_score(baraja.calcular_puntuacion_muerte())
 	$FinPartida/Leaderboard.show_leaderboard()
 	
-	$BGM.stop()
+	$Sonido/BGM.stop()
 	$Sonido/MusicaFinPartida.stream = preload("uid://byob06le748u7")
 	$Sonido/MusicaFinPartida.play()
 
@@ -195,7 +255,7 @@ func victoria():
 		$FinPartida/Leaderboard.save_score(vida)
 	$FinPartida/Leaderboard.show_leaderboard()
 	
-	$BGM.stop()
+	$Sonido/BGM.stop()
 	$Sonido/MusicaFinPartida.stream = preload("uid://cdqt0oe741oie")
 	$Sonido/MusicaFinPartida.play()
 
@@ -307,5 +367,5 @@ func _on_check_fullscreen_toggled(toggled_on: bool) -> void:
 
 
 func _on_baraja_empezando_recargar_sala() -> void:
-	$HUD/SubViewport/Camera3D.avanzar_sala()
+	camera_3d.avanzar_sala()
 	

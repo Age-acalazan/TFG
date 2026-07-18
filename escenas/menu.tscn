@@ -57,7 +57,6 @@
 [ext_resource type="Texture2D" uid="uid://bckppx1ja5six" path="res://assets/sprites/vida/9c.png" id="42_k56m0"]
 [ext_resource type="Texture2D" uid="uid://d06p8s8fagyb3" path="res://assets/sprites/vida/10c.png" id="43_yu7te"]
 [ext_resource type="Texture2D" uid="uid://dddqqgpgufuhq" path="res://assets/sprites/monstruos_numeros/11t.png" id="55_mg5w1"]
-[ext_resource type="AudioStream" uid="uid://bws3t3777y4fj" path="res://assets/sonidos/efectos/sfx_sounds_button10.wav" id="57_t6u78"]
 
 [sub_resource type="Theme" id="Theme_2syjm"]
 
@@ -697,6 +696,16 @@ Música y efectos de sonido:
 
 · 8-bit Game Over Sound/Tune by EVRetro -- https://freesound.org/s/533034/ -- License: Creative Commons 0
 
+· qubodup - Knife Attack Slash
+
+· Juhani Junkala - The Essential Retro Video Game Sound Effects Collection [512 sounds]
+
+· Chequered Ink - 400 Sounds Pack
+
+·  Leohpaz - Minifantasy Audio Pack
+
+·  Helton Yan - Minifantasy Audio Pack ( https://creativecommons.org/licenses/by/4.0/ no changes were made)
+
 Historia:
 Ángel Sánchez Ruiz
 "
@@ -788,7 +797,8 @@ script = ExtResource("3_5t3kx")
 audio_bus_name = "SFX"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" unique_id=1614526377]
-stream = ExtResource("57_t6u78")
+stream = ExtResource("6_t6u78")
+volume_db = -2.0
 bus = &"SFX"
 
 [node name="Miscelánea" type="Label" parent="Opciones/SubmenuOpciones/VBoxContainer" unique_id=1442971073]

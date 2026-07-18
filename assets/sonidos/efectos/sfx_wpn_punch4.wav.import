@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cfvvr5mfjyeqw"
-path="res://.godot/imported/sfx_wpn_punch4.wav-c535a77772338a9d336c6bff567e5c17.sample"
+path="res://.godot/imported/sfx_wpn_punch4.wav-2ef2c11414da127be6151bf45d5538e4.sample"
 
 [deps]
 
-source_file="res://assets/sonidos/sfx_wpn_punch4.wav"
-dest_files=["res://.godot/imported/sfx_wpn_punch4.wav-c535a77772338a9d336c6bff567e5c17.sample"]
+source_file="res://assets/sonidos/efectos/sfx_wpn_punch4.wav"
+dest_files=["res://.godot/imported/sfx_wpn_punch4.wav-2ef2c11414da127be6151bf45d5538e4.sample"]
 
 [params]
 

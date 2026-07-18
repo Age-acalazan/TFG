@@ -1,0 +1,17 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://bpb4qtghd6bmm"]
+
+[ext_resource type="AudioStream" uid="uid://8ugtkvfk7gos" path="res://assets/sonidos/efectos/foley_footstep_carpet_3.wav" id="1_a6oxs"]
+[ext_resource type="AudioStream" uid="uid://c0lxg8cqqhbov" path="res://assets/sonidos/efectos/foley_footstep_concrete_1.wav" id="2_v8oee"]
+[ext_resource type="AudioStream" uid="uid://dqnh533ag0nh2" path="res://assets/sonidos/efectos/foley_footstep_concrete_2.wav" id="3_qhhu6"]
+[ext_resource type="AudioStream" uid="uid://exysay6qvegv" path="res://assets/sonidos/efectos/foley_footstep_concrete_3.wav" id="4_as4wi"]
+[ext_resource type="AudioStream" uid="uid://ch6vgqp8uxdcg" path="res://assets/sonidos/efectos/foley_footstep_concrete_4.wav" id="5_4d2r7"]
+
+[resource]
+random_pitch = 1.0116194
+streams_count = 5
+stream_0/stream = ExtResource("1_a6oxs")
+stream_0/weight = 0.5
+stream_1/stream = ExtResource("2_v8oee")
+stream_2/stream = ExtResource("3_qhhu6")
+stream_3/stream = ExtResource("4_as4wi")
+stream_4/stream = ExtResource("5_4d2r7")

@@ -1,4 +1,5 @@
 extends Camera3D
+@onready var sonido_caminar: AudioStreamPlayer = $Caminar
 
 
 func avanzar_sala():
@@ -17,6 +18,8 @@ func avanzar_sala():
 		2.0,
 		2.0
 	)
+	
+	sonidos_caminar(4)
 	
 	await tween1.finished
 	position.z = fmod(position.z, 8.0)
@@ -38,4 +41,12 @@ func secuencia_victoria():
 		duracion-1
 	)
 	
+	sonidos_caminar(int(duracion/0.5)-1)
+	
 	await tween1.finished
+
+func sonidos_caminar(repeticiones : int):
+	# Se hace el sonido de dar los pasos
+	for _n in range(repeticiones):
+		sonido_caminar.play()
+		await get_tree().create_timer(0.5).timeout
