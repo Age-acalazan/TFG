@@ -6,7 +6,28 @@ var vida : int:
 		vida = valor
 		$HUD/LabelVida.set_text(str(vida)+"♥️")
 var valor_monstruo_sobre_arma : int
-var valor_arma : int = 0
+var valor_arma : int = 0:
+	set(valor):
+		valor_arma = valor
+		sonido_arma.volume_db = 0.0
+		match valor_arma:
+			2:
+				sonido_arma.stream = load("res://assets/sonidos/efectos/explosion_quick.wav")
+				sonido_arma.volume_db = -5.0
+			3, 6:
+				sonido_arma.stream = load("res://assets/sonidos/efectos/27_sword_miss_2.wav")
+				sonido_arma.volume_db = 2.0
+			4:
+				sonido_arma.stream = load("res://assets/sonidos/efectos/lydmakeren__fx_bowarrow.wav")
+			5:
+				sonido_arma.stream = load("res://assets/sonidos/efectos/14_human_death_spin_mod.wav")
+			7:
+				sonido_arma.stream = load("res://assets/sonidos/efectos/07_human_atk_sword_2.wav")
+				sonido_arma.volume_db = 2.0
+			8, 9:
+				sonido_arma.stream = load("res://assets/sonidos/efectos/21_orc_damage_2.wav")
+			10:
+				sonido_arma.stream = load("res://assets/sonidos/efectos/17_orc_atk_sword_2.wav")
 var usando_arma : bool:
 	set(valor):
 		usando_arma = valor
@@ -39,13 +60,19 @@ var oro : int:
 @onready var sonido_comer: AudioStreamPlayer = $Sonido/Comer
 @onready var sonido_beber: AudioStreamPlayer = $Sonido/Beber
 @onready var sonido_sanar: AudioStreamPlayer = $Sonido/Sanar
+@onready var sonido_herreria_in: AudioStreamPlayer = $Sonido/HerreriaIn
+@onready var sonido_herreria_reparacion: AudioStreamPlayer = $Sonido/HerreriaReparacion
+@onready var sonido_tienda_in: AudioStreamPlayer = $Sonido/TiendaIn
+@onready var sonido_tienda_compra: AudioStreamPlayer = $Sonido/TiendaCompra
+@onready var sonido_tienda_herreria_out: AudioStreamPlayer = $Sonido/TiendaHerreriaOut
+@onready var sonido_bomba: AudioStreamPlayer = $Sonido/Bomba
 
 
 func _ready():
 	baraja.inicializar_partida()
 	vida = vida_max
 	usando_arma = false
-	oro = 0
+	oro = 1000
 	label_arma.text="Sin arma"
 	label_monstruo_anterior.text="Sin monstruo anterior"
 	numero_total_cartas = baraja.baraja.size()+4
@@ -70,7 +97,6 @@ func conectar_botones_con_sonido():
 		boton.mouse_entered.connect(button_mouse_entered.bind(sonido_hover,boton))
 	
 	var botones_click_normal = [
-		$FinPartida/Menu,
 		$SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen
 	]
 	for boton in botones_click_normal:
@@ -146,25 +172,6 @@ func _on_baraja_carta_clicada(carta: Carta) -> void:
 			sonido_equipar.play()
 			if $HUD/CambiarArma.disabled:
 				$HUD/CambiarArma.disabled = false
-			sonido_arma.volume_db = 0.0
-			match valor_arma:
-				2:
-					sonido_arma.stream = load("res://assets/sonidos/efectos/explosion_quick.wav")
-					sonido_arma.volume_db = -5.0
-				3, 6:
-					sonido_arma.stream = load("res://assets/sonidos/efectos/27_sword_miss_2.wav")
-					sonido_arma.volume_db = 2.0
-				4:
-					sonido_arma.stream = load("res://assets/sonidos/efectos/511490__lydmakeren__fx_bowarrow.wav")
-				5:
-					sonido_arma.stream = load("res://assets/sonidos/efectos/14_human_death_spin_mod.wav")
-				7:
-					sonido_arma.stream = load("res://assets/sonidos/efectos/07_human_atk_sword_2.wav")
-					sonido_arma.volume_db = 2.0
-				8, 9:
-					sonido_arma.stream = load("res://assets/sonidos/efectos/21_orc_damage_2.wav")
-				10:
-					sonido_arma.stream = load("res://assets/sonidos/efectos/17_orc_atk_sword_2.wav")
 			borrar_carta(carta)
 		
 		Carta.PALO.TIENDA:#####################################################
@@ -176,6 +183,7 @@ func _on_baraja_carta_clicada(carta: Carta) -> void:
 			$HUD/CambiarArma.disabled = true
 			$HUD/Huir.disabled = true
 			$Baraja.visible = false
+			sonido_tienda_in.play()
 			await tienda.tree_exited
 			tienda_herreria_salida()
 			borrar_carta(carta)
@@ -191,6 +199,7 @@ func _on_baraja_carta_clicada(carta: Carta) -> void:
 			$HUD/CambiarArma.disabled = true
 			$HUD/Huir.disabled = true
 			$Baraja.visible = false
+			sonido_herreria_in.play()
 			await herreria.tree_exited
 			tienda_herreria_salida()
 			borrar_carta(carta)
@@ -198,6 +207,7 @@ func _on_baraja_carta_clicada(carta: Carta) -> void:
 		Carta.PALO.BOMBA:#####################################################
 			vida -= randi_range(0,10)
 			baraja.bomba()
+			sonido_bomba.play()
 	
 	
 	# Limita el valor de la vida por arriba y por abajo
@@ -343,6 +353,7 @@ func compra_realizada(datos : Array):
 		monstruo_anterior.texture = null
 		label_arma.text = "Valor del arma: "+ str(valor_arma)
 		label_monstruo_anterior.text = "Último monstruo sobre arma: Ninguno"
+	sonido_tienda_compra.play()
 
 
 func reparacion_hecha(precio : int): 
@@ -351,11 +362,15 @@ func reparacion_hecha(precio : int):
 	monstruo_anterior.texture = null
 	label_monstruo_anterior.text = "Último monstruo sobre arma: Ninguno"
 	oro -= precio
+	sonido_herreria_reparacion.play()
 
 func tienda_herreria_salida():
 	$HUD/CambiarArma.disabled = false
 	$HUD/Huir.disabled = false
 	$Baraja.set_visible(true)
+	# Para que no se mezclen sonido, este se ejecuta si sales sin interactuar con la tienda o herreria
+	if not (sonido_tienda_compra.playing or sonido_herreria_reparacion.playing):
+		sonido_tienda_herreria_out.play()
 
 
 func _on_check_fullscreen_toggled(toggled_on: bool) -> void:

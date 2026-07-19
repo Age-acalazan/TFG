@@ -31,7 +31,13 @@
 [ext_resource type="Texture2D" uid="uid://d4fxgyriidxsg" path="res://assets/sprites/pasillo_mazmorra/pasillo techo2_n.png" id="15_n6xck"]
 [ext_resource type="AudioStream" uid="uid://d125tq247ougk" path="res://assets/sonidos/efectos/sfx_sounds_powerup3.wav" id="16_mkwfn"]
 [ext_resource type="AudioStream" uid="uid://bpb4qtghd6bmm" path="res://assets/sonidos/efectos/audio_stream_randomizar_pasos.tres" id="17_g05uf"]
+[ext_resource type="AudioStream" uid="uid://cgkfnfip3dk3p" path="res://assets/sonidos/efectos/creaky_door_short_mod.wav" id="17_mkwfn"]
+[ext_resource type="AudioStream" uid="uid://cbol7qki8etuq" path="res://assets/sonidos/efectos/Blacksmith+-+Hammer+and+Cooling_mod.wav" id="17_n8anx"]
 [ext_resource type="Texture2D" uid="uid://b8o5kuy3r41ux" path="res://assets/sprites/pasillo_mazmorra/pasillo suelo2_n.png" id="17_ot0qb"]
+[ext_resource type="AudioStream" uid="uid://bqi0pab76hql2" path="res://assets/sonidos/efectos/o_ciz__sword-blade_1weapon-blacksmith-metal_mod.wav" id="18_bwgp7"]
+[ext_resource type="AudioStream" uid="uid://dg6lcu2de8818" path="res://assets/sonidos/efectos/capslok__cash-register-fake.wav" id="18_vmj4r"]
+[ext_resource type="AudioStream" uid="uid://btenaex34fjq4" path="res://assets/sonidos/efectos/door_close.wav" id="19_surgt"]
+[ext_resource type="AudioStream" uid="uid://dwso8k57j7tu6" path="res://assets/sonidos/efectos/sfx_exp_medium6.wav" id="20_tp5eq"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yf5fn"]
 viewport_path = NodePath("HUD/SubViewport")
@@ -152,6 +158,33 @@ stream = ExtResource("16_mkwfn")
 volume_db = -12.0
 bus = &"SFX"
 
+[node name="HerreriaIn" type="AudioStreamPlayer" parent="Sonido" unique_id=886595473]
+stream = ExtResource("17_n8anx")
+volume_db = 4.0
+bus = &"SFX"
+
+[node name="HerreriaReparacion" type="AudioStreamPlayer" parent="Sonido" unique_id=1612628287]
+stream = ExtResource("18_bwgp7")
+bus = &"SFX"
+
+[node name="TiendaIn" type="AudioStreamPlayer" parent="Sonido" unique_id=1678120125]
+stream = ExtResource("17_mkwfn")
+volume_db = -6.0
+bus = &"SFX"
+
+[node name="TiendaCompra" type="AudioStreamPlayer" parent="Sonido" unique_id=1683066043]
+stream = ExtResource("18_vmj4r")
+bus = &"SFX"
+
+[node name="TiendaHerreriaOut" type="AudioStreamPlayer" parent="Sonido" unique_id=1981556971]
+stream = ExtResource("19_surgt")
+volume_db = 4.0
+bus = &"SFX"
+
+[node name="Bomba" type="AudioStreamPlayer" parent="Sonido" unique_id=1779992761]
+stream = ExtResource("20_tp5eq")
+bus = &"SFX"
+
 [node name="Baraja" type="Node2D" parent="." unique_id=325732177]
 position = Vector2(400, 300)
 script = ExtResource("2_myoha")
@@ -161,6 +194,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="TimerBomba" type="Timer" parent="Baraja" unique_id=163707707]
+wait_time = 2.0
 one_shot = true
 
 [node name="Polygon2D" type="Polygon2D" parent="Baraja" unique_id=947889853]

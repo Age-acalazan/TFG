@@ -141,3 +141,8 @@ func _on_check_jqka_numbers_toggled(toggled_on: bool) -> void:
 		$Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers/SpriteJKQA.texture = preload("uid://dddqqgpgufuhq")
 	else:
 		$Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers/SpriteJKQA.texture = preload("uid://bsodmfm4l6vab")
+
+
+func _on_alternar_todas_toggled(toggled_on: bool) -> void:
+	for n in find_children("*","TextureButton"):
+		n.button_pressed = toggled_on

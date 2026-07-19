@@ -35,3 +35,11 @@ func _on_salir_button_up() -> void:
 func _on_reparar_button_up() -> void:
 	emit_signal("reparacion_hecha", precio)
 	queue_free()
+
+func _on_reparar_mouse_entered() -> void:
+	if not $TieneArma/Reparar.disabled:
+		$Hover.play()
+
+
+func _on_salir_mouse_entered() -> void:
+	$Hover.play()

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://btdk44o1sdvi3" path="res://scripts/herreria.gd" id="1_rourp"]
 [ext_resource type="Texture2D" uid="uid://cekjmoa2r1e6e" path="res://assets/sprites/armas/7d.png" id="2_440oh"]
+[ext_resource type="AudioStream" uid="uid://b7uqtde54jtb1" path="res://assets/sonidos/efectos/sfx_menu_move1.wav" id="3_440oh"]
 
 [node name="Herreria" type="Node2D" unique_id=1538194671]
 script = ExtResource("1_rourp")
@@ -90,5 +91,11 @@ offset_bottom = 130.0
 text = "(aún...)"
 horizontal_alignment = 1
 
+[node name="Hover" type="AudioStreamPlayer" parent="." unique_id=848921497]
+stream = ExtResource("3_440oh")
+bus = &"SFX"
+
 [connection signal="button_up" from="Panel/Salir" to="." method="_on_salir_button_up"]
+[connection signal="mouse_entered" from="Panel/Salir" to="." method="_on_salir_mouse_entered"]
 [connection signal="button_up" from="TieneArma/Reparar" to="." method="_on_reparar_button_up"]
+[connection signal="mouse_entered" from="TieneArma/Reparar" to="." method="_on_reparar_mouse_entered"]

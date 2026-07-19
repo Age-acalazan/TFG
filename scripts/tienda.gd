@@ -76,3 +76,7 @@ func presionado_2() -> void:
 func _on_salir_button_up() -> void:
 	emit_signal("tienda_salida")
 	queue_free()
+
+
+func _on_salir_mouse_entered() -> void:
+	$Hover.play()

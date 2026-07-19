@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://d0h621di2qepj" path="res://assets/sprites/extras/tienda.png" id="1_5ur6e"]
 [ext_resource type="Script" uid="uid://bbuewudtq4dmh" path="res://scripts/tienda.gd" id="1_idaph"]
+[ext_resource type="AudioStream" uid="uid://b7uqtde54jtb1" path="res://assets/sonidos/efectos/sfx_menu_move1.wav" id="3_ao03l"]
 
 [node name="Tienda" type="Node2D" unique_id=374293017]
 script = ExtResource("1_idaph")
@@ -82,7 +83,12 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 25
 text = "Salir"
 
+[node name="Hover" type="AudioStreamPlayer" parent="." unique_id=1235912784]
+stream = ExtResource("3_ao03l")
+bus = &"SFX"
+
 [connection signal="button_up" from="Panel/HBoxContainer/0" to="." method="presionado_0"]
 [connection signal="button_up" from="Panel/HBoxContainer/1" to="." method="presionado_1"]
 [connection signal="button_up" from="Panel/HBoxContainer/2" to="." method="presionado_2"]
 [connection signal="button_up" from="Panel/Salir" to="." method="_on_salir_button_up"]
+[connection signal="mouse_entered" from="Panel/Salir" to="." method="_on_salir_mouse_entered"]

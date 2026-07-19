@@ -292,7 +292,101 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Cartas básicas"
 
+[node name="AlternarTodas" type="CheckButton" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Label" unique_id=911009962]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 8.0
+offset_right = 392.0
+offset_bottom = 39.0
+button_pressed = true
+text = "Alternar todas"
+
 [node name="ColorRect" type="ColorRect" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=1082161894]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Corazones" type="HFlowContainer" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=830270800]
+layout_mode = 2
+
+[node name="2c" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=253667682 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+layout_mode = 2
+
+[node name="3c" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=1561400228 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+layout_mode = 2
+texture_normal = ExtResource("4_8jdmi")
+
+[node name="4c" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=1703566839 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+layout_mode = 2
+texture_normal = ExtResource("37_6528g")
+
+[node name="5c" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=1218690555 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+layout_mode = 2
+texture_normal = ExtResource("38_fc84u")
+
+[node name="6c" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=1220654081 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+layout_mode = 2
+texture_normal = ExtResource("39_he18a")
+
+[node name="7c" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=168728013 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+layout_mode = 2
+texture_normal = ExtResource("40_jt6qw")
+
+[node name="8c" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=1805115975 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+layout_mode = 2
+texture_normal = ExtResource("41_yn48n")
+
+[node name="9c" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=1737071448 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+layout_mode = 2
+texture_normal = ExtResource("42_k56m0")
+
+[node name="10c" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=554385852 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+layout_mode = 2
+texture_normal = ExtResource("43_yu7te")
+
+[node name="ColorRect2" type="ColorRect" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=31127284]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Armas" type="HFlowContainer" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=2073890535]
+layout_mode = 2
+
+[node name="2d" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=1318757274 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+layout_mode = 2
+texture_normal = ExtResource("27_ascq1")
+
+[node name="3d" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=1523262739 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+layout_mode = 2
+texture_normal = ExtResource("28_wtfm8")
+
+[node name="4d" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=629774038 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+layout_mode = 2
+texture_normal = ExtResource("29_7wtf5")
+
+[node name="5d" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=1959221010 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+layout_mode = 2
+texture_normal = ExtResource("30_je8ug")
+
+[node name="6d" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=1566066904 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+layout_mode = 2
+texture_normal = ExtResource("31_8vhw2")
+
+[node name="7d" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=1441807022 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+layout_mode = 2
+texture_normal = ExtResource("32_y5452")
+
+[node name="8d" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=2106004572 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+layout_mode = 2
+texture_normal = ExtResource("33_h5jc5")
+
+[node name="9d" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=1201668063 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+layout_mode = 2
+texture_normal = ExtResource("34_kb4td")
+
+[node name="10d" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=975360819 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+layout_mode = 2
+texture_normal = ExtResource("35_0f3bw")
+
+[node name="ColorRect3" type="ColorRect" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=879485542]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
@@ -402,91 +496,6 @@ texture_normal = ExtResource("25_n5ppo")
 [node name="14t" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=925945691 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("26_agjs5")
-
-[node name="ColorRect2" type="ColorRect" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=31127284]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-
-[node name="Armas" type="HFlowContainer" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=2073890535]
-layout_mode = 2
-
-[node name="2d" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=1318757274 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
-layout_mode = 2
-texture_normal = ExtResource("27_ascq1")
-
-[node name="3d" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=1523262739 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
-layout_mode = 2
-texture_normal = ExtResource("28_wtfm8")
-
-[node name="4d" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=629774038 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
-layout_mode = 2
-texture_normal = ExtResource("29_7wtf5")
-
-[node name="5d" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=1959221010 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
-layout_mode = 2
-texture_normal = ExtResource("30_je8ug")
-
-[node name="6d" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=1566066904 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
-layout_mode = 2
-texture_normal = ExtResource("31_8vhw2")
-
-[node name="7d" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=1441807022 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
-layout_mode = 2
-texture_normal = ExtResource("32_y5452")
-
-[node name="8d" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=2106004572 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
-layout_mode = 2
-texture_normal = ExtResource("33_h5jc5")
-
-[node name="9d" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=1201668063 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
-layout_mode = 2
-texture_normal = ExtResource("34_kb4td")
-
-[node name="10d" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=975360819 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
-layout_mode = 2
-texture_normal = ExtResource("35_0f3bw")
-
-[node name="ColorRect3" type="ColorRect" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=879485542]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-
-[node name="Corazones" type="HFlowContainer" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=830270800]
-layout_mode = 2
-
-[node name="2c" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=253667682 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
-layout_mode = 2
-
-[node name="3c" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=1561400228 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
-layout_mode = 2
-texture_normal = ExtResource("4_8jdmi")
-
-[node name="4c" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=1703566839 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
-layout_mode = 2
-texture_normal = ExtResource("37_6528g")
-
-[node name="5c" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=1218690555 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
-layout_mode = 2
-texture_normal = ExtResource("38_fc84u")
-
-[node name="6c" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=1220654081 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
-layout_mode = 2
-texture_normal = ExtResource("39_he18a")
-
-[node name="7c" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=168728013 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
-layout_mode = 2
-texture_normal = ExtResource("40_jt6qw")
-
-[node name="8c" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=1805115975 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
-layout_mode = 2
-texture_normal = ExtResource("41_yn48n")
-
-[node name="9c" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=1737071448 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
-layout_mode = 2
-texture_normal = ExtResource("42_k56m0")
-
-[node name="10c" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=554385852 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
-layout_mode = 2
-texture_normal = ExtResource("43_yu7te")
 
 [node name="ColorRect4" type="ColorRect" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=1530329256]
 custom_minimum_size = Vector2(0, 10)
@@ -704,7 +713,7 @@ Música y efectos de sonido:
 
 ·  Leohpaz - Minifantasy Audio Pack
 
-·  Helton Yan - Minifantasy Audio Pack ( https://creativecommons.org/licenses/by/4.0/ no changes were made)
+·  Helton Yan - Minifantasy Audio Pack ( https://creativecommons.org/licenses/by/4.0/ some changes may be made)
 
 Historia:
 Ángel Sánchez Ruiz
@@ -846,6 +855,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_v6ae4")
 [connection signal="value_changed" from="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/TiendaCartasExtra/Tienda" to="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/TiendaCartasExtra/Tienda" method="_on_value_changed"]
 [connection signal="value_changed" from="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/HerreriaCartasExtra2/Herreria" to="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/HerreriaCartasExtra2/Herreria" method="_on_value_changed"]
 [connection signal="value_changed" from="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/BombaCartasExtra3/Bomba" to="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/BombaCartasExtra3/Bomba" method="_on_value_changed"]
+[connection signal="toggled" from="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Label/AlternarTodas" to="." method="_on_alternar_todas_toggled"]
 [connection signal="button_up" from="TablaClasificacion" to="." method="_on_tabla_clasificacion_button_up"]
 [connection signal="button_up" from="ComoJugar" to="." method="_on_como_jugar_button_up"]
 [connection signal="button_up" from="Creditos" to="." method="_on_creditos_button_up"]
