@@ -4,7 +4,7 @@ extends Node2D
 @onready var click_button: AudioStreamPlayer = $ClickButton
 
 func _ready() -> void:
-	$TablaClasificacion/SubmenuTablaClasificacion/Leaderboard.show_leaderboard()
+	$SubmenuTablaClasificacion/Leaderboard.show_leaderboard()
 	actualizar_interfaz_ajustes()
 	var botones = find_children("*", "Button")
 	botones.append_array(find_children("*", "TextureButton"))
@@ -21,15 +21,15 @@ func button_pressed() -> void:
 
 func  actualizar_interfaz_ajustes() -> void:
 	#Ajusta la interfaz del menú de opciones
-	$Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer3/VolumenMasterSlider.value = Configuracion.volumen_general
-	$Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider.value = Configuracion.volumen_musica
-	$Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider.value = Configuracion.volumen_sfx
-	$Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen.button_pressed = Configuracion.pantalla_completa
-	$Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers.button_pressed = Configuracion.JQKA_numeros
+	$SubmenuOpciones/VBoxContainer/HBoxContainer3/VolumenMasterSlider.value = Configuracion.volumen_general
+	$SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider.value = Configuracion.volumen_musica
+	$SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider.value = Configuracion.volumen_sfx
+	$SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen.button_pressed = Configuracion.pantalla_completa
+	$SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers.button_pressed = Configuracion.JQKA_numeros
 	if Configuracion.JQKA_numeros:
-		$Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers/SpriteJKQA.texture = preload("uid://dddqqgpgufuhq")
+		$SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers/SpriteJKQA.texture = preload("uid://dddqqgpgufuhq")
 	else:
-		$Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers/SpriteJKQA.texture = preload("uid://bsodmfm4l6vab")
+		$SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers/SpriteJKQA.texture = preload("uid://bsodmfm4l6vab")
 
 func _on_jugar_simple_button_up():
 	var partida = preload("res://escenas/partida.tscn").instantiate()
@@ -56,7 +56,7 @@ func _on_jugar_modificadores_button_up() -> void:
 	if num_cartas_extra.values().reduce(func(accum, n): return accum + n) + \
 	 flags_cartas.values().count(true) >= 4 : # El primer elemento del if suma el nº de cartas extra
 		
-		vida_max = $Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/VidaMaxima/SliderVidaMax.get_value()
+		vida_max = $SubmenuModificadores/ScrollContainer/VBoxContainer/VidaMaxima/SliderVidaMax.get_value()
 		
 		# Se precarga la escena...
 		var partida = preload("res://escenas/partida.tscn").instantiate()
@@ -75,56 +75,73 @@ func _on_jugar_modificadores_button_up() -> void:
 		mostrar_error_numero_cartas()
 
 func mostrar_error_numero_cartas():
-	$Jugar/SubmenuModificadores/JugarModificadores.text = "NECESITAS AL MENOS 4 CARTAS"
-	$Jugar/SubmenuModificadores/JugarModificadores.disabled = true
+	$SubmenuModificadores/JugarModificadores.text = "NECESITAS AL MENOS 4 CARTAS"
+	$SubmenuModificadores/JugarModificadores.disabled = true
 
 	await get_tree().create_timer(1.0).timeout
 
-	$Jugar/SubmenuModificadores/JugarModificadores.text = "PARTIDA CON MODIFICADORES"
-	$Jugar/SubmenuModificadores/JugarModificadores.disabled = false
+	$SubmenuModificadores/JugarModificadores.text = "PARTIDA CON MODIFICADORES"
+	$SubmenuModificadores/JugarModificadores.disabled = false
 
 func esconder_submenus():
 	get_tree().get_nodes_in_group("Submenus").map(func(e):e.set_visible(false))
 
+func animacion_squash_submenus(submenu : Node):
+	var tween: Tween = create_tween()
+	
+	tween.tween_property(submenu,
+	"scale",
+	Vector2(1.15, 0.9),
+	0.1).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	
+	tween.tween_property(submenu,
+	"scale",
+	Vector2.ONE,
+	0.2).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 
 func _on_jugar_button_up():
-	if $Jugar/SubmenuModificadores.visible:
+	if $SubmenuModificadores.visible:
 		esconder_submenus()
 	else:
 		esconder_submenus()
-		$Jugar/SubmenuModificadores.visible = true
+		$SubmenuModificadores.visible = true
+		animacion_squash_submenus($SubmenuModificadores)
 
 
 func _on_tabla_clasificacion_button_up() -> void:
-	if $TablaClasificacion/SubmenuTablaClasificacion.visible:
+	if $SubmenuTablaClasificacion.visible:
 		esconder_submenus()
 	else:
 		esconder_submenus()
-		$TablaClasificacion/SubmenuTablaClasificacion.visible = true
+		$SubmenuTablaClasificacion.visible = true
+		animacion_squash_submenus($SubmenuTablaClasificacion)
 
 
 func _on_como_jugar_button_up() -> void:
-	if $ComoJugar/SubmenuComoJugar.visible:
+	if $SubmenuComoJugar.visible:
 		esconder_submenus()
 	else:
 		esconder_submenus()
-		$ComoJugar/SubmenuComoJugar.visible = true
+		$SubmenuComoJugar.visible = true
+		animacion_squash_submenus($SubmenuComoJugar)
 
 
 func _on_creditos_button_up() -> void:
-	if $Creditos/SubmenuCreditos.visible:
+	if $SubmenuCreditos.visible:
 		esconder_submenus()
 	else:
 		esconder_submenus()
-		$Creditos/SubmenuCreditos.visible = true
+		$SubmenuCreditos.visible = true
+		animacion_squash_submenus($SubmenuCreditos)
 
 
 func _on_opciones_button_up() -> void:
-	if $Opciones/SubmenuOpciones.visible:
+	if $SubmenuOpciones.visible:
 		esconder_submenus()
 	else:
 		esconder_submenus()
-		$Opciones/SubmenuOpciones.visible = true
+		$SubmenuOpciones.visible = true
+		animacion_squash_submenus($SubmenuOpciones)
 
 
 func _on_check_fullscreen_toggled(toggled_on: bool) -> void:
@@ -138,9 +155,9 @@ func _on_check_fullscreen_toggled(toggled_on: bool) -> void:
 func _on_check_jqka_numbers_toggled(toggled_on: bool) -> void:
 	Configuracion.JQKA_numeros = toggled_on
 	if toggled_on:
-		$Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers/SpriteJKQA.texture = preload("uid://dddqqgpgufuhq")
+		$SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers/SpriteJKQA.texture = preload("uid://dddqqgpgufuhq")
 	else:
-		$Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers/SpriteJKQA.texture = preload("uid://bsodmfm4l6vab")
+		$SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers/SpriteJKQA.texture = preload("uid://bsodmfm4l6vab")
 
 
 func _on_alternar_todas_toggled(toggled_on: bool) -> void:

@@ -38,6 +38,7 @@
 [ext_resource type="AudioStream" uid="uid://dg6lcu2de8818" path="res://assets/sonidos/efectos/capslok__cash-register-fake.wav" id="18_vmj4r"]
 [ext_resource type="AudioStream" uid="uid://btenaex34fjq4" path="res://assets/sonidos/efectos/door_close.wav" id="19_surgt"]
 [ext_resource type="AudioStream" uid="uid://dwso8k57j7tu6" path="res://assets/sonidos/efectos/sfx_exp_medium6.wav" id="20_tp5eq"]
+[ext_resource type="Script" uid="uid://b0e3f1taa4udn" path="res://scripts/boton_animacion.gd" id="24_bwgp7"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yf5fn"]
 viewport_path = NodePath("HUD/SubViewport")
@@ -240,21 +241,25 @@ text = "LabelMonstruoAnterior"
 [node name="MonstruoAnterior" type="Sprite2D" parent="HUD" unique_id=992342788]
 position = Vector2(984, 536)
 
-[node name="CambiarArma" type="Button" parent="HUD" unique_id=792360863]
+[node name="CambiarArma" type="Button" parent="HUD" unique_id=1995220637]
 offset_left = 16.0
 offset_top = 296.0
 offset_right = 240.0
 offset_bottom = 384.0
 theme_override_font_sizes/font_size = 31
 disabled = true
+script = ExtResource("24_bwgp7")
+metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
-[node name="Huir" type="Button" parent="HUD" unique_id=529073074]
+[node name="Huir" type="Button" parent="HUD" unique_id=1161621860]
 offset_left = 16.0
 offset_top = 184.0
 offset_right = 240.0
 offset_bottom = 272.0
 theme_override_font_sizes/font_size = 31
 text = "Huir de la sala"
+script = ExtResource("24_bwgp7")
+metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
 [node name="LabelRestantes" type="Label" parent="HUD" unique_id=2081352172]
 offset_left = 728.0
@@ -338,13 +343,15 @@ theme_override_font_sizes/font_size = 100
 text = "HAS MUERTO"
 horizontal_alignment = 1
 
-[node name="Menu" type="Button" parent="FinPartida" unique_id=1657026797]
+[node name="Menu" type="Button" parent="FinPartida" unique_id=1839784645]
 offset_left = 320.0
 offset_top = 514.0
 offset_right = 832.0
 offset_bottom = 598.0
 theme_override_font_sizes/font_size = 41
 text = "Volver al menú de inicio"
+script = ExtResource("24_bwgp7")
+metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
 [node name="Puntos" type="Label" parent="FinPartida" unique_id=356929357]
 offset_left = 256.0
@@ -502,16 +509,20 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Pantalla completa"
 
-[node name="Continuar" type="Button" parent="SubmenuOpciones/VBoxContainer" unique_id=91776890]
+[node name="Continuar" type="Button" parent="SubmenuOpciones/VBoxContainer" unique_id=472851944]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Continuar"
+script = ExtResource("24_bwgp7")
+metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
-[node name="SalirDePartida" type="Button" parent="SubmenuOpciones/VBoxContainer" unique_id=795877704]
+[node name="SalirDePartida" type="Button" parent="SubmenuOpciones/VBoxContainer" unique_id=2095230878]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Salir de la partida
 "
+script = ExtResource("24_bwgp7")
+metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
 [node name="Pasillo1" type="Node3D" parent="." unique_id=1810209856]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)

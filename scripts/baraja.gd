@@ -159,9 +159,21 @@ func tras_recargar_sala() -> void:
 func mostrar_sala():
 	for c in sala:
 		#La posicion de la carta en sala es sala.rfind(c)
-		c.position = Vector2(sala.rfind(c)*200,0)
 		if !c.is_inside_tree():
 			add_child(c)
+			c.position = Vector2(sala.rfind(c)*200,0)
+			c.scale = Vector2(1,0)
+			create_tween().tween_property(c,
+				"scale",
+				Vector2(1,1),
+				0.3
+			).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		else:
+			create_tween().tween_property(c,
+				"position",
+				Vector2(sala.rfind(c)*200,0),
+				0.3
+			).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 		
 
 #La señal se reenvía al nodo main y se borra la carta de la baraja
@@ -218,4 +230,6 @@ func calcular_puntuacion_muerte() -> int:
 			puntos -= carta.valor
 	return puntos
 	
-	
+
+func num_cartas_activas() -> int:
+	return sala.filter(func(carta): return carta.esta_activa()).size()

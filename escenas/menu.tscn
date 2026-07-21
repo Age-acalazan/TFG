@@ -57,6 +57,7 @@
 [ext_resource type="Texture2D" uid="uid://bckppx1ja5six" path="res://assets/sprites/vida/9c.png" id="42_k56m0"]
 [ext_resource type="Texture2D" uid="uid://d06p8s8fagyb3" path="res://assets/sprites/vida/10c.png" id="43_yu7te"]
 [ext_resource type="Texture2D" uid="uid://dddqqgpgufuhq" path="res://assets/sprites/monstruos_numeros/11t.png" id="55_mg5w1"]
+[ext_resource type="Script" uid="uid://b0e3f1taa4udn" path="res://scripts/boton_animacion.gd" id="56_t6u78"]
 
 [sub_resource type="Theme" id="Theme_2syjm"]
 
@@ -87,37 +88,50 @@ stream = ExtResource("6_t6u78")
 volume_db = -1.0
 bus = &"SFX"
 
-[node name="Jugar" type="Button" parent="." unique_id=935869368]
+[node name="Jugar" type="Button" parent="." unique_id=787941081]
 offset_left = 64.0
 offset_top = 128.0
 offset_right = 424.0
 offset_bottom = 221.0
+offset_transform_enabled = true
 text = "JUGAR"
+script = ExtResource("56_t6u78")
+metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
-[node name="SubmenuModificadores" type="Node2D" parent="Jugar" unique_id=307628481 groups=["Submenus"]]
+[node name="SubmenuModificadores" type="Panel" parent="." unique_id=2083655635 groups=["Submenus"]]
 visible = false
-position = Vector2(408, -120)
-
-[node name="Panel" type="Panel" parent="Jugar/SubmenuModificadores" unique_id=2083655635]
 z_as_relative = false
-offset_right = 672.0
-offset_bottom = 632.0
+offset_left = 472.0
+offset_top = 8.0
+offset_right = 1144.0
+offset_bottom = 640.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
 
-[node name="JugarSimple" type="Button" parent="Jugar/SubmenuModificadores" unique_id=789509113]
+[node name="JugarSimple" type="Button" parent="SubmenuModificadores" unique_id=1499179794]
+layout_mode = 0
 offset_left = 32.0
 offset_top = 504.0
 offset_right = 320.0
 offset_bottom = 597.0
+offset_transform_enabled = true
 text = "PARTIDA SIMPLE"
+script = ExtResource("56_t6u78")
+metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
-[node name="JugarModificadores" type="Button" parent="Jugar/SubmenuModificadores" unique_id=722516932]
+[node name="JugarModificadores" type="Button" parent="SubmenuModificadores" unique_id=1576979494]
+layout_mode = 0
 offset_left = 352.0
 offset_top = 504.0
 offset_right = 640.0
 offset_bottom = 597.0
+offset_transform_enabled = true
 text = "PARTIDA CON MODIFICADORES"
+script = ExtResource("56_t6u78")
+metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Jugar/SubmenuModificadores" unique_id=1127529475]
+[node name="ScrollContainer" type="ScrollContainer" parent="SubmenuModificadores" unique_id=1127529475]
+layout_mode = 0
 offset_left = 24.0
 offset_top = 16.0
 offset_right = 674.0
@@ -126,26 +140,26 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Jugar/SubmenuModificadores/ScrollContainer" unique_id=149190619]
+[node name="VBoxContainer" type="VBoxContainer" parent="SubmenuModificadores/ScrollContainer" unique_id=149190619]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label3" type="Label" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=1243133130]
+[node name="Label3" type="Label" parent="SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=1243133130]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Vida máxima"
 
-[node name="VidaMaxima" type="HBoxContainer" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=1136854369]
+[node name="VidaMaxima" type="HBoxContainer" parent="SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=1136854369]
 layout_mode = 2
 layout_direction = 1
 alignment = 1
 
-[node name="Label3" type="Label" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/VidaMaxima" unique_id=578853279]
+[node name="Label3" type="Label" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/VidaMaxima" unique_id=578853279]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "♥️"
 
-[node name="SliderVidaMax" type="HSlider" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/VidaMaxima" unique_id=503396233]
+[node name="SliderVidaMax" type="HSlider" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/VidaMaxima" unique_id=503396233]
 custom_minimum_size = Vector2(356, 0)
 layout_mode = 2
 size_flags_vertical = 4
@@ -156,7 +170,7 @@ value = 20.0
 scrollable = false
 script = ExtResource("3_2syjm")
 
-[node name="Label2" type="Label" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/VidaMaxima/SliderVidaMax" unique_id=792824603]
+[node name="Label2" type="Label" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/VidaMaxima/SliderVidaMax" unique_id=792824603]
 layout_mode = 0
 offset_left = 368.0
 offset_top = -13.0
@@ -165,17 +179,17 @@ offset_bottom = 29.0
 theme_override_font_sizes/font_size = 30
 text = "20"
 
-[node name="Label2" type="Label" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=1692094375]
+[node name="Label2" type="Label" parent="SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=1692094375]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Cartas extra"
 
-[node name="TiendaCartasExtra" type="HBoxContainer" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=1494491911]
+[node name="TiendaCartasExtra" type="HBoxContainer" parent="SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=1494491911]
 layout_mode = 2
 layout_direction = 1
 theme = SubResource("Theme_2syjm")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/TiendaCartasExtra" unique_id=1344044302]
+[node name="RichTextLabel" type="RichTextLabel" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/TiendaCartasExtra" unique_id=1344044302]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "	TIENDA:
@@ -185,13 +199,13 @@ text = "	TIENDA:
 scroll_active = false
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/TiendaCartasExtra" unique_id=2062256231]
+[node name="TextureRect" type="TextureRect" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/TiendaCartasExtra" unique_id=2062256231]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 texture = ExtResource("3_tatqo")
 expand_mode = 1
 
-[node name="Tienda" type="HSlider" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/TiendaCartasExtra" unique_id=1413305469 groups=["SliderCartaExtra"]]
+[node name="Tienda" type="HSlider" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/TiendaCartasExtra" unique_id=1413305469 groups=["SliderCartaExtra"]]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 4
@@ -200,7 +214,7 @@ max_value = 5.0
 scrollable = false
 script = ExtResource("3_2syjm")
 
-[node name="Label2" type="Label" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/TiendaCartasExtra/Tienda" unique_id=940874327]
+[node name="Label2" type="Label" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/TiendaCartasExtra/Tienda" unique_id=940874327]
 layout_mode = 0
 offset_left = 214.0
 offset_top = -13.0
@@ -209,12 +223,12 @@ offset_bottom = 29.0
 theme_override_font_sizes/font_size = 30
 text = "0"
 
-[node name="HerreriaCartasExtra2" type="HBoxContainer" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=2113911086]
+[node name="HerreriaCartasExtra2" type="HBoxContainer" parent="SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=2113911086]
 layout_mode = 2
 layout_direction = 1
 theme = SubResource("Theme_2syjm")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/HerreriaCartasExtra2" unique_id=1951426787]
+[node name="RichTextLabel" type="RichTextLabel" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/HerreriaCartasExtra2" unique_id=1951426787]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "	HERRERÍA:
@@ -223,13 +237,13 @@ text = "	HERRERÍA:
 scroll_active = false
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/HerreriaCartasExtra2" unique_id=1827721743]
+[node name="TextureRect" type="TextureRect" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/HerreriaCartasExtra2" unique_id=1827721743]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 texture = ExtResource("4_mg5w1")
 expand_mode = 1
 
-[node name="Herreria" type="HSlider" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/HerreriaCartasExtra2" unique_id=915716479 groups=["SliderCartaExtra"]]
+[node name="Herreria" type="HSlider" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/HerreriaCartasExtra2" unique_id=915716479 groups=["SliderCartaExtra"]]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 4
@@ -238,7 +252,7 @@ max_value = 5.0
 scrollable = false
 script = ExtResource("3_2syjm")
 
-[node name="Label2" type="Label" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/HerreriaCartasExtra2/Herreria" unique_id=217423000]
+[node name="Label2" type="Label" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/HerreriaCartasExtra2/Herreria" unique_id=217423000]
 layout_mode = 0
 offset_left = 214.0
 offset_top = -13.0
@@ -247,12 +261,12 @@ offset_bottom = 29.0
 theme_override_font_sizes/font_size = 30
 text = "0"
 
-[node name="BombaCartasExtra3" type="HBoxContainer" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=1002684016]
+[node name="BombaCartasExtra3" type="HBoxContainer" parent="SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=1002684016]
 layout_mode = 2
 layout_direction = 1
 theme = SubResource("Theme_2syjm")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/BombaCartasExtra3" unique_id=456508587]
+[node name="RichTextLabel" type="RichTextLabel" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/BombaCartasExtra3" unique_id=456508587]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "	BOMBA:
@@ -263,13 +277,13 @@ text = "	BOMBA:
 scroll_active = false
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/BombaCartasExtra3" unique_id=772988756]
+[node name="TextureRect" type="TextureRect" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/BombaCartasExtra3" unique_id=772988756]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 texture = ExtResource("5_v6ae4")
 expand_mode = 1
 
-[node name="Bomba" type="HSlider" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/BombaCartasExtra3" unique_id=1837687676 groups=["SliderCartaExtra"]]
+[node name="Bomba" type="HSlider" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/BombaCartasExtra3" unique_id=1837687676 groups=["SliderCartaExtra"]]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 4
@@ -278,7 +292,7 @@ max_value = 5.0
 scrollable = false
 script = ExtResource("3_2syjm")
 
-[node name="Label2" type="Label" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/BombaCartasExtra3/Bomba" unique_id=401402263]
+[node name="Label2" type="Label" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/BombaCartasExtra3/Bomba" unique_id=401402263]
 layout_mode = 0
 offset_left = 214.0
 offset_top = -13.0
@@ -287,12 +301,12 @@ offset_bottom = 29.0
 theme_override_font_sizes/font_size = 30
 text = "0"
 
-[node name="Label" type="Label" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=610430043]
+[node name="Label" type="Label" parent="SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=610430043]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Cartas básicas"
 
-[node name="AlternarTodas" type="CheckButton" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Label" unique_id=911009962]
+[node name="AlternarTodas" type="CheckButton" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Label" unique_id=911009962]
 layout_mode = 0
 offset_left = 232.0
 offset_top = 8.0
@@ -301,315 +315,320 @@ offset_bottom = 39.0
 button_pressed = true
 text = "Alternar todas"
 
-[node name="ColorRect" type="ColorRect" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=1082161894]
+[node name="ColorRect" type="ColorRect" parent="SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=1082161894]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="Corazones" type="HFlowContainer" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=830270800]
+[node name="Corazones" type="HFlowContainer" parent="SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=830270800]
 layout_mode = 2
 
-[node name="2c" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=253667682 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="2c" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=253667682 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 
-[node name="3c" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=1561400228 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="3c" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=1561400228 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("4_8jdmi")
 
-[node name="4c" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=1703566839 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="4c" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=1703566839 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("37_6528g")
 
-[node name="5c" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=1218690555 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="5c" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=1218690555 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("38_fc84u")
 
-[node name="6c" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=1220654081 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="6c" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=1220654081 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("39_he18a")
 
-[node name="7c" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=168728013 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="7c" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=168728013 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("40_jt6qw")
 
-[node name="8c" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=1805115975 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="8c" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=1805115975 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("41_yn48n")
 
-[node name="9c" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=1737071448 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="9c" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=1737071448 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("42_k56m0")
 
-[node name="10c" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=554385852 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="10c" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=554385852 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("43_yu7te")
 
-[node name="ColorRect2" type="ColorRect" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=31127284]
+[node name="ColorRect2" type="ColorRect" parent="SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=31127284]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="Armas" type="HFlowContainer" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=2073890535]
+[node name="Armas" type="HFlowContainer" parent="SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=2073890535]
 layout_mode = 2
 
-[node name="2d" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=1318757274 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="2d" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=1318757274 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("27_ascq1")
 
-[node name="3d" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=1523262739 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="3d" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=1523262739 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("28_wtfm8")
 
-[node name="4d" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=629774038 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="4d" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=629774038 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("29_7wtf5")
 
-[node name="5d" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=1959221010 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="5d" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=1959221010 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("30_je8ug")
 
-[node name="6d" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=1566066904 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="6d" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=1566066904 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("31_8vhw2")
 
-[node name="7d" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=1441807022 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="7d" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=1441807022 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("32_y5452")
 
-[node name="8d" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=2106004572 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="8d" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=2106004572 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("33_h5jc5")
 
-[node name="9d" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=1201668063 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="9d" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=1201668063 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("34_kb4td")
 
-[node name="10d" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=975360819 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="10d" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=975360819 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("35_0f3bw")
 
-[node name="ColorRect3" type="ColorRect" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=879485542]
+[node name="ColorRect3" type="ColorRect" parent="SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=879485542]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="Monstruos" type="HFlowContainer" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=999138605]
+[node name="Monstruos" type="HFlowContainer" parent="SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=999138605]
 layout_mode = 2
 
-[node name="2p" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=1710672053 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="2p" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=1710672053 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("3_cliqe")
 
-[node name="2t" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=689568529 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="2t" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=689568529 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("4_6vh20")
 
-[node name="3p" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=518943834 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="3p" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=518943834 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("5_pm8pu")
 
-[node name="3t" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=2006105921 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="3t" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=2006105921 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("6_2syjm")
 
-[node name="4p" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=1859449883 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="4p" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=1859449883 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("7_f5v4n")
 
-[node name="4t" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=348268567 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="4t" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=348268567 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("8_mxagn")
 
-[node name="5p" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=1648866871 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="5p" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=1648866871 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("9_tatqo")
 
-[node name="5t" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=1078025195 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="5t" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=1078025195 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("10_mg5w1")
 
-[node name="6p" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=1998241149 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="6p" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=1998241149 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("11_v6ae4")
 
-[node name="6t" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=929390235 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="6t" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=929390235 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("12_t4hmd")
 
-[node name="7p" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=657495739 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="7p" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=657495739 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("13_t6u78")
 
-[node name="7t" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=519333375 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="7t" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=519333375 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("14_5kuwt")
 
-[node name="8p" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=1514318029 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="8p" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=1514318029 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("15_vrgld")
 
-[node name="8t" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=137783150 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="8t" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=137783150 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("16_ktgrc")
 
-[node name="9p" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=690543038 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="9p" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=690543038 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("17_pm8pu")
 
-[node name="9t" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=1153272569 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="9t" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=1153272569 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("18_2syjm")
 
-[node name="10p" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=17758165 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="10p" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=17758165 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("17_sga4u")
 
-[node name="10t" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=1954248296 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="10t" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=1954248296 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("18_baqjt")
 
-[node name="11p" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=781582327 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="11p" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=781582327 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("19_5bsce")
 
-[node name="11t" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=1027967137 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="11t" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=1027967137 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("20_smrt3")
 
-[node name="12p" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=159555728 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="12p" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=159555728 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("21_rqgnr")
 
-[node name="12t" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=1114842404 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="12t" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=1114842404 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("22_yvvdt")
 
-[node name="13p" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=980345712 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="13p" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=980345712 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("23_en5ph")
 
-[node name="13t" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=119173729 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="13t" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=119173729 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("24_arrj7")
 
-[node name="14p" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=908360610 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="14p" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=908360610 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("25_n5ppo")
 
-[node name="14t" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=925945691 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
+[node name="14t" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=925945691 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
 texture_normal = ExtResource("26_agjs5")
 
-[node name="ColorRect4" type="ColorRect" parent="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=1530329256]
+[node name="ColorRect4" type="ColorRect" parent="SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=1530329256]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="TablaClasificacion" type="Button" parent="." unique_id=52301222]
+[node name="TablaClasificacion" type="Button" parent="." unique_id=1285805953]
 offset_left = 64.0
 offset_top = 256.0
 offset_right = 424.0
 offset_bottom = 349.0
+offset_transform_enabled = true
 text = "TABLA DE CLASIFICACIONES"
+script = ExtResource("56_t6u78")
+metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
-[node name="SubmenuTablaClasificacion" type="Node2D" parent="TablaClasificacion" unique_id=1876467475 groups=["Submenus"]]
+[node name="SubmenuTablaClasificacion" type="Panel" parent="." unique_id=381544872 groups=["Submenus"]]
 visible = false
+offset_left = 472.0
+offset_top = 8.0
+offset_right = 1144.0
+offset_bottom = 640.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 
-[node name="Panel" type="Panel" parent="TablaClasificacion/SubmenuTablaClasificacion" unique_id=381544872]
-offset_left = 408.0
-offset_top = -248.0
-offset_right = 1080.0
-offset_bottom = 384.0
-
-[node name="Leaderboard" type="VBoxContainer" parent="TablaClasificacion/SubmenuTablaClasificacion" unique_id=1129719187]
+[node name="Leaderboard" type="VBoxContainer" parent="SubmenuTablaClasificacion" unique_id=1129719187]
 z_index = 1
-offset_left = 488.0
-offset_top = -192.0
-offset_right = 1080.0
-offset_bottom = 1944.0
+layout_mode = 0
+offset_left = 80.0
+offset_top = 56.0
+offset_right = 672.0
+offset_bottom = 2612.0
 mouse_filter = 0
 script = ExtResource("2_d7r87")
 
-[node name="Score1" type="RichTextLabel" parent="TablaClasificacion/SubmenuTablaClasificacion/Leaderboard" unique_id=786635872]
+[node name="Score1" type="RichTextLabel" parent="SubmenuTablaClasificacion/Leaderboard" unique_id=786635872]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 30
 text = "Score"
 fit_content = true
 
-[node name="Score2" type="RichTextLabel" parent="TablaClasificacion/SubmenuTablaClasificacion/Leaderboard" unique_id=795616159]
+[node name="Score2" type="RichTextLabel" parent="SubmenuTablaClasificacion/Leaderboard" unique_id=795616159]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 30
 text = "Score"
 fit_content = true
 
-[node name="Score3" type="RichTextLabel" parent="TablaClasificacion/SubmenuTablaClasificacion/Leaderboard" unique_id=501226533]
+[node name="Score3" type="RichTextLabel" parent="SubmenuTablaClasificacion/Leaderboard" unique_id=501226533]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 30
 text = "Score"
 fit_content = true
 
-[node name="Score4" type="RichTextLabel" parent="TablaClasificacion/SubmenuTablaClasificacion/Leaderboard" unique_id=1363975622]
+[node name="Score4" type="RichTextLabel" parent="SubmenuTablaClasificacion/Leaderboard" unique_id=1363975622]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 30
 text = "Score"
 fit_content = true
 
-[node name="Score5" type="RichTextLabel" parent="TablaClasificacion/SubmenuTablaClasificacion/Leaderboard" unique_id=1238687438]
+[node name="Score5" type="RichTextLabel" parent="SubmenuTablaClasificacion/Leaderboard" unique_id=1238687438]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 30
 text = "Score"
 fit_content = true
 
-[node name="Score6" type="RichTextLabel" parent="TablaClasificacion/SubmenuTablaClasificacion/Leaderboard" unique_id=915495814]
+[node name="Score6" type="RichTextLabel" parent="SubmenuTablaClasificacion/Leaderboard" unique_id=915495814]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 30
 text = "Score"
 fit_content = true
 
-[node name="Score7" type="RichTextLabel" parent="TablaClasificacion/SubmenuTablaClasificacion/Leaderboard" unique_id=1099521995]
+[node name="Score7" type="RichTextLabel" parent="SubmenuTablaClasificacion/Leaderboard" unique_id=1099521995]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 30
 text = "Score"
 fit_content = true
 
-[node name="Score8" type="RichTextLabel" parent="TablaClasificacion/SubmenuTablaClasificacion/Leaderboard" unique_id=2066315451]
+[node name="Score8" type="RichTextLabel" parent="SubmenuTablaClasificacion/Leaderboard" unique_id=2066315451]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 30
 text = "Score"
 fit_content = true
 
-[node name="Score9" type="RichTextLabel" parent="TablaClasificacion/SubmenuTablaClasificacion/Leaderboard" unique_id=1501875016]
+[node name="Score9" type="RichTextLabel" parent="SubmenuTablaClasificacion/Leaderboard" unique_id=1501875016]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 30
 text = "Score"
 fit_content = true
 
-[node name="Score10" type="RichTextLabel" parent="TablaClasificacion/SubmenuTablaClasificacion/Leaderboard" unique_id=488317284]
+[node name="Score10" type="RichTextLabel" parent="SubmenuTablaClasificacion/Leaderboard" unique_id=488317284]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 30
 text = "Score"
 fit_content = true
 
-[node name="ComoJugar" type="Button" parent="." unique_id=919301113]
+[node name="ComoJugar" type="Button" parent="." unique_id=1486179282]
 offset_left = 64.0
 offset_top = 384.0
 offset_right = 424.0
 offset_bottom = 477.0
+offset_transform_enabled = true
 text = "CÓMO JUGAR
 "
+script = ExtResource("56_t6u78")
+metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
-[node name="SubmenuComoJugar" type="Node2D" parent="ComoJugar" unique_id=615448843 groups=["Submenus"]]
+[node name="SubmenuComoJugar" type="Panel" parent="." unique_id=1917885997 groups=["Submenus"]]
 visible = false
-
-[node name="Panel" type="Panel" parent="ComoJugar/SubmenuComoJugar" unique_id=1917885997]
 z_as_relative = false
-offset_left = 408.0
-offset_top = -376.0
-offset_right = 1080.0
-offset_bottom = 256.0
+offset_left = 472.0
+offset_top = 8.0
+offset_right = 1144.0
+offset_bottom = 640.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 
-[node name="PopupComoJugar" type="RichTextLabel" parent="ComoJugar/SubmenuComoJugar" unique_id=1532880347]
+[node name="PopupComoJugar" type="RichTextLabel" parent="SubmenuComoJugar" unique_id=1532880347]
 z_index = 5
-offset_left = 411.0
-offset_top = -376.0
-offset_right = 1083.0
-offset_bottom = 112.0
+layout_mode = 0
+offset_left = 3.0
+offset_right = 675.0
+offset_bottom = 488.0
 theme_override_font_sizes/normal_font_size = 29
 text = "OBJETIVO____________________________
 
@@ -646,36 +665,41 @@ PUNTUACIÓN_______________________
 
 Cuando pierdas una partida tendrás -X puntos, siendo X la suma del valor de los monstruos que quedan en la mazmorra. Cuando ganes, los puntos serán positivos e iguales a tu vida restante."
 
-[node name="Button" type="Button" parent="ComoJugar/SubmenuComoJugar" unique_id=1049823264]
-offset_left = 600.0
-offset_top = 136.0
-offset_right = 888.0
-offset_bottom = 232.0
+[node name="Tutorial" type="Button" parent="SubmenuComoJugar" unique_id=1903492995]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 512.0
+offset_right = 480.0
+offset_bottom = 608.0
+offset_transform_enabled = true
 text = "TUTORIAL"
+script = ExtResource("56_t6u78")
+metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
-[node name="Creditos" type="Button" parent="." unique_id=2030521444]
+[node name="Creditos" type="Button" parent="." unique_id=227821292]
 offset_left = 64.0
 offset_top = 512.0
 offset_right = 240.0
 offset_bottom = 605.0
+offset_transform_enabled = true
 text = "CREDITOS"
+script = ExtResource("56_t6u78")
+metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
-[node name="SubmenuCreditos" type="Node2D" parent="Creditos" unique_id=455958130 groups=["Submenus"]]
+[node name="SubmenuCreditos" type="Panel" parent="." unique_id=1949611291 groups=["Submenus"]]
 visible = false
-
-[node name="Panel" type="Panel" parent="Creditos/SubmenuCreditos" unique_id=1949611291]
 z_as_relative = false
-offset_left = 408.0
-offset_top = -504.0
-offset_right = 1080.0
-offset_bottom = 128.0
+offset_left = 472.0
+offset_top = 8.0
+offset_right = 1144.0
+offset_bottom = 640.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 
-[node name="PopupCreditos" type="RichTextLabel" parent="Creditos/SubmenuCreditos" unique_id=1749266686]
+[node name="PopupCreditos" type="RichTextLabel" parent="SubmenuCreditos" unique_id=1749266686]
 z_index = 5
-offset_left = 408.0
-offset_top = -504.0
-offset_right = 1080.0
-offset_bottom = 128.0
+layout_mode = 0
+offset_right = 672.0
+offset_bottom = 632.0
 theme_override_font_sizes/normal_font_size = 40
 text = "SCOUNDREL DUNGEON
 
@@ -719,48 +743,51 @@ Historia:
 Ángel Sánchez Ruiz
 "
 
-[node name="Opciones" type="Button" parent="." unique_id=105943881]
+[node name="Opciones" type="Button" parent="." unique_id=663194430]
 offset_left = 248.0
 offset_top = 512.0
 offset_right = 424.00006
 offset_bottom = 605.0
+offset_transform_enabled = true
 text = "OPCIONES"
+script = ExtResource("56_t6u78")
+metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
-[node name="SubmenuOpciones" type="Node2D" parent="Opciones" unique_id=124461516 groups=["Submenus"]]
+[node name="SubmenuOpciones" type="Panel" parent="." unique_id=318333352 groups=["Submenus"]]
 visible = false
-
-[node name="Panel" type="Panel" parent="Opciones/SubmenuOpciones" unique_id=318333352]
 z_as_relative = false
-offset_left = 224.0
-offset_top = -504.0
-offset_right = 896.0
-offset_bottom = 128.0
+offset_left = 472.0
+offset_top = 8.0
+offset_right = 1144.0
+offset_bottom = 640.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Opciones/SubmenuOpciones" unique_id=1306048735]
-offset_left = 280.0
-offset_top = -456.0
-offset_right = 832.0
-offset_bottom = -16.0
+[node name="VBoxContainer" type="VBoxContainer" parent="SubmenuOpciones" unique_id=1306048735]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 48.0
+offset_right = 612.0
+offset_bottom = 488.0
 mouse_filter = 0
 theme_override_constants/separation = 37
 alignment = 1
 
-[node name="Sonido" type="Label" parent="Opciones/SubmenuOpciones/VBoxContainer" unique_id=1314112968]
+[node name="Sonido" type="Label" parent="SubmenuOpciones/VBoxContainer" unique_id=1314112968]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "SONIDO"
 horizontal_alignment = 1
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="Opciones/SubmenuOpciones/VBoxContainer" unique_id=1694832692]
+[node name="HBoxContainer3" type="HBoxContainer" parent="SubmenuOpciones/VBoxContainer" unique_id=1694832692]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="General" type="Label" parent="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer3" unique_id=1475560713]
+[node name="General" type="Label" parent="SubmenuOpciones/VBoxContainer/HBoxContainer3" unique_id=1475560713]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "General"
 
-[node name="VolumenMasterSlider" type="HSlider" parent="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer3" unique_id=1911606504]
+[node name="VolumenMasterSlider" type="HSlider" parent="SubmenuOpciones/VBoxContainer/HBoxContainer3" unique_id=1911606504]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
@@ -770,17 +797,17 @@ value = 1.0
 script = ExtResource("3_5t3kx")
 audio_bus_name = "Master"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Opciones/SubmenuOpciones/VBoxContainer" unique_id=1375205173]
+[node name="HBoxContainer2" type="HBoxContainer" parent="SubmenuOpciones/VBoxContainer" unique_id=1375205173]
 layout_mode = 2
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="Música" type="Label" parent="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2" unique_id=19168325]
+[node name="Música" type="Label" parent="SubmenuOpciones/VBoxContainer/HBoxContainer2" unique_id=19168325]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Música"
 
-[node name="VolumenMusicaSlider" type="HSlider" parent="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2" unique_id=1376388750]
+[node name="VolumenMusicaSlider" type="HSlider" parent="SubmenuOpciones/VBoxContainer/HBoxContainer2" unique_id=1376388750]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
@@ -790,12 +817,12 @@ value = 1.0
 script = ExtResource("3_5t3kx")
 audio_bus_name = "Musica"
 
-[node name="SFX" type="Label" parent="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2" unique_id=1741359848]
+[node name="SFX" type="Label" parent="SubmenuOpciones/VBoxContainer/HBoxContainer2" unique_id=1741359848]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "SFX"
 
-[node name="VolumenSFXSlider" type="HSlider" parent="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2" unique_id=1544233301]
+[node name="VolumenSFXSlider" type="HSlider" parent="SubmenuOpciones/VBoxContainer/HBoxContainer2" unique_id=1544233301]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
@@ -805,38 +832,38 @@ value = 1.0
 script = ExtResource("3_5t3kx")
 audio_bus_name = "SFX"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" unique_id=1614526377]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" unique_id=1614526377]
 stream = ExtResource("6_t6u78")
 volume_db = -2.0
 bus = &"SFX"
 
-[node name="Miscelánea" type="Label" parent="Opciones/SubmenuOpciones/VBoxContainer" unique_id=1442971073]
+[node name="Miscelánea" type="Label" parent="SubmenuOpciones/VBoxContainer" unique_id=1442971073]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "MISCELÁNEA"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Opciones/SubmenuOpciones/VBoxContainer" unique_id=327772245]
+[node name="HBoxContainer" type="HBoxContainer" parent="SubmenuOpciones/VBoxContainer" unique_id=327772245]
 layout_mode = 2
 alignment = 1
 
-[node name="CheckFullscreen" type="CheckButton" parent="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer" unique_id=1248212099]
+[node name="CheckFullscreen" type="CheckButton" parent="SubmenuOpciones/VBoxContainer/HBoxContainer" unique_id=1248212099]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Pantalla completa"
 
-[node name="CheckJQKANumbers" type="CheckButton" parent="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer" unique_id=531501343]
+[node name="CheckJQKANumbers" type="CheckButton" parent="SubmenuOpciones/VBoxContainer/HBoxContainer" unique_id=531501343]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 button_pressed = true
 text = "Mostrar JQKA como números"
 
-[node name="SpriteJKQA" type="Sprite2D" parent="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers" unique_id=1640436627]
+[node name="SpriteJKQA" type="Sprite2D" parent="SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers" unique_id=1640436627]
 position = Vector2(163, 103)
 scale = Vector2(0.68999976, 0.68999976)
 texture = ExtResource("55_mg5w1")
 
-[node name="Panel" type="Panel" parent="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers" unique_id=1800019029]
+[node name="Panel" type="Panel" parent="SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers" unique_id=1800019029]
 z_index = -1
 z_as_relative = false
 layout_mode = 0
@@ -849,19 +876,19 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_v6ae4")
 
 [connection signal="finished" from="BGM" to="BGM" method="_on_finished"]
 [connection signal="button_up" from="Jugar" to="." method="_on_jugar_button_up"]
-[connection signal="button_up" from="Jugar/SubmenuModificadores/JugarSimple" to="." method="_on_jugar_simple_button_up"]
-[connection signal="button_up" from="Jugar/SubmenuModificadores/JugarModificadores" to="." method="_on_jugar_modificadores_button_up"]
-[connection signal="value_changed" from="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/VidaMaxima/SliderVidaMax" to="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/VidaMaxima/SliderVidaMax" method="_on_value_changed"]
-[connection signal="value_changed" from="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/TiendaCartasExtra/Tienda" to="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/TiendaCartasExtra/Tienda" method="_on_value_changed"]
-[connection signal="value_changed" from="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/HerreriaCartasExtra2/Herreria" to="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/HerreriaCartasExtra2/Herreria" method="_on_value_changed"]
-[connection signal="value_changed" from="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/BombaCartasExtra3/Bomba" to="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/BombaCartasExtra3/Bomba" method="_on_value_changed"]
-[connection signal="toggled" from="Jugar/SubmenuModificadores/ScrollContainer/VBoxContainer/Label/AlternarTodas" to="." method="_on_alternar_todas_toggled"]
+[connection signal="button_up" from="SubmenuModificadores/JugarSimple" to="." method="_on_jugar_simple_button_up"]
+[connection signal="button_up" from="SubmenuModificadores/JugarModificadores" to="." method="_on_jugar_modificadores_button_up"]
+[connection signal="value_changed" from="SubmenuModificadores/ScrollContainer/VBoxContainer/VidaMaxima/SliderVidaMax" to="SubmenuModificadores/ScrollContainer/VBoxContainer/VidaMaxima/SliderVidaMax" method="_on_value_changed"]
+[connection signal="value_changed" from="SubmenuModificadores/ScrollContainer/VBoxContainer/TiendaCartasExtra/Tienda" to="SubmenuModificadores/ScrollContainer/VBoxContainer/TiendaCartasExtra/Tienda" method="_on_value_changed"]
+[connection signal="value_changed" from="SubmenuModificadores/ScrollContainer/VBoxContainer/HerreriaCartasExtra2/Herreria" to="SubmenuModificadores/ScrollContainer/VBoxContainer/HerreriaCartasExtra2/Herreria" method="_on_value_changed"]
+[connection signal="value_changed" from="SubmenuModificadores/ScrollContainer/VBoxContainer/BombaCartasExtra3/Bomba" to="SubmenuModificadores/ScrollContainer/VBoxContainer/BombaCartasExtra3/Bomba" method="_on_value_changed"]
+[connection signal="toggled" from="SubmenuModificadores/ScrollContainer/VBoxContainer/Label/AlternarTodas" to="." method="_on_alternar_todas_toggled"]
 [connection signal="button_up" from="TablaClasificacion" to="." method="_on_tabla_clasificacion_button_up"]
 [connection signal="button_up" from="ComoJugar" to="." method="_on_como_jugar_button_up"]
 [connection signal="button_up" from="Creditos" to="." method="_on_creditos_button_up"]
 [connection signal="button_up" from="Opciones" to="." method="_on_opciones_button_up"]
-[connection signal="value_changed" from="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer3/VolumenMasterSlider" to="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer3/VolumenMasterSlider" method="_on_value_changed"]
-[connection signal="value_changed" from="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider" to="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider" method="_on_value_changed"]
-[connection signal="value_changed" from="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" to="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" method="_on_value_changed"]
-[connection signal="toggled" from="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen" to="." method="_on_check_fullscreen_toggled"]
-[connection signal="toggled" from="Opciones/SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers" to="." method="_on_check_jqka_numbers_toggled"]
+[connection signal="value_changed" from="SubmenuOpciones/VBoxContainer/HBoxContainer3/VolumenMasterSlider" to="SubmenuOpciones/VBoxContainer/HBoxContainer3/VolumenMasterSlider" method="_on_value_changed"]
+[connection signal="value_changed" from="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider" to="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider" method="_on_value_changed"]
+[connection signal="value_changed" from="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" to="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" method="_on_value_changed"]
+[connection signal="toggled" from="SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen" to="." method="_on_check_fullscreen_toggled"]
+[connection signal="toggled" from="SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers" to="." method="_on_check_jqka_numbers_toggled"]

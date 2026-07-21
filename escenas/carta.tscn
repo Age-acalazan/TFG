@@ -6,6 +6,43 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_up28s"]
 size = Vector2(17.592592, 17.543861)
 
+[sub_resource type="Animation" id="Animation_yo80u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sllcx"]
+resource_name = "borrar_carta"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_up28s"]
+_data = {
+&"RESET": SubResource("Animation_yo80u"),
+&"borrar_carta": SubResource("Animation_sllcx")
+}
+
 [node name="Carta" type="Node2D" unique_id=1445437718]
 script = ExtResource("1_yo80u")
 valor = 1
@@ -31,6 +68,9 @@ theme_override_font_sizes/font_size = 26
 text = "-1♥️"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=984992376]
+libraries/ = SubResource("AnimationLibrary_up28s")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]

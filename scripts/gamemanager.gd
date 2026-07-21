@@ -1,8 +1,18 @@
 extends Node2D
 
 @export var vida_max : int = 2000
-var vida : int:
+var vida : int = vida_max:
 	set(valor):
+		if vida < valor:
+			$HUD/LabelVida.modulate = Color.GREEN
+		elif vida > valor:
+			$HUD/LabelVida.modulate = Color.RED
+		create_tween().tween_property(
+			$HUD/LabelVida,
+			"modulate",
+			Color.WHITE,
+			0.4
+		)
 		vida = valor
 		$HUD/LabelVida.set_text(str(vida)+"♥️")
 var valor_monstruo_sobre_arma : int
@@ -70,7 +80,7 @@ var oro : int:
 
 func _ready():
 	baraja.inicializar_partida()
-	vida = vida_max
+	$HUD/LabelVida.set_text(str(vida)+"♥️")
 	usando_arma = false
 	oro = 1000
 	label_arma.text="Sin arma"
@@ -129,106 +139,104 @@ func actualizar_interfaz_ajustes() -> void:
 	$SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider.value = Configuracion.volumen_sfx
 
 func _on_baraja_carta_clicada(carta: Carta) -> void:
-	# Reduce o aumenta la vida
-	match carta.palo_carta:
-		Carta.PALO.TREBOLES, Carta.PALO.PICAS:#####################################################
-			# Sustituye monstruo anterior
-			if usando_arma: # Arma equipada
-				if carta.valor < valor_monstruo_sobre_arma: # Arma equipada y aplicable
-					monstruo_anterior.texture = carta.img
-					valor_monstruo_sobre_arma = carta.valor
-					label_monstruo_anterior.text = "Último monstruo sobre arma: "+ str(valor_monstruo_sobre_arma)
-					# Se le resta a la vida el daño del monstruo menos lo mitigado con el arma
-					vida -= clampi(carta.valor - valor_arma,0, vida_max)
+	if baraja.num_cartas_activas() > 1 or baraja.baraja.is_empty():
+		# Reduce o aumenta la vida
+		match carta.palo_carta:
+			Carta.PALO.TREBOLES, Carta.PALO.PICAS:#####################################################
+				# Sustituye monstruo anterior
+				if usando_arma: # Arma equipada
+					if carta.valor < valor_monstruo_sobre_arma: # Arma equipada y aplicable
+						monstruo_anterior.texture = carta.img
+						valor_monstruo_sobre_arma = carta.valor
+						label_monstruo_anterior.text = "Último monstruo sobre arma: "+ str(valor_monstruo_sobre_arma)
+						# Se le resta a la vida el daño del monstruo menos lo mitigado con el arma
+						vida -= clampi(carta.valor - valor_arma,0, vida_max)
+						oro += carta.valor
+						sonido_arma.play()
+						borrar_carta(carta)
+					else: # Arma equipada y no aplicable
+						carta.poner_en_rojo()
+						sonido_negar.play()
+				else: # Desarmado
+					vida -= carta.valor
 					oro += carta.valor
+					sonido_puño.play()
 					borrar_carta(carta)
-					sonido_arma.play()
-				else: # Arma equipada y no aplicable
-					carta.poner_en_rojo()
-					sonido_negar.play()
-			else: # Desarmado
-				vida -= carta.valor
-				oro += carta.valor
+			
+			Carta.PALO.CORAZONES:#####################################################
+				if carta.valor == 10:
+					sonido_beber.play()
+				else:
+					sonido_comer.play()
+				if vida != vida_max:
+					vida += carta.valor
+					sonido_sanar.play()
 				borrar_carta(carta)
-				sonido_puño.play()
-		
-		Carta.PALO.CORAZONES:#####################################################
-			if carta.valor == 10:
-				sonido_beber.play()
-			else:
-				sonido_comer.play()
-			if vida != vida_max:
-				vida += carta.valor
-				sonido_sanar.play()
-			borrar_carta(carta)
+				
+			Carta.PALO.DIAMANTES:#####################################################
+				usando_arma = true
+				valor_arma = carta.valor
+				valor_monstruo_sobre_arma = 15
+				monstruo_anterior.texture = null
+				label_arma.text = "Valor del arma: "+ str(valor_arma)
+				label_monstruo_anterior.text = "Último monstruo sobre arma: Ninguno"
+				sonido_equipar.play()
+				if $HUD/CambiarArma.disabled:
+					$HUD/CambiarArma.disabled = false
+				borrar_carta(carta)
 			
-		Carta.PALO.DIAMANTES:#####################################################
-			usando_arma = true
-			valor_arma = carta.valor
-			valor_monstruo_sobre_arma = 15
-			monstruo_anterior.texture = null
-			label_arma.text = "Valor del arma: "+ str(valor_arma)
-			label_monstruo_anterior.text = "Último monstruo sobre arma: Ninguno"
-			sonido_equipar.play()
-			if $HUD/CambiarArma.disabled:
-				$HUD/CambiarArma.disabled = false
-			borrar_carta(carta)
-		
-		Carta.PALO.TIENDA:#####################################################
-			var tienda = preload("res://escenas/tienda.tscn").instantiate()
-			tienda.oro = oro
-			tienda.connect("compra_realizada", compra_realizada)
-			tienda.position = Vector2(380,180)
-			$HUD.add_child(tienda, true)
-			$HUD/CambiarArma.disabled = true
-			$HUD/Huir.disabled = true
-			$Baraja.visible = false
-			sonido_tienda_in.play()
-			await tienda.tree_exited
-			tienda_herreria_salida()
-			borrar_carta(carta)
-		
-		Carta.PALO.HERRERIA:#####################################################
-			var herreria = preload("res://escenas/herreria.tscn").instantiate()
-			herreria.valor_arma = valor_arma
-			herreria.oro = oro
-			herreria.durabilidad_actual = valor_monstruo_sobre_arma
-			herreria.connect("reparacion_hecha", reparacion_hecha)
-			herreria.position = Vector2(380,180)
-			$HUD.add_child(herreria, true)
-			$HUD/CambiarArma.disabled = true
-			$HUD/Huir.disabled = true
-			$Baraja.visible = false
-			sonido_herreria_in.play()
-			await herreria.tree_exited
-			tienda_herreria_salida()
-			borrar_carta(carta)
+			Carta.PALO.TIENDA:#####################################################
+				var tienda = preload("res://escenas/tienda.tscn").instantiate()
+				tienda.oro = oro
+				tienda.connect("compra_realizada", compra_realizada)
+				tienda.position = Vector2(380,180)
+				$HUD.add_child(tienda, true)
+				$HUD/CambiarArma.disabled = true
+				$HUD/Huir.disabled = true
+				$Baraja.visible = false
+				sonido_tienda_in.play()
+				await tienda.tree_exited
+				tienda_herreria_salida()
+				borrar_carta(carta)
 			
-		Carta.PALO.BOMBA:#####################################################
-			vida -= randi_range(0,10)
-			baraja.bomba()
-			sonido_bomba.play()
-	
-	
-	# Limita el valor de la vida por arriba y por abajo
-	vida = clampi(vida, 0, vida_max)
-	
-	# Caso de muerte
-	if vida == 0:
-		muerte()
-	
-	
-	baraja.mostrar_sala()
-	baraja.recargar_sala()
-	
-	# Una vez la sala no está completa, huir se desactiva
-	$HUD/Huir.disabled = true
-	
-	# Contar cartas restantes
-	$HUD/LabelRestantes.text = str(baraja.baraja.size()+baraja.sala.size())+"/"+str(numero_total_cartas)
-	
-	if baraja.check_no_mas_cartas() and vida > 0:
-		victoria()
+			Carta.PALO.HERRERIA:#####################################################
+				var herreria = preload("res://escenas/herreria.tscn").instantiate()
+				herreria.valor_arma = valor_arma
+				herreria.oro = oro
+				herreria.durabilidad_actual = valor_monstruo_sobre_arma
+				herreria.connect("reparacion_hecha", reparacion_hecha)
+				herreria.position = Vector2(380,180)
+				$HUD.add_child(herreria, true)
+				$HUD/CambiarArma.disabled = true
+				$HUD/Huir.disabled = true
+				$Baraja.visible = false
+				sonido_herreria_in.play()
+				await herreria.tree_exited
+				tienda_herreria_salida()
+				borrar_carta(carta)
+				
+			Carta.PALO.BOMBA:#####################################################
+				vida -= randi_range(0,10)
+				baraja.bomba()
+				sonido_bomba.play()
+		
+		
+		# Limita el valor de la vida por arriba y por abajo
+		vida = clampi(vida, 0, vida_max)
+		
+		# Caso de muerte
+		if vida == 0:
+			muerte()
+		
+		# Una vez la sala no está completa, huir se desactiva
+		$HUD/Huir.disabled = true
+		
+		# Contar cartas restantes
+		$HUD/LabelRestantes.text = str(baraja.baraja.size()+baraja.sala.size())+"/"+str(numero_total_cartas)
+		
+		if baraja.check_no_mas_cartas() and vida > 0:
+			victoria()
+			$HUD/Opciones.disabled = true
 
 
 func muerte():
@@ -295,8 +303,12 @@ func mostrar_puntuacion(puntos : int):
 	
 
 func borrar_carta(carta : Carta):
+	carta.desactivar()
 	baraja.sala.erase(carta)
+	await carta.animacion_borrar()
 	carta.queue_free()
+	baraja.mostrar_sala()
+	baraja.recargar_sala()
 
 func _on_cambiar_arma_pressed() -> void:
 	if valor_arma:
