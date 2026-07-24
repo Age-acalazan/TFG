@@ -64,3 +64,10 @@ func _on_area_2d_mouse_exited() -> void:
 func animacion_borrar():
 	$AnimationPlayer.play("borrar_carta")
 	await $AnimationPlayer.animation_finished
+	
+
+func animacion_huir():
+	$AnimationPlayer.play("huir")
+	await $AnimationPlayer.animation_finished
+	$Sprite2D.modulate = Color.WHITE
+	$Sprite2D.position.y = 0.0

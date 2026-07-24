@@ -1,6 +1,6 @@
 extends Camera3D
-@onready var sonido_caminar: AudioStreamPlayer = $Caminar
 
+@onready var sonido_caminar: AudioStreamPlayer = $Caminar
 
 func avanzar_sala():
 	var tween1 = create_tween()
@@ -50,3 +50,14 @@ func sonidos_caminar(repeticiones : int):
 	for _n in range(repeticiones):
 		sonido_caminar.play()
 		await get_tree().create_timer(0.5).timeout
+
+
+func camera_shake():
+	var elapsed_time:float = 0.0
+	while elapsed_time < 0.4:
+		h_offset = randf_range(-0.1, 0.1)
+		v_offset = randf_range(-0.1, 0.1)
+		elapsed_time += get_process_delta_time()
+		await get_tree().process_frame
+	h_offset = 0.0
+	v_offset = 0.0

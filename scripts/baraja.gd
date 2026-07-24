@@ -2,9 +2,7 @@ extends Node
 
 var carta_escena = preload("res://escenas/carta.tscn")
 var baraja: Array[Carta] = []
-var sala : Array[Carta] = []:
-	set(valor):
-		print(str(valor))
+var sala : Array[Carta] = []
 var disable_recargar_sala = false
 
 var modificadores_activos : bool = false
@@ -184,6 +182,11 @@ func _on_cursor_entra_area_monstruo(carta: Carta):
 	emit_signal("_on_cursor_entra_area_monstruo2", carta)	
 
 func huir():
+	# No encontré una mejor manera de hacer esto
+	sala[0].animacion_huir()
+	sala[1].animacion_huir()
+	sala[2].animacion_huir()
+	await sala[3].animacion_huir()
 	#Añade las cartas de la sala al fondo de la baraja
 	for carta in sala:
 		remove_child(carta)
@@ -212,8 +215,10 @@ func tras_bomba() -> void:
 
 func desactivar_cartas():
 	for c in sala:
-		c.visible = false
-	disable_recargar_sala = true
+		c.desactivar()
+	#for c in sala:
+		#c.visible = false
+	#disable_recargar_sala = true
 
 func check_no_mas_cartas() -> bool:
 	return sala.is_empty() and baraja.is_empty()

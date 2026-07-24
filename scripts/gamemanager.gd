@@ -51,6 +51,10 @@ var oro : int:
 		oro = valor
 		$HUD/Oro.set_text(str(oro))
 
+var particulas_curacion_escena = preload("res://escenas/particulas_curacion.tscn")
+var animaciones_arma_escena = preload("res://escenas/animaciones_armas.tscn")
+
+
 @onready var label_arma: Label = $HUD/LabelArma
 @onready var label_monstruo_anterior: Label = $HUD/LabelMonstruoAnterior
 @onready var monstruo_anterior: Sprite2D = $HUD/MonstruoAnterior
@@ -88,7 +92,7 @@ func _ready():
 	numero_total_cartas = baraja.baraja.size()+4
 	$HUD/LabelRestantes.text = str(baraja.baraja.size()+baraja.sala.size())+"/"+str(numero_total_cartas)
 	$HUD/Oro.visible = true if baraja.modificadores_activos else false
-	$Sonido/BGM.play()
+	#$Sonido/BGM.play()
 	actualizar_interfaz_ajustes()
 	conectar_botones_con_sonido()
 
@@ -153,6 +157,7 @@ func _on_baraja_carta_clicada(carta: Carta) -> void:
 						vida -= clampi(carta.valor - valor_arma,0, vida_max)
 						oro += carta.valor
 						sonido_arma.play()
+						ejecutar_animacion_arma(valor_arma, carta.global_position)
 						borrar_carta(carta)
 					else: # Arma equipada y no aplicable
 						carta.poner_en_rojo()
@@ -161,6 +166,7 @@ func _on_baraja_carta_clicada(carta: Carta) -> void:
 					vida -= carta.valor
 					oro += carta.valor
 					sonido_puño.play()
+					ejecutar_animacion_arma(0, carta.global_position)
 					borrar_carta(carta)
 			
 			Carta.PALO.CORAZONES:#####################################################
@@ -170,6 +176,7 @@ func _on_baraja_carta_clicada(carta: Carta) -> void:
 					sonido_comer.play()
 				if vida != vida_max:
 					vida += carta.valor
+					spawnear_particulas_curacion(carta.global_position)
 					sonido_sanar.play()
 				borrar_carta(carta)
 				
@@ -217,8 +224,13 @@ func _on_baraja_carta_clicada(carta: Carta) -> void:
 				
 			Carta.PALO.BOMBA:#####################################################
 				vida -= randi_range(0,10)
-				baraja.bomba()
 				sonido_bomba.play()
+				baraja.desactivar_cartas()
+				$HUD/ExplosionAnimacion.play()
+				$HUD/ExplosionParticulas.restart()
+				$HUD/SubViewport/Camera3D.camera_shake()
+				await get_tree().create_timer(0.4).timeout
+				baraja.bomba()
 		
 		
 		# Limita el valor de la vida por arriba y por abajo
@@ -396,3 +408,17 @@ func _on_check_fullscreen_toggled(toggled_on: bool) -> void:
 func _on_baraja_empezando_recargar_sala() -> void:
 	camera_3d.avanzar_sala()
 	
+func spawnear_particulas_curacion(coordenadas : Vector2):
+	var particulas_curacion = particulas_curacion_escena.instantiate()
+	particulas_curacion.position = coordenadas
+	add_child(particulas_curacion)
+	await get_tree().create_timer(2.0).timeout
+	particulas_curacion.queue_free()
+
+func ejecutar_animacion_arma(valor_arma_pasado:int, coordenadas:Vector2):
+	var animacion = animaciones_arma_escena.instantiate()
+	animacion.position = coordenadas
+	add_child(animacion)
+	animacion.play(str(valor_arma_pasado))
+	await animacion.animation_finished
+	animacion.queue_free()

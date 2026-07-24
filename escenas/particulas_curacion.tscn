@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://km7g2pkmdc4y"]
+
+[ext_resource type="Texture2D" uid="uid://d20dliq6l3afj" path="res://assets/sprites/ui_y_efectos/curacion_particula.png" id="1_d6q4y"]
+
+[sub_resource type="Curve" id="Curve_fcnqv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3gngh"]
+curve = SubResource("Curve_fcnqv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_57qmd"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(100, 100, 1100)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = 39.999977
+gravity = Vector3(0, -80, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = 41.739998
+scale_min = 5.0
+scale_max = 10.0
+alpha_curve = SubResource("CurveTexture_3gngh")
+
+[node name="ParticulasCuracion" type="GPUParticles2D" unique_id=3870396]
+texture = ExtResource("1_d6q4y")
+lifetime = 2.0
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_57qmd")
