@@ -80,6 +80,7 @@ var animaciones_arma_escena = preload("res://escenas/animaciones_armas.tscn")
 @onready var sonido_tienda_compra: AudioStreamPlayer = $Sonido/TiendaCompra
 @onready var sonido_tienda_herreria_out: AudioStreamPlayer = $Sonido/TiendaHerreriaOut
 @onready var sonido_bomba: AudioStreamPlayer = $Sonido/Bomba
+@onready var sonido_puerta: AudioStreamPlayer = $Sonido/Puerta
 
 
 func _ready():
@@ -228,7 +229,7 @@ func _on_baraja_carta_clicada(carta: Carta) -> void:
 				baraja.desactivar_cartas()
 				$HUD/ExplosionAnimacion.play()
 				$HUD/ExplosionParticulas.restart()
-				$HUD/SubViewport/Camera3D.camera_shake()
+				camera_3d.camera_shake()
 				await get_tree().create_timer(0.4).timeout
 				baraja.bomba()
 		
@@ -267,12 +268,19 @@ func muerte():
 
 func victoria():
 	# Espera a que termine el tween de esa función
-	await $HUD/SubViewport/Camera3D.secuencia_victoria()
-	
+	await camera_3d.secuencia_victoria()
+	# lógica de el giro de las puertas
+	var puertaD = $Pasillo3/PuertaD
+	var puertaI = $Pasillo3/PuertaI
+	create_tween().tween_property(puertaD, "rotation:y", -PI/2,3).set_trans(Tween.TRANS_CUBIC)
+	create_tween().tween_property(puertaI, "rotation:y", -PI/2,3).set_trans(Tween.TRANS_CUBIC)
+	sonido_puerta.play()
+	await get_tree().create_timer(2.5).timeout
+	camera_3d.secuencia_victoria2()
 	# lógica del fade a negro
 	$FadeNegro.visible = true
 	var tween = create_tween()
-	tween.tween_property($FadeNegro, "color", Color(0,0,0,1),5)
+	tween.tween_property($FadeNegro, "color", Color(0,0,0,1),5).set_delay(1)
 	# Espera a que termine el tween del fade a negro
 	await tween.finished
 	

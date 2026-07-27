@@ -58,6 +58,8 @@
 [ext_resource type="Texture2D" uid="uid://d06p8s8fagyb3" path="res://assets/sprites/vida/10c.png" id="43_yu7te"]
 [ext_resource type="Texture2D" uid="uid://dddqqgpgufuhq" path="res://assets/sprites/monstruos_numeros/11t.png" id="55_mg5w1"]
 [ext_resource type="Script" uid="uid://b0e3f1taa4udn" path="res://scripts/boton_animacion.gd" id="56_t6u78"]
+[ext_resource type="Texture2D" uid="uid://yw8l3pmk3kw0" path="res://assets/sprites/armas/1d.png" id="59_5kuwt"]
+[ext_resource type="Texture2D" uid="uid://bcvkxtfjerdbw" path="res://assets/sprites/ui_y_efectos/estrella.png" id="60_vrgld"]
 
 [sub_resource type="Theme" id="Theme_2syjm"]
 
@@ -68,8 +70,69 @@ corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 
+[sub_resource type="Animation" id="Animation_5kuwt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vrgld"]
+resource_name = "squash_personaje"
+length = 0.25
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.5609761, 0.8135593), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ktgrc"]
+_data = {
+&"RESET": SubResource("Animation_5kuwt"),
+&"squash_personaje": SubResource("Animation_vrgld")
+}
+
+[sub_resource type="Curve" id="Curve_d0u6y"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.6828479, 0.6193548), -0.9443125, -0.9443125, 0, 0, Vector2(0.987055, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_57qmd"]
+curve = SubResource("Curve_d0u6y")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g4v7s"]
+particle_flag_disable_z = true
+angle_min = 1.0728835e-05
+angle_max = 360.00003
+direction = Vector3(0, -1, 0)
+flatness = 1.0
+initial_velocity_min = 90.0
+initial_velocity_max = 120.0
+gravity = Vector3(0, 98, 0)
+scale_min = 0.5
+alpha_curve = SubResource("CurveTexture_57qmd")
+
 [node name="Menu" type="Node2D" unique_id=2043182576]
 script = ExtResource("1_vdanu")
+
+[node name="TimerAnimacionInicio" type="Timer" parent="." unique_id=750095642]
+wait_time = 7.0
+one_shot = true
 
 [node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1595024224]
 volume_db = -2.0
@@ -87,16 +150,6 @@ bus = &"SFX"
 stream = ExtResource("6_t6u78")
 volume_db = -1.0
 bus = &"SFX"
-
-[node name="Jugar" type="Button" parent="." unique_id=787941081]
-offset_left = 64.0
-offset_top = 128.0
-offset_right = 424.0
-offset_bottom = 221.0
-offset_transform_enabled = true
-text = "JUGAR"
-script = ExtResource("56_t6u78")
-metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
 [node name="SubmenuModificadores" type="Panel" parent="." unique_id=2083655635 groups=["Submenus"]]
 visible = false
@@ -515,16 +568,6 @@ texture_normal = ExtResource("26_agjs5")
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="TablaClasificacion" type="Button" parent="." unique_id=1285805953]
-offset_left = 64.0
-offset_top = 256.0
-offset_right = 424.0
-offset_bottom = 349.0
-offset_transform_enabled = true
-text = "TABLA DE CLASIFICACIONES"
-script = ExtResource("56_t6u78")
-metadata/_custom_type_script = "uid://b0e3f1taa4udn"
-
 [node name="SubmenuTablaClasificacion" type="Panel" parent="." unique_id=381544872 groups=["Submenus"]]
 visible = false
 offset_left = 472.0
@@ -603,17 +646,6 @@ theme_override_font_sizes/normal_font_size = 30
 text = "Score"
 fit_content = true
 
-[node name="ComoJugar" type="Button" parent="." unique_id=1486179282]
-offset_left = 64.0
-offset_top = 384.0
-offset_right = 424.0
-offset_bottom = 477.0
-offset_transform_enabled = true
-text = "CÓMO JUGAR
-"
-script = ExtResource("56_t6u78")
-metadata/_custom_type_script = "uid://b0e3f1taa4udn"
-
 [node name="SubmenuComoJugar" type="Panel" parent="." unique_id=1917885997 groups=["Submenus"]]
 visible = false
 z_as_relative = false
@@ -676,16 +708,6 @@ text = "TUTORIAL"
 script = ExtResource("56_t6u78")
 metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
-[node name="Creditos" type="Button" parent="." unique_id=227821292]
-offset_left = 64.0
-offset_top = 512.0
-offset_right = 240.0
-offset_bottom = 605.0
-offset_transform_enabled = true
-text = "CREDITOS"
-script = ExtResource("56_t6u78")
-metadata/_custom_type_script = "uid://b0e3f1taa4udn"
-
 [node name="SubmenuCreditos" type="Panel" parent="." unique_id=1949611291 groups=["Submenus"]]
 visible = false
 z_as_relative = false
@@ -742,16 +764,6 @@ Música y efectos de sonido:
 Historia:
 Ángel Sánchez Ruiz
 "
-
-[node name="Opciones" type="Button" parent="." unique_id=663194430]
-offset_left = 248.0
-offset_top = 512.0
-offset_right = 424.00006
-offset_bottom = 605.0
-offset_transform_enabled = true
-text = "OPCIONES"
-script = ExtResource("56_t6u78")
-metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
 [node name="SubmenuOpciones" type="Panel" parent="." unique_id=318333352 groups=["Submenus"]]
 visible = false
@@ -874,8 +886,133 @@ offset_bottom = 175.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_v6ae4")
 
+[node name="Titulo" type="Node2D" parent="." unique_id=776161806]
+z_index = -1
+
+[node name="1" type="Sprite2D" parent="Titulo" unique_id=1360746803]
+position = Vector2(800, -88)
+texture = ExtResource("59_5kuwt")
+
+[node name="2" type="Sprite2D" parent="Titulo" unique_id=506271652]
+position = Vector2(800, -88)
+texture = ExtResource("59_5kuwt")
+
+[node name="3" type="Sprite2D" parent="Titulo" unique_id=672598008]
+position = Vector2(800, -88)
+texture = ExtResource("59_5kuwt")
+
+[node name="4" type="Sprite2D" parent="Titulo" unique_id=1774704724]
+position = Vector2(800, -88)
+texture = ExtResource("59_5kuwt")
+
+[node name="5" type="Sprite2D" parent="Titulo" unique_id=824236477]
+position = Vector2(800, -88)
+texture = ExtResource("59_5kuwt")
+
+[node name="6" type="Sprite2D" parent="Titulo" unique_id=221392654]
+position = Vector2(800, -88)
+texture = ExtResource("59_5kuwt")
+
+[node name="7" type="Sprite2D" parent="Titulo" unique_id=346403030]
+position = Vector2(800, -88)
+texture = ExtResource("59_5kuwt")
+
+[node name="8" type="Sprite2D" parent="Titulo" unique_id=1666316036]
+position = Vector2(800, -88)
+texture = ExtResource("59_5kuwt")
+
+[node name="9" type="Sprite2D" parent="Titulo" unique_id=791383915]
+position = Vector2(800, -88)
+texture = ExtResource("59_5kuwt")
+
+[node name="10" type="Sprite2D" parent="Titulo" unique_id=132459140]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(1007.99994, 143.99998)
+scale = Vector2(3.0792685, 0.43220338)
+texture = ExtResource("59_5kuwt")
+
+[node name="Personaje" type="Sprite2D" parent="." unique_id=573426345]
+z_index = -1
+position = Vector2(800, 598)
+texture = ExtResource("59_5kuwt")
+offset = Vector2(0, -40)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Personaje" unique_id=1217063884]
+libraries/ = SubResource("AnimationLibrary_ktgrc")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Personaje" unique_id=1381709606]
+position = Vector2(0, -88.5)
+emitting = false
+amount = 5
+texture = ExtResource("60_vrgld")
+lifetime = 0.75
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_g4v7s")
+
+[node name="EspadaPlaceholder" type="Polygon2D" parent="." unique_id=380975880]
+z_index = -2
+position = Vector2(168, 44)
+scale = Vector2(1, 1.5000001)
+color = Color(0.4382773, 0.43827733, 0.4382773, 1)
+polygon = PackedVector2Array(-128, 24, -160, 24, -160, 8, -128.00002, 8, -128.00002, -8, -112, -8, -112, 8, 320, 7.999998, 352, 15.999998, 320, 24.000002, -112, 24.000004, -112, 39.999996, -128.00002, 39.999996)
+uv = PackedVector2Array(-128, 24, -160, 24, -160, 8, -128.00002, 8, -128.00002, -8, -112, -8, -112, 8, 135.99997, 8, 167.99997, 15.999996, 135.99997, 24.000004, -112, 24.000004, -112, 39.999996, -128.00002, 39.999996)
+
+[node name="Botones" type="Node2D" parent="." unique_id=267885352]
+
+[node name="Jugar" type="Button" parent="Botones" unique_id=787941081]
+offset_left = -416.0
+offset_top = 152.0
+offset_right = -56.0
+offset_bottom = 245.0
+offset_transform_enabled = true
+text = "JUGAR"
+script = ExtResource("56_t6u78")
+metadata/_custom_type_script = "uid://b0e3f1taa4udn"
+
+[node name="TablaClasificacion" type="Button" parent="Botones" unique_id=1285805953]
+offset_left = -416.0
+offset_top = 272.0
+offset_right = -56.0
+offset_bottom = 365.0
+offset_transform_enabled = true
+text = "TABLA DE CLASIFICACIONES"
+script = ExtResource("56_t6u78")
+metadata/_custom_type_script = "uid://b0e3f1taa4udn"
+
+[node name="ComoJugar" type="Button" parent="Botones" unique_id=1486179282]
+offset_left = -416.0
+offset_top = 392.0
+offset_right = -56.0
+offset_bottom = 485.0
+offset_transform_enabled = true
+text = "CÓMO JUGAR
+"
+script = ExtResource("56_t6u78")
+metadata/_custom_type_script = "uid://b0e3f1taa4udn"
+
+[node name="Creditos" type="Button" parent="Botones" unique_id=227821292]
+offset_left = -416.0
+offset_top = 512.0
+offset_right = -240.0
+offset_bottom = 605.0
+offset_transform_enabled = true
+text = "CREDITOS"
+script = ExtResource("56_t6u78")
+metadata/_custom_type_script = "uid://b0e3f1taa4udn"
+
+[node name="Opciones" type="Button" parent="Botones" unique_id=663194430]
+offset_left = -232.0
+offset_top = 512.0
+offset_right = -55.99994
+offset_bottom = 605.0
+offset_transform_enabled = true
+text = "OPCIONES"
+script = ExtResource("56_t6u78")
+metadata/_custom_type_script = "uid://b0e3f1taa4udn"
+
 [connection signal="finished" from="BGM" to="BGM" method="_on_finished"]
-[connection signal="button_up" from="Jugar" to="." method="_on_jugar_button_up"]
 [connection signal="button_up" from="SubmenuModificadores/JugarSimple" to="." method="_on_jugar_simple_button_up"]
 [connection signal="button_up" from="SubmenuModificadores/JugarModificadores" to="." method="_on_jugar_modificadores_button_up"]
 [connection signal="value_changed" from="SubmenuModificadores/ScrollContainer/VBoxContainer/VidaMaxima/SliderVidaMax" to="SubmenuModificadores/ScrollContainer/VBoxContainer/VidaMaxima/SliderVidaMax" method="_on_value_changed"]
@@ -883,12 +1020,13 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_v6ae4")
 [connection signal="value_changed" from="SubmenuModificadores/ScrollContainer/VBoxContainer/HerreriaCartasExtra2/Herreria" to="SubmenuModificadores/ScrollContainer/VBoxContainer/HerreriaCartasExtra2/Herreria" method="_on_value_changed"]
 [connection signal="value_changed" from="SubmenuModificadores/ScrollContainer/VBoxContainer/BombaCartasExtra3/Bomba" to="SubmenuModificadores/ScrollContainer/VBoxContainer/BombaCartasExtra3/Bomba" method="_on_value_changed"]
 [connection signal="toggled" from="SubmenuModificadores/ScrollContainer/VBoxContainer/Label/AlternarTodas" to="." method="_on_alternar_todas_toggled"]
-[connection signal="button_up" from="TablaClasificacion" to="." method="_on_tabla_clasificacion_button_up"]
-[connection signal="button_up" from="ComoJugar" to="." method="_on_como_jugar_button_up"]
-[connection signal="button_up" from="Creditos" to="." method="_on_creditos_button_up"]
-[connection signal="button_up" from="Opciones" to="." method="_on_opciones_button_up"]
 [connection signal="value_changed" from="SubmenuOpciones/VBoxContainer/HBoxContainer3/VolumenMasterSlider" to="SubmenuOpciones/VBoxContainer/HBoxContainer3/VolumenMasterSlider" method="_on_value_changed"]
 [connection signal="value_changed" from="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider" to="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider" method="_on_value_changed"]
 [connection signal="value_changed" from="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" to="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" method="_on_value_changed"]
 [connection signal="toggled" from="SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen" to="." method="_on_check_fullscreen_toggled"]
 [connection signal="toggled" from="SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers" to="." method="_on_check_jqka_numbers_toggled"]
+[connection signal="button_up" from="Botones/Jugar" to="." method="_on_jugar_button_up"]
+[connection signal="button_up" from="Botones/TablaClasificacion" to="." method="_on_tabla_clasificacion_button_up"]
+[connection signal="button_up" from="Botones/ComoJugar" to="." method="_on_como_jugar_button_up"]
+[connection signal="button_up" from="Botones/Creditos" to="." method="_on_creditos_button_up"]
+[connection signal="button_up" from="Botones/Opciones" to="." method="_on_opciones_button_up"]

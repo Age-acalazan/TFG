@@ -31,6 +31,13 @@ Configuracion="*uid://di1mvll5ktme4"
 
 window/stretch/mode="canvas_items"
 
+[input]
+
+click={
+"deadzone": 0.2,
+"events": []
+}
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

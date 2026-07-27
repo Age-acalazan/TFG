@@ -45,6 +45,11 @@ func secuencia_victoria():
 	
 	await tween1.finished
 
+func secuencia_victoria2():
+	var tween1 = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween1.tween_property(self, "position:z" ,-13.5,0.5)
+	tween1.tween_property(self, "position:z" ,-16.1,1).set_delay(0.3)
+
 func sonidos_caminar(repeticiones : int):
 	# Se hace el sonido de dar los pasos
 	for _n in range(repeticiones):
