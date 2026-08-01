@@ -38,9 +38,12 @@
 [ext_resource type="AudioStream" uid="uid://btenaex34fjq4" path="res://assets/sonidos/efectos/door_close.wav" id="19_surgt"]
 [ext_resource type="AudioStream" uid="uid://cc3v8w23gj58t" path="res://assets/sonidos/efectos/sfx_exp_medium6.wav" id="20_tp5eq"]
 [ext_resource type="AudioStream" uid="uid://ctmbls2foa8lo" path="res://assets/sonidos/efectos/puerta_sonido.wav" id="22_uleqa"]
+[ext_resource type="Texture2D" uid="uid://bvqol24juvt4n" path="res://assets/sprites/ui_y_efectos/corazon.png" id="24_8x0ef"]
 [ext_resource type="Script" uid="uid://b0e3f1taa4udn" path="res://scripts/boton_animacion.gd" id="24_bwgp7"]
+[ext_resource type="Texture2D" uid="uid://2u4tvpu16giq" path="res://assets/sprites/ui_y_efectos/engranaje.png" id="26_xlk4p"]
 [ext_resource type="Texture2D" uid="uid://bjmlc3wfi874y" path="res://assets/sprites/ui_y_efectos/Explosion.png" id="28_yjeck"]
 [ext_resource type="Texture2D" uid="uid://dy3xsyy6716pq" path="res://assets/sprites/ui_y_efectos/explosion-2.png" id="29_om6g6"]
+[ext_resource type="Texture2D" uid="uid://cemdpm8dvbv8b" path="res://assets/sprites/ui_y_efectos/dolar.png" id="32_8x0ef"]
 [ext_resource type="Texture2D" uid="uid://dupsudt32h7ds" path="res://assets/sprites/pasillo_mazmorra/puertaxd.png" id="41_uleqa"]
 
 [sub_resource type="AudioStreamWAV" id="AudioStreamWAV_xlk4p"]
@@ -48,6 +51,44 @@ data = PackedByteArray("cW9hZgAAMrMCACsRFAAQKAAAAAAAAAAAAAAAAOAAQAAAAAAAAAAAAAAA
 format = 3
 mix_rate = 11025
 stereo = true
+
+[sub_resource type="Animation" id="Animation_g0h0e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.62, 1.62)]
+}
+
+[sub_resource type="Animation" id="Animation_vw4xi"]
+resource_name = "bombeo_corazon"
+length = 2.5000000000000004
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.25, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1.6, 1.6), Vector2(2, 2), Vector2(1.6, 1.6)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jhg5l"]
+_data = {
+&"RESET": SubResource("Animation_g0h0e"),
+&"bombeo_corazon": SubResource("Animation_vw4xi")
+}
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yf5fn"]
 viewport_path = NodePath("HUD/SubViewport")
@@ -248,6 +289,27 @@ scale_min = 10.0
 scale_max = 15.0
 scale_curve = SubResource("CurveTexture_d6hoq")
 color_initial_ramp = SubResource("GradientTexture1D_1w4fo")
+
+[sub_resource type="Curve" id="Curve_fcnqv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3gngh"]
+curve = SubResource("Curve_fcnqv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_57qmd"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(300, 100, 1100)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = 39.999977
+gravity = Vector3(0, -80, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = 41.739998
+scale_min = 5.0
+scale_max = 10.0
+alpha_curve = SubResource("CurveTexture_3gngh")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57qmd"]
 diffuse_mode = 3
@@ -523,10 +585,20 @@ uv = PackedVector2Array(-136.00003, 56.000076, -136.00003, -80.00008, 8.392334e-
 [node name="LabelVida" type="Label" parent="HUD" unique_id=629861703]
 offset_left = 16.0
 offset_top = 394.0
-offset_right = 305.0
+offset_right = 79.0
 offset_bottom = 472.0
 theme_override_font_sizes/font_size = 55
-text = "LabelVida"
+text = "20"
+horizontal_alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="HUD/LabelVida" unique_id=101841674]
+position = Vector2(103.99999, 46)
+scale = Vector2(1.62, 1.62)
+texture = ExtResource("24_8x0ef")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/LabelVida/Sprite2D" unique_id=468597633]
+libraries/ = SubResource("AnimationLibrary_jhg5l")
+autoplay = &"bombeo_corazon"
 
 [node name="LabelArma" type="Label" parent="HUD" unique_id=1376989841]
 offset_left = 16.0
@@ -554,6 +626,8 @@ offset_right = 240.0
 offset_bottom = 384.0
 theme_override_font_sizes/font_size = 31
 disabled = true
+text = "Desarmado
+"
 script = ExtResource("24_bwgp7")
 metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
@@ -596,8 +670,12 @@ offset_top = 5.0
 offset_right = 98.0
 offset_bottom = 96.0
 theme_override_font_sizes/font_size = 60
-text = "⚙️"
 icon_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="HUD/Opciones" unique_id=1676137767]
+position = Vector2(43.5, 46.5)
+scale = Vector2(1.46, 1.46)
+texture = ExtResource("26_xlk4p")
 
 [node name="SpriteSubViewport" type="Sprite2D" parent="HUD" unique_id=1242498960]
 z_index = -1
@@ -646,6 +724,16 @@ one_shot = true
 speed_scale = 3.0
 explosiveness = 0.8
 process_material = SubResource("ParticleProcessMaterial_yf5fn")
+
+[node name="ParticulasDolar" type="GPUParticles2D" parent="HUD" unique_id=3870396]
+position = Vector2(704, 256)
+emitting = false
+texture = ExtResource("32_8x0ef")
+lifetime = 2.0
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_57qmd")
 
 [node name="FadeNegro" type="ColorRect" parent="." unique_id=1282061690]
 visible = false

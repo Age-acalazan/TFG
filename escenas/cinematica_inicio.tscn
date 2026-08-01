@@ -1,0 +1,661 @@
+[gd_scene format=3 uid="uid://der8n17qx0vyd"]
+
+[ext_resource type="Texture2D" uid="uid://c3m27r1kbytd1" path="res://assets/sprites/cinematica/inicio/1.png" id="1_cram5"]
+[ext_resource type="AudioStream" uid="uid://b34y0ah56mnar" path="res://assets/sonidos/cinematica_inicio/703168__cropdub6425__favstomachgrowl.wav" id="1_k3h7c"]
+[ext_resource type="AudioStream" uid="uid://pwqegofsil70" path="res://assets/sonidos/cinematica_inicio/rcsound99__evening-in-a-campground-arkansas.mp3" id="2_0tfua"]
+[ext_resource type="Texture2D" uid="uid://dt7voc5bvy6g" path="res://assets/sprites/cinematica/inicio/2.png" id="2_olg6a"]
+[ext_resource type="AudioStream" uid="uid://de1f6ip745bnj" path="res://assets/sonidos/efectos/17_orc_atk_sword_2.wav" id="2_pv2ww"]
+[ext_resource type="Texture2D" uid="uid://c31wa2bjddgre" path="res://assets/sprites/cinematica/inicio/3.png" id="3_8ddf5"]
+[ext_resource type="AudioStream" uid="uid://ceykf1gc13v1c" path="res://assets/sonidos/cinematica_inicio/427180__caap__43-perritoselamenta.wav" id="3_mipq3"]
+[ext_resource type="AudioStream" uid="uid://l7ux7g22wu8q" path="res://assets/sonidos/cinematica_inicio/660298__ambient-x__campfire-deer-camp-adding-kindling-med-wind-part-4.wav" id="3_pv2ww"]
+[ext_resource type="Texture2D" uid="uid://b4l30sy7tf132" path="res://assets/sprites/cinematica/inicio/4.png" id="4_k3h7c"]
+[ext_resource type="AudioStream" uid="uid://c1yj2kibeygo0" path="res://assets/sonidos/cinematica_inicio/sniff.wav" id="4_pi5dg"]
+[ext_resource type="Texture2D" uid="uid://7wm3g6so71w6" path="res://assets/sprites/cinematica/inicio/5.png" id="5_0tfua"]
+[ext_resource type="AudioStream" uid="uid://btv2my4266md" path="res://assets/sonidos/cinematica_inicio/ceeday-huh-sound-effect.mp3" id="5_mmius"]
+[ext_resource type="AudioStream" uid="uid://djprc3idnfqnj" path="res://assets/sonidos/cinematica_inicio/326133__wagna__falling.wav" id="6_mmius"]
+[ext_resource type="Texture2D" uid="uid://bvo3uiweyjkhw" path="res://assets/sprites/cinematica/inicio/6.png" id="6_pv2ww"]
+[ext_resource type="Texture2D" uid="uid://bana1lm85doaw" path="res://assets/sprites/cinematica/inicio/7.png" id="7_mipq3"]
+[ext_resource type="Texture2D" uid="uid://c8r3qmcp608hu" path="res://assets/sprites/cinematica/inicio/8.png" id="8_pi5dg"]
+[ext_resource type="Texture2D" uid="uid://c3mbq3t661eig" path="res://assets/sprites/cinematica/inicio/9.png" id="9_mmius"]
+[ext_resource type="Texture2D" uid="uid://c51qnq8qg7vmq" path="res://assets/sprites/cinematica/inicio/10.png" id="10_hej2a"]
+[ext_resource type="Texture2D" uid="uid://t0s6ohs7mkou" path="res://assets/sprites/cinematica/inicio/11.png" id="11_ac8y2"]
+[ext_resource type="Texture2D" uid="uid://ixxpmdvvmkmc" path="res://assets/sprites/cinematica/inicio/12.png" id="12_gsi57"]
+[ext_resource type="Texture2D" uid="uid://bb7tn8wpwuy85" path="res://assets/sprites/cinematica/inicio/13.png" id="13_e5bua"]
+[ext_resource type="Texture2D" uid="uid://cval0wgpgk84b" path="res://assets/sprites/cinematica/inicio/14.png" id="14_dwmp3"]
+[ext_resource type="Texture2D" uid="uid://vqrrvnftm0h5" path="res://assets/sprites/cinematica/inicio/15.png" id="15_aqdcw"]
+[ext_resource type="Texture2D" uid="uid://bb7iiigahlsb8" path="res://assets/sprites/cinematica/inicio/16.png" id="16_77pt8"]
+
+[sub_resource type="Animation" id="Animation_7130s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("4:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("5:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("6:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("7:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("8:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("9:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("10:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("11:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("12:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("13:modulate")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("14:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("15:modulate")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("16:modulate")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("AudioStreamPlayer:playing")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("AudioStreamPlayer:stream")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("AudioStreamPlayer3:playing")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("AudioStreamPlayer3:volume_db")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("ColorRect:modulate")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dm1bb"]
+resource_name = "cinematica_inicio"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3, 3.05),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("4:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 4, 4.0333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("5:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 5.0000005, 5.5000005),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("6:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 6.0000005, 6.5000005),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("7:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 7.8000007, 7.8500004),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("8:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 8.8, 8.85),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("9:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 9.8, 9.85),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("10:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 10.800001, 11.300001),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("11:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 11.800001, 12.300001),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("12:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 12.800001, 13.300001),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("13:modulate")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 13.800001, 13.85),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("14:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 14.800001, 15.300001),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("15:modulate")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 16.883335, 16.933334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("16:modulate")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0, 17.883331, 18.383331),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("AudioStreamPlayer:playing")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0, 1.2, 3.3333335, 4, 5.6666665, 6.3333325, 7.7000003, 7.766667, 14.766667, 15.000001, 16.8, 17.033333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false, true, false, true, false, true]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("AudioStreamPlayer:stream")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0, 3.7666667, 6.0666666, 7.7333336, 14.966667, 17),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_k3h7c"), ExtResource("2_pv2ww"), ExtResource("3_mipq3"), ExtResource("4_pi5dg"), ExtResource("5_mmius"), ExtResource("6_mmius")]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("AudioStreamPlayer3:playing")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 9.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("AudioStreamPlayer3:volume_db")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(7.4333334, 9.133333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -15.0]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("ColorRect:modulate")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(17.666666, 20),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iev6v"]
+_data = {
+&"RESET": SubResource("Animation_7130s"),
+&"cinematica_inicio": SubResource("Animation_dm1bb")
+}
+
+[node name="CinematicaInicio" type="Node2D" unique_id=1686949620]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=575130785]
+libraries/ = SubResource("AnimationLibrary_iev6v")
+autoplay = &"cinematica_inicio"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1196110423]
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=541814482]
+stream = ExtResource("2_0tfua")
+volume_db = 5.342
+autoplay = true
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="." unique_id=1604294023]
+stream = ExtResource("3_pv2ww")
+
+[node name="1" type="Sprite2D" parent="." unique_id=1331392832]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(416, 161)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_cram5")
+
+[node name="2" type="Sprite2D" parent="." unique_id=1755471142]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(736, 161)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_olg6a")
+
+[node name="3" type="Sprite2D" parent="." unique_id=1774933387]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(736, 160)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_8ddf5")
+
+[node name="4" type="Sprite2D" parent="." unique_id=1173960209]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(736, 160)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_k3h7c")
+
+[node name="5" type="Sprite2D" parent="." unique_id=904133541]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(416, 480)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_0tfua")
+
+[node name="6" type="Sprite2D" parent="." unique_id=1379794301]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(736, 480)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("6_pv2ww")
+
+[node name="7" type="Sprite2D" parent="." unique_id=370529016]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(736, 480)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_mipq3")
+
+[node name="8" type="Sprite2D" parent="." unique_id=998173204]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(416, 161)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("8_pi5dg")
+
+[node name="9" type="Sprite2D" parent="." unique_id=200282178]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(736, 160)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("9_mmius")
+
+[node name="10" type="Sprite2D" parent="." unique_id=446349136]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(736, 160)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("10_hej2a")
+
+[node name="11" type="Sprite2D" parent="." unique_id=992532646]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(736, 160)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("11_ac8y2")
+
+[node name="12" type="Sprite2D" parent="." unique_id=416598622]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(736, 160)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("12_gsi57")
+
+[node name="13" type="Sprite2D" parent="." unique_id=1646575984]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(416, 480)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("13_e5bua")
+
+[node name="14" type="Sprite2D" parent="." unique_id=1187674856]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(416, 480)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("14_dwmp3")
+
+[node name="15" type="Sprite2D" parent="." unique_id=1355217267]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(736, 480)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("15_aqdcw")
+
+[node name="16" type="Sprite2D" parent="." unique_id=1652218394]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(736, 480)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("16_77pt8")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=158251164]
+modulate = Color(1, 1, 1, 0)
+offset_right = 1192.0
+offset_bottom = 712.0
+color = Color(0, 0, 0, 1)

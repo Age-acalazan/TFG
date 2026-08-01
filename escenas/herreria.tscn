@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://btdk44o1sdvi3" path="res://scripts/herreria.gd" id="1_rourp"]
 [ext_resource type="Texture2D" uid="uid://cekjmoa2r1e6e" path="res://assets/sprites/armas/7d.png" id="2_440oh"]
 [ext_resource type="AudioStream" uid="uid://b7uqtde54jtb1" path="res://assets/sonidos/efectos/sfx_menu_move1.wav" id="3_440oh"]
+[ext_resource type="Texture2D" uid="uid://d0xsrpc8m3y3v" path="res://assets/sprites/ui_y_efectos/moneda.png" id="3_eroh2"]
 
 [node name="Herreria" type="Node2D" unique_id=1538194671]
 script = ExtResource("1_rourp")
@@ -29,7 +30,6 @@ theme_override_font_sizes/font_size = 25
 text = "Salir"
 
 [node name="TieneArma" type="Node2D" parent="." unique_id=1390611666]
-visible = false
 
 [node name="Reparar" type="Button" parent="TieneArma" unique_id=961270807]
 anchors_preset = 7
@@ -62,15 +62,21 @@ Máxima"
 horizontal_alignment = 1
 
 [node name="Precio" type="Label" parent="TieneArma" unique_id=531989969]
-offset_left = 240.0
+offset_left = 256.0
 offset_top = 56.0
-offset_right = 440.0
+offset_right = 416.0
 offset_bottom = 98.0
 theme_override_font_sizes/font_size = 30
-text = "Precio: "
-horizontal_alignment = 1
+text = "Precio: 117"
+horizontal_alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="TieneArma/Precio" unique_id=1506703421]
+position = Vector2(178, 24.000061)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("3_eroh2")
 
 [node name="NoTieneArma" type="Node2D" parent="." unique_id=1692532591]
+visible = false
 
 [node name="Label" type="Label" parent="NoTieneArma" unique_id=172763871]
 offset_left = 104.0

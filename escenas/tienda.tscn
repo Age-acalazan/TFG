@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://d0h621di2qepj" path="res://assets/sprites/extras/tienda.png" id="1_5ur6e"]
 [ext_resource type="Script" uid="uid://bbuewudtq4dmh" path="res://scripts/tienda.gd" id="1_idaph"]
 [ext_resource type="AudioStream" uid="uid://b7uqtde54jtb1" path="res://assets/sonidos/efectos/sfx_menu_move1.wav" id="3_ao03l"]
+[ext_resource type="Texture2D" uid="uid://d0xsrpc8m3y3v" path="res://assets/sprites/ui_y_efectos/moneda.png" id="3_oa3nc"]
 
 [node name="Tienda" type="Node2D" unique_id=374293017]
 script = ExtResource("1_idaph")
@@ -26,14 +27,19 @@ texture_normal = ExtResource("1_5ur6e")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="oro" type="Label" parent="Panel/HBoxContainer/0" unique_id=1270230315]
+[node name="oro" type="Label" parent="Panel/HBoxContainer/0" unique_id=1429296153]
 layout_mode = 0
-offset_left = 78.0
+offset_left = 70.0
 offset_top = 200.0
-offset_right = 118.0
+offset_right = 110.0
 offset_bottom = 223.0
-text = "oro"
-horizontal_alignment = 1
+text = "123"
+horizontal_alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/HBoxContainer/0" unique_id=428580153]
+position = Vector2(122.00001, 213.00002)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_oa3nc")
 
 [node name="1" type="TextureButton" parent="Panel/HBoxContainer" unique_id=195411426]
 custom_minimum_size = Vector2(200, 200)
@@ -42,14 +48,19 @@ texture_normal = ExtResource("1_5ur6e")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="oro" type="Label" parent="Panel/HBoxContainer/1" unique_id=2066710926]
+[node name="oro" type="Label" parent="Panel/HBoxContainer/1" unique_id=1797765033]
 layout_mode = 0
-offset_left = 78.0
+offset_left = 70.0
 offset_top = 200.0
-offset_right = 118.0
+offset_right = 110.0
 offset_bottom = 223.0
-text = "oro"
-horizontal_alignment = 1
+text = "123"
+horizontal_alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/HBoxContainer/1" unique_id=1153539387]
+position = Vector2(122, 213.00002)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_oa3nc")
 
 [node name="2" type="TextureButton" parent="Panel/HBoxContainer" unique_id=391139853]
 custom_minimum_size = Vector2(200, 200)
@@ -60,12 +71,17 @@ stretch_mode = 0
 
 [node name="oro" type="Label" parent="Panel/HBoxContainer/2" unique_id=505580835]
 layout_mode = 0
-offset_left = 78.0
+offset_left = 70.0
 offset_top = 200.0
-offset_right = 118.0
+offset_right = 110.0
 offset_bottom = 223.0
-text = "oro"
-horizontal_alignment = 1
+text = "123"
+horizontal_alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/HBoxContainer/2" unique_id=811998913]
+position = Vector2(122, 213.00002)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_oa3nc")
 
 [node name="Salir" type="Button" parent="Panel" unique_id=1718661453]
 layout_mode = 1

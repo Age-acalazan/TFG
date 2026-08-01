@@ -26,7 +26,7 @@ func _ready() -> void:
 			get_node("Panel/HBoxContainer/"+str(n)).set_texture_normal(
 				load("res://assets/sprites/armas/"+carta+".png"))
 			
-		get_node("Panel/HBoxContainer/"+str(n)+"/oro").set_text(str(precio)+"🪙")
+		get_node("Panel/HBoxContainer/"+str(n)+"/oro").set_text(str(precio))
 
 
 func oro_aleatorio_pesado(valor : int):

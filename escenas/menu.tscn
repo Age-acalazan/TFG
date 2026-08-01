@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://c554nqmkuqm2k" path="res://assets/sprites/monstruos/3t.png" id="6_2syjm"]
 [ext_resource type="AudioStream" uid="uid://dnwaxfq6fdfgk" path="res://assets/sonidos/efectos/sfx_menu_move4.wav" id="6_t6u78"]
 [ext_resource type="Texture2D" uid="uid://bd4pbq2m3apu0" path="res://assets/sprites/monstruos/4p.png" id="7_f5v4n"]
+[ext_resource type="Texture2D" uid="uid://bvqol24juvt4n" path="res://assets/sprites/ui_y_efectos/corazon.png" id="8_ktgrc"]
 [ext_resource type="Texture2D" uid="uid://b4tljv6b7khk" path="res://assets/sprites/monstruos/4t.png" id="8_mxagn"]
 [ext_resource type="Texture2D" uid="uid://cbkjb64yfiygm" path="res://assets/sprites/monstruos/5p.png" id="9_tatqo"]
 [ext_resource type="Texture2D" uid="uid://cj27gx88hh4e5" path="res://assets/sprites/monstruos/5t.png" id="10_mg5w1"]
@@ -135,7 +136,7 @@ wait_time = 7.0
 one_shot = true
 
 [node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1595024224]
-volume_db = -2.0
+volume_db = -4.0
 autoplay = true
 bus = &"Musica"
 script = ExtResource("4_5t3kx")
@@ -207,10 +208,10 @@ layout_mode = 2
 layout_direction = 1
 alignment = 1
 
-[node name="Label3" type="Label" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/VidaMaxima" unique_id=578853279]
+[node name="TextureRect" type="TextureRect" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/VidaMaxima" unique_id=1890769679]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-theme_override_font_sizes/font_size = 60
-text = "♥️"
+texture = ExtResource("8_ktgrc")
 
 [node name="SliderVidaMax" type="HSlider" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/VidaMaxima" unique_id=503396233]
 custom_minimum_size = Vector2(356, 0)

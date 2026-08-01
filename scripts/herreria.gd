@@ -16,7 +16,7 @@ func _ready() -> void:
 		$TieneArma/ImagenArma.texture = load("res://assets/sprites/armas/"+str(valor_arma)+"d.png")
 		$TieneArma/LabelActual.text = "Durabilidad\nactual:\n"+str(durabilidad_actual)
 		precio = ceili(randi_range(100,150)*valor_arma/10.0)
-		$TieneArma/Precio.text = "Precio: "+str(precio)+"🪙"
+		$TieneArma/Precio.text = "Precio: "+str(precio)
 		if oro < precio:
 			$TieneArma/Reparar.disabled = true
 			$TieneArma/Precio.add_theme_color_override("font_color", Color(1.0, 0.0, 0.0, 1.0))
