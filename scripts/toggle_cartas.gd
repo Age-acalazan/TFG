@@ -11,8 +11,8 @@ func _on_toggled(button_pressed2: bool):
 
 
 func _on_mouse_entered() -> void:
-	$Panel.add_theme_stylebox_override("panel",STYLE_BOX_BORDE_BLANCO)
+	$Panel.theme_type_variation = "panel_con_borde"
 
 
 func _on_mouse_exited() -> void:
-	$Panel.add_theme_stylebox_override("panel",STYLE_BOX_SIN_BORDE)
+	$Panel.theme_type_variation = "panel_sin_borde"

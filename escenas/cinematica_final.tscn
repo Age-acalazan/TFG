@@ -1,13 +1,21 @@
 [gd_scene format=3 uid="uid://d32x8duph22eo"]
 
+[ext_resource type="AudioStream" uid="uid://cnex1yc6j1ydp" path="res://assets/sonidos/cinematica_final/802726__vrymaa__magic-gingling-effect.wav" id="1_m2xa1"]
 [ext_resource type="Texture2D" uid="uid://b22ovampd1xrc" path="res://assets/sprites/cinematica/final/1.png" id="1_qnwr8"]
+[ext_resource type="AudioStream" uid="uid://dpege8nuto8mu" path="res://assets/sonidos/cinematica_final/170767__esperar__hmms-various-1.wav" id="2_hjdpn"]
 [ext_resource type="Texture2D" uid="uid://cnfkd1ugaqymf" path="res://assets/sprites/cinematica/final/2.png" id="2_xh7p8"]
+[ext_resource type="AudioStream" uid="uid://uloqjc7dt8yk" path="res://assets/sonidos/cinematica_final/151218__owlstorm__sniff.wav" id="3_k8t80"]
 [ext_resource type="Texture2D" uid="uid://bc8xxm6ymwkbq" path="res://assets/sprites/cinematica/final/3.png" id="3_srpc2"]
 [ext_resource type="Texture2D" uid="uid://tppp08ws81ts" path="res://assets/sprites/cinematica/final/4.png" id="4_08dj7"]
+[ext_resource type="AudioStream" uid="uid://bayxqqvaupb4p" path="res://assets/sonidos/cinematica_final/274121__bone666138__choir-of-voices-single-chord.wav" id="4_qhpov"]
 [ext_resource type="Texture2D" uid="uid://b2lg4jnpcm37r" path="res://assets/sprites/cinematica/final/5.png" id="5_j6lye"]
+[ext_resource type="AudioStream" uid="uid://ygd5kwwlot0r" path="res://assets/sonidos/cinematica_final/180158__roland-katarn__munching-sound.wav" id="5_sgkx6"]
+[ext_resource type="AudioStream" uid="uid://cwn7ejpeu0pvd" path="res://assets/sonidos/cinematica_final/770348__elona_11__sudden-burp.wav" id="6_14w5w"]
 [ext_resource type="Texture2D" uid="uid://c0a8nxd7gxsfq" path="res://assets/sprites/cinematica/final/6.png" id="6_vm3mi"]
 [ext_resource type="Texture2D" uid="uid://dcnwlmvyax6o7" path="res://assets/sprites/cinematica/final/7.png" id="7_ebac2"]
+[ext_resource type="AudioStream" uid="uid://de2bs7b50qhrq" path="res://assets/sonidos/cinematica_final/789793__quatricise__pop-4.wav" id="7_kbwq6"]
 [ext_resource type="Texture2D" uid="uid://dtxc8mqv66dlv" path="res://assets/sprites/cinematica/final/8.png" id="8_ntw5n"]
+[ext_resource type="AudioStream" uid="uid://bbe62lwhaii7w" path="res://assets/sonidos/cinematica_final/684855__faircashew__funny-foot-steps.wav" id="8_p6vj1"]
 [ext_resource type="Texture2D" uid="uid://chd5bh137jeg3" path="res://assets/sprites/cinematica/final/9.png" id="9_m2xa1"]
 [ext_resource type="Texture2D" uid="uid://dvnlkhkomwdek" path="res://assets/sprites/cinematica/final/10.png" id="10_hjdpn"]
 [ext_resource type="Texture2D" uid="uid://be2djcubmouwf" path="res://assets/sprites/cinematica/final/11.png" id="11_k8t80"]
@@ -229,7 +237,7 @@ tracks/6/path = NodePath("7:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 9.016666, 9.033333),
+"times": PackedFloat32Array(0, 9.483334, 9.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -241,7 +249,7 @@ tracks/7/path = NodePath("8:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 10.016667, 10.033334),
+"times": PackedFloat32Array(0, 10.483335, 10.500001),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -253,7 +261,7 @@ tracks/8/path = NodePath("9:modulate")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 11.766669, 11.783336, 13.1, 13.966667),
+"times": PackedFloat32Array(0, 12.233336, 12.250003, 13.566668, 14.433334),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
@@ -265,7 +273,7 @@ tracks/9/path = NodePath("10:modulate")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0, 14.733334, 14.75, 16.5, 16.833334),
+"times": PackedFloat32Array(0, 15.200001, 15.216667, 16.966667, 17.300001),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
@@ -277,7 +285,7 @@ tracks/10/path = NodePath("11:modulate")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0, 17.833334, 18.333334, 20.133333, 21.9),
+"times": PackedFloat32Array(0, 18.300001, 18.800001, 20.6, 22.366667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
@@ -293,8 +301,64 @@ tracks/11/keys = {
 "end_offset": 0.0,
 "start_offset": 0.0,
 "stream": null
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("1_m2xa1")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_hjdpn")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_k8t80")
+}, {
+"end_offset": 3.0822637,
+"start_offset": 0.19126168,
+"stream": ExtResource("4_qhpov")
+}, {
+"end_offset": 0.27095404,
+"start_offset": 0.0,
+"stream": ExtResource("5_sgkx6")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_14w5w")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_kbwq6")
+}, {
+"end_offset": 1.152273,
+"start_offset": 0.0,
+"stream": ExtResource("8_p6vj1")
+}, {
+"end_offset": 0.80705774,
+"start_offset": 0.2938996,
+"stream": ExtResource("8_p6vj1")
+}, {
+"end_offset": 1.152273,
+"start_offset": 0.0,
+"stream": ExtResource("8_p6vj1")
+}, {
+"end_offset": 0.80705774,
+"start_offset": 0.2938996,
+"stream": ExtResource("8_p6vj1")
+}, {
+"end_offset": 1.152273,
+"start_offset": 0.0,
+"stream": ExtResource("8_p6vj1")
+}, {
+"end_offset": 0.80705774,
+"start_offset": 0.2938996,
+"stream": ExtResource("8_p6vj1")
+}, {
+"end_offset": 1.152273,
+"start_offset": 0.0,
+"stream": ExtResource("8_p6vj1")
 }],
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0, 0.8666667, 5.0333333, 6.4333334, 7.275405, 10.666667, 12.566667, 15.2, 18.766666, 19.327232, 19.933334, 20.466667, 21.039434, 21.6, 22.206102)
 }
 tracks/11/use_blend = false
 

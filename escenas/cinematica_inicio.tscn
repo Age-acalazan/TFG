@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://der8n17qx0vyd"]
 
 [ext_resource type="Texture2D" uid="uid://c3m27r1kbytd1" path="res://assets/sprites/cinematica/inicio/1.png" id="1_cram5"]
+[ext_resource type="Script" uid="uid://p028mnk147lg" path="res://scripts/cinematica_inicio.gd" id="1_hej2a"]
 [ext_resource type="AudioStream" uid="uid://b34y0ah56mnar" path="res://assets/sonidos/cinematica_inicio/703168__cropdub6425__favstomachgrowl.wav" id="1_k3h7c"]
 [ext_resource type="AudioStream" uid="uid://pwqegofsil70" path="res://assets/sonidos/cinematica_inicio/rcsound99__evening-in-a-campground-arkansas.mp3" id="2_0tfua"]
 [ext_resource type="Texture2D" uid="uid://dt7voc5bvy6g" path="res://assets/sprites/cinematica/inicio/2.png" id="2_olg6a"]
@@ -15,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://djprc3idnfqnj" path="res://assets/sonidos/cinematica_inicio/326133__wagna__falling.wav" id="6_mmius"]
 [ext_resource type="Texture2D" uid="uid://bvo3uiweyjkhw" path="res://assets/sprites/cinematica/inicio/6.png" id="6_pv2ww"]
 [ext_resource type="Texture2D" uid="uid://bana1lm85doaw" path="res://assets/sprites/cinematica/inicio/7.png" id="7_mipq3"]
+[ext_resource type="AudioStream" uid="uid://cprwpde2bpaeo" path="res://assets/sonidos/cinematica_inicio/315928__bevibeldesign__large-crash-with-cat.wav" id="8_ac8y2"]
 [ext_resource type="Texture2D" uid="uid://c8r3qmcp608hu" path="res://assets/sprites/cinematica/inicio/8.png" id="8_pi5dg"]
 [ext_resource type="Texture2D" uid="uid://c3mbq3t661eig" path="res://assets/sprites/cinematica/inicio/9.png" id="9_mmius"]
 [ext_resource type="Texture2D" uid="uid://c51qnq8qg7vmq" path="res://assets/sprites/cinematica/inicio/10.png" id="10_hej2a"]
@@ -282,7 +284,7 @@ tracks/20/keys = {
 
 [sub_resource type="Animation" id="Animation_dm1bb"]
 resource_name = "cinematica_inicio"
-length = 20.0
+length = 24.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -482,10 +484,10 @@ tracks/16/path = NodePath("AudioStreamPlayer:playing")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
-"times": PackedFloat32Array(0, 1.2, 3.3333335, 4, 5.6666665, 6.3333325, 7.7000003, 7.766667, 14.766667, 15.000001, 16.8, 17.033333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 1.2, 3.3333335, 4, 5.6666665, 6.3333325, 7.7000003, 7.766667, 14.766667, 15.000001, 16.8, 17.033333, 20, 20.233334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [false, true, false, true, false, true, false, true, false, true, false, true]
+"values": [false, true, false, true, false, true, false, true, false, true, false, true, false, true]
 }
 tracks/17/type = "value"
 tracks/17/imported = false
@@ -494,10 +496,10 @@ tracks/17/path = NodePath("AudioStreamPlayer:stream")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
-"times": PackedFloat32Array(0, 3.7666667, 6.0666666, 7.7333336, 14.966667, 17),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 3.7666667, 6.0666666, 7.7333336, 14.966667, 17, 20.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("1_k3h7c"), ExtResource("2_pv2ww"), ExtResource("3_mipq3"), ExtResource("4_pi5dg"), ExtResource("5_mmius"), ExtResource("6_mmius")]
+"values": [ExtResource("1_k3h7c"), ExtResource("2_pv2ww"), ExtResource("3_mipq3"), ExtResource("4_pi5dg"), ExtResource("5_mmius"), ExtResource("6_mmius"), ExtResource("8_ac8y2")]
 }
 tracks/18/type = "value"
 tracks/18/imported = false
@@ -543,6 +545,7 @@ _data = {
 }
 
 [node name="CinematicaInicio" type="Node2D" unique_id=1686949620]
+script = ExtResource("1_hej2a")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=575130785]
 libraries/ = SubResource("AnimationLibrary_iev6v")
@@ -659,3 +662,5 @@ modulate = Color(1, 1, 1, 0)
 offset_right = 1192.0
 offset_bottom = 712.0
 color = Color(0, 0, 0, 1)
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

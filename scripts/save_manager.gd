@@ -62,7 +62,7 @@ func show_leaderboard():
 	var score_nodes := get_children()
 	var i = 0
 	for entry in leaderboard:
-		score_nodes[i].text = "Puntos: " + str(int(entry["score"])) +" | Fecha: " +format_datetime(str(entry["datetime"]))	
+		score_nodes[i].text = " Puntos: " + str(int(entry["score"])) +" | Fecha: " +format_datetime(str(entry["datetime"]))	
 		i +=1
 		if i >= 10:
 			break

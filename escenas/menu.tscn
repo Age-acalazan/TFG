@@ -57,12 +57,26 @@
 [ext_resource type="Texture2D" uid="uid://dvh4vnvrohoqg" path="res://assets/sprites/vida/8c.png" id="41_yn48n"]
 [ext_resource type="Texture2D" uid="uid://bckppx1ja5six" path="res://assets/sprites/vida/9c.png" id="42_k56m0"]
 [ext_resource type="Texture2D" uid="uid://d06p8s8fagyb3" path="res://assets/sprites/vida/10c.png" id="43_yu7te"]
-[ext_resource type="Texture2D" uid="uid://dddqqgpgufuhq" path="res://assets/sprites/monstruos_numeros/11t.png" id="55_mg5w1"]
 [ext_resource type="Script" uid="uid://b0e3f1taa4udn" path="res://scripts/boton_animacion.gd" id="56_t6u78"]
-[ext_resource type="Texture2D" uid="uid://yw8l3pmk3kw0" path="res://assets/sprites/armas/1d.png" id="59_5kuwt"]
+[ext_resource type="FontFile" uid="uid://bkin1cpxrjreg" path="res://assets/otros/Catfiles.otf" id="60_5bsce"]
+[ext_resource type="Texture2D" uid="uid://pl06f2wvhjnu" path="res://assets/sprites/monstruos_numeros/13t.png" id="60_smrt3"]
 [ext_resource type="Texture2D" uid="uid://bcvkxtfjerdbw" path="res://assets/sprites/ui_y_efectos/estrella.png" id="60_vrgld"]
+[ext_resource type="Texture2D" uid="uid://cy5xewc1grqt2" path="res://assets/sprites/ui_y_efectos/fondo_menu_camboya.png" id="61_baqjt"]
+[ext_resource type="Texture2D" uid="uid://bjjsw7hwh1go5" path="res://assets/sprites/ui_y_efectos/fondo_menu.png" id="63_5bsce"]
+[ext_resource type="Theme" uid="uid://cg414t0f61orr" path="res://themes/menu.tres" id="63_smrt3"]
+[ext_resource type="Texture2D" uid="uid://l3rlpbj6ker3" path="res://assets/sprites/ui_y_efectos/fondo_menu_luz.png" id="64_5bsce"]
+[ext_resource type="Texture2D" uid="uid://dfeb70ogswcog" path="res://assets/sprites/ui_y_efectos/espada_menu.png" id="64_en5ph"]
+[ext_resource type="AudioStream" uid="uid://cytvsshibsktl" path="res://assets/sonidos/efectos/DSGNTonl_STEP-Toony Step_HY_PC-001.wav" id="66_rqgnr"]
+[ext_resource type="AudioStream" uid="uid://d2rdxf5aiq0xq" path="res://assets/sonidos/efectos/581594__samsterbirdies__sword-draw-unsheathe.wav" id="67_yvvdt"]
 
-[sub_resource type="Theme" id="Theme_2syjm"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smrt3"]
+content_margin_left = 19.0
+bg_color = Color(0, 0, 0, 0.4117647)
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6ae4"]
 bg_color = Color(0, 0, 0, 0.4117647)
@@ -71,43 +85,49 @@ corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 
-[sub_resource type="Animation" id="Animation_5kuwt"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
+[sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
+font = ExtResource("60_5bsce")
+font_size = 84
+outline_size = 8
 
-[sub_resource type="Animation" id="Animation_vrgld"]
-resource_name = "squash_personaje"
-length = 0.25
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1.5609761, 0.8135593), Vector2(1, 1)]
-}
+[sub_resource type="Gradient" id="Gradient_5bsce"]
+colors = PackedColorArray(1, 0.6, 0, 1, 1, 1, 0.6, 1)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ktgrc"]
-_data = {
-&"RESET": SubResource("Animation_5kuwt"),
-&"squash_personaje": SubResource("Animation_vrgld")
-}
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yf5fn"]
+gradient = SubResource("Gradient_5bsce")
+height = 40
+fill_from = Vector2(1, 0.97644925)
+fill_to = Vector2(1, 0.4669017)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rqgnr"]
+font = ExtResource("60_5bsce")
+font_size = 84
+font_color = Color(1, 1, 1, 0)
+outline_size = 9
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_smrt3"]
+font = ExtResource("60_5bsce")
+font_size = 39
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-0.02, 0.335)
+
+[sub_resource type="Gradient" id="Gradient_yvvdt"]
+colors = PackedColorArray(0.6392157, 0.28627452, 0.6431373, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_en5ph"]
+gradient = SubResource("Gradient_yvvdt")
+height = 40
+fill_from = Vector2(1, 0.97644925)
+fill_to = Vector2(1, 0.4669017)
+
+[sub_resource type="LabelSettings" id="LabelSettings_arrj7"]
+font = ExtResource("60_5bsce")
+font_size = 39
+font_color = Color(1, 1, 1, 0)
+outline_size = 9
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Curve" id="Curve_d0u6y"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.6828479, 0.6193548), -0.9443125, -0.9443125, 0, 0, Vector2(0.987055, 0), 0.0, 0.0, 0, 0]
@@ -128,12 +148,426 @@ gravity = Vector3(0, 98, 0)
 scale_min = 0.5
 alpha_curve = SubResource("CurveTexture_57qmd")
 
+[sub_resource type="Animation" id="Animation_5bsce"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Titulo:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-490, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Botones:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(480, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Titulo/10:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Titulo/1:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(564, 22)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Titulo/2:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(620, 22)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Titulo/3:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(683, 22)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Titulo/4:position")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(743, 22)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Titulo/5:position")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(807, 22)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Titulo/6:position")
+tracks/8/interp = 2
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(879, 22)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Titulo/7:position")
+tracks/9/interp = 2
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(942, 22)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../Titulo/8:position")
+tracks/10/interp = 2
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1002, 22)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../Titulo/9:position")
+tracks/11/interp = 2
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1052, 22)]
+}
+
+[sub_resource type="Animation" id="Animation_vrgld"]
+resource_name = "animacion_menu"
+length = 7.0
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.25, 0, 1.45, 1.5, 1.7, 1.75, 1.95, 2, 2.2, 2.25, 2.45, 2.5, 2.7, 2.75, 2.95, 3, 3.2, 3.25, 3.45, 3.5, 3.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2.561, 1.514), Vector2(2, 2), Vector2(2, 2), Vector2(2.561, 1.514), Vector2(2, 2), Vector2(2.561, 1.514), Vector2(2, 2), Vector2(2.561, 1.514), Vector2(2, 2), Vector2(2.561, 1.514), Vector2(2, 2), Vector2(2.561, 1.514), Vector2(2, 2), Vector2(2.561, 1.514), Vector2(2, 2), Vector2(2.561, 1.514), Vector2(2, 2), Vector2(2.561, 1.514), Vector2(2, 2), Vector2(2.561, 1.514), Vector2(2, 2)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.45, 1.7, 1.95, 2.2, 2.45, 2.7, 2.95, 3.2, 3.45, 3.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [false],
+"method": &"restart"
+}, {
+"args": [false],
+"method": &"restart"
+}, {
+"args": [false],
+"method": &"restart"
+}, {
+"args": [false],
+"method": &"restart"
+}, {
+"args": [false],
+"method": &"restart"
+}, {
+"args": [false],
+"method": &"restart"
+}, {
+"args": [false],
+"method": &"restart"
+}, {
+"args": [false],
+"method": &"restart"
+}, {
+"args": [false],
+"method": &"restart"
+}, {
+"args": [false],
+"method": &"restart"
+}]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../AudioAnimacion")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("66_rqgnr")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("66_rqgnr")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("66_rqgnr")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("66_rqgnr")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("66_rqgnr")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("66_rqgnr")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("66_rqgnr")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("66_rqgnr")
+}, {
+"end_offset": 2.009808,
+"start_offset": 0.0,
+"stream": ExtResource("66_rqgnr")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.25266376,
+"stream": ExtResource("67_yvvdt")
+}],
+"times": PackedFloat32Array(1.4368341, 1.6868341, 1.9368341, 2.186834, 2.436834, 2.686834, 2.936834, 3.186834, 3.436834, 4.7502275)
+}
+tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Titulo/1:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 1.55, 2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 0, 1, 1, 1),
+"update": 0,
+"values": [Vector2(760, -184), Vector2(760, -184), Vector2(760, 456), Vector2(760, 456), Vector2(564, 22), Vector2(564, 22)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Titulo/2:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.25, 1.75, 1.8, 2.25, 2.75),
+"transitions": PackedFloat32Array(1, 1, 0, 1, 1, 1),
+"update": 0,
+"values": [Vector2(760, -184), Vector2(760, -184), Vector2(760, 456), Vector2(760, 456), Vector2(620, 22), Vector2(620, 22)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Titulo/3:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.5, 2, 2.05, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 0, 1, 1, 1),
+"update": 0,
+"values": [Vector2(760, -184), Vector2(760, -184), Vector2(760, 456), Vector2(760, 456), Vector2(683, 22), Vector2(683, 22)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Titulo/4:position")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.75, 2.25, 2.3, 2.75, 3.25),
+"transitions": PackedFloat32Array(1, 1, 0, 1, 1, 1),
+"update": 0,
+"values": [Vector2(760, -184), Vector2(760, -184), Vector2(760, 456), Vector2(760, 456), Vector2(743, 22), Vector2(743, 22)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Titulo/5:position")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 2, 2.5, 2.55, 3, 3.5),
+"transitions": PackedFloat32Array(1, 1, 0, 1, 1, 1),
+"update": 0,
+"values": [Vector2(760, -184), Vector2(760, -184), Vector2(760, 456), Vector2(760, 456), Vector2(807, 22), Vector2(807, 22)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Titulo/6:position")
+tracks/8/interp = 2
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 2.25, 2.75, 2.8, 3.25, 3.75),
+"transitions": PackedFloat32Array(1, 1, 0, 1, 1, 1),
+"update": 0,
+"values": [Vector2(760, -184), Vector2(760, -184), Vector2(760, 456), Vector2(760, 456), Vector2(879, 22), Vector2(879, 22)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Titulo/7:position")
+tracks/9/interp = 2
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 2.5, 3, 3.05, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 0, 1, 1, 1),
+"update": 0,
+"values": [Vector2(760, -184), Vector2(760, -184), Vector2(760, 456), Vector2(760, 456), Vector2(942, 22), Vector2(942, 22)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../Titulo/8:position")
+tracks/10/interp = 2
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 2.75, 3.25, 3.3, 3.75, 4.25),
+"transitions": PackedFloat32Array(1, 1, 0, 1, 1, 1),
+"update": 0,
+"values": [Vector2(760, -184), Vector2(760, -184), Vector2(760, 456), Vector2(760, 456), Vector2(1002, 22), Vector2(1002, 22)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../Titulo/9:position")
+tracks/11/interp = 2
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 3, 3.5, 3.55, 4, 4.5),
+"transitions": PackedFloat32Array(1, 1, 0, 1, 1, 1),
+"update": 0,
+"values": [Vector2(760, -184), Vector2(760, -184), Vector2(760, 456), Vector2(760, 456), Vector2(1052, 22), Vector2(1052, 22)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../Titulo:position")
+tracks/12/interp = 2
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 4, 4.25, 5.25),
+"transitions": PackedFloat32Array(0, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(40, 0), Vector2(-490, 0)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("../Titulo:scale")
+tracks/13/interp = 2
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 5, 5.25, 5.5),
+"transitions": PackedFloat32Array(0, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(0.9, 1), Vector2(1, 1)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../Botones:position")
+tracks/14/interp = 2
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 5.25, 5.75),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(480, 0)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("../Titulo/10:modulate")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(5.5, 6.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ktgrc"]
+_data = {
+&"RESET": SubResource("Animation_5bsce"),
+&"animacion_menu": SubResource("Animation_vrgld")
+}
+
 [node name="Menu" type="Node2D" unique_id=2043182576]
 script = ExtResource("1_vdanu")
-
-[node name="TimerAnimacionInicio" type="Timer" parent="." unique_id=750095642]
-wait_time = 7.0
-one_shot = true
 
 [node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1595024224]
 volume_db = -4.0
@@ -152,47 +586,54 @@ stream = ExtResource("6_t6u78")
 volume_db = -1.0
 bus = &"SFX"
 
+[node name="AudioAnimacion" type="AudioStreamPlayer" parent="." unique_id=1647139860]
+
 [node name="SubmenuModificadores" type="Panel" parent="." unique_id=2083655635 groups=["Submenus"]]
 visible = false
+z_index = 1
 z_as_relative = false
 offset_left = 472.0
-offset_top = 8.0
-offset_right = 1144.0
-offset_bottom = 640.0
+offset_top = 160.0
+offset_right = 1147.0
+offset_bottom = 540.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
-metadata/_edit_use_anchors_ = true
+theme = ExtResource("63_smrt3")
 
 [node name="JugarSimple" type="Button" parent="SubmenuModificadores" unique_id=1499179794]
+z_index = 3
 layout_mode = 0
-offset_left = 32.0
-offset_top = 504.0
-offset_right = 320.0
-offset_bottom = 597.0
+offset_left = 42.0
+offset_top = 385.0
+offset_right = 330.0
+offset_bottom = 478.0
 offset_transform_enabled = true
 text = "PARTIDA SIMPLE"
 script = ExtResource("56_t6u78")
 metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
 [node name="JugarModificadores" type="Button" parent="SubmenuModificadores" unique_id=1576979494]
+z_index = 3
 layout_mode = 0
-offset_left = 352.0
-offset_top = 504.0
-offset_right = 640.0
-offset_bottom = 597.0
+offset_left = 342.0
+offset_top = 385.0
+offset_right = 630.0
+offset_bottom = 479.0
 offset_transform_enabled = true
 text = "PARTIDA CON MODIFICADORES"
+autowrap_mode = 2
 script = ExtResource("56_t6u78")
 metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="SubmenuModificadores" unique_id=1127529475]
 layout_mode = 0
-offset_left = 24.0
-offset_top = 16.0
-offset_right = 674.0
-offset_bottom = 488.0
+offset_left = 40.0
+offset_top = 30.0
+offset_right = 629.8305
+offset_bottom = 349.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 0
+scroll_hint_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SubmenuModificadores/ScrollContainer" unique_id=149190619]
 layout_mode = 2
@@ -200,7 +641,9 @@ size_flags_horizontal = 3
 
 [node name="Label3" type="Label" parent="SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=1243133130]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+offset_transform_enabled = true
+offset_transform_position = Vector2(5, 2)
+theme_override_font_sizes/font_size = 38
 text = "Vida máxima"
 
 [node name="VidaMaxima" type="HBoxContainer" parent="SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=1136854369]
@@ -235,13 +678,14 @@ text = "20"
 
 [node name="Label2" type="Label" parent="SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=1692094375]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+offset_transform_enabled = true
+offset_transform_position = Vector2(5, 0)
+theme_override_font_sizes/font_size = 38
 text = "Cartas extra"
 
 [node name="TiendaCartasExtra" type="HBoxContainer" parent="SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=1494491911]
 layout_mode = 2
 layout_direction = 1
-theme = SubResource("Theme_2syjm")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/TiendaCartasExtra" unique_id=1344044302]
 custom_minimum_size = Vector2(150, 0)
@@ -280,7 +724,6 @@ text = "0"
 [node name="HerreriaCartasExtra2" type="HBoxContainer" parent="SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=2113911086]
 layout_mode = 2
 layout_direction = 1
-theme = SubResource("Theme_2syjm")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/HerreriaCartasExtra2" unique_id=1951426787]
 custom_minimum_size = Vector2(150, 0)
@@ -318,7 +761,6 @@ text = "0"
 [node name="BombaCartasExtra3" type="HBoxContainer" parent="SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=1002684016]
 layout_mode = 2
 layout_direction = 1
-theme = SubResource("Theme_2syjm")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/BombaCartasExtra3" unique_id=456508587]
 custom_minimum_size = Vector2(150, 0)
@@ -357,27 +799,29 @@ text = "0"
 
 [node name="Label" type="Label" parent="SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=610430043]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+offset_transform_enabled = true
+offset_transform_position = Vector2(5, 0)
+theme_override_font_sizes/font_size = 38
 text = "Cartas básicas"
 
 [node name="AlternarTodas" type="CheckButton" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Label" unique_id=911009962]
 layout_mode = 0
-offset_left = 232.0
-offset_top = 8.0
-offset_right = 392.0
-offset_bottom = 39.0
+offset_left = 256.0
+offset_top = 4.0
+offset_right = 414.0
+offset_bottom = 38.0
+theme_override_font_sizes/font_size = 20
 button_pressed = true
-text = "Alternar todas"
-
-[node name="ColorRect" type="ColorRect" parent="SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=1082161894]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
+text = " Alternar todas"
 
 [node name="Corazones" type="HFlowContainer" parent="SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=830270800]
+z_index = 2
 layout_mode = 2
+alignment = 1
 
 [node name="2c" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=253667682 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
+theme_type_variation = &"as"
 
 [node name="3c" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Corazones" unique_id=1561400228 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
@@ -412,11 +856,14 @@ layout_mode = 2
 texture_normal = ExtResource("43_yu7te")
 
 [node name="ColorRect2" type="ColorRect" parent="SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=31127284]
-custom_minimum_size = Vector2(0, 10)
+custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
+color = Color(0.53333336, 0, 0.08235294, 1)
 
 [node name="Armas" type="HFlowContainer" parent="SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=2073890535]
+z_index = 2
 layout_mode = 2
+alignment = 1
 
 [node name="2d" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Armas" unique_id=1318757274 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
@@ -455,11 +902,14 @@ layout_mode = 2
 texture_normal = ExtResource("35_0f3bw")
 
 [node name="ColorRect3" type="ColorRect" parent="SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=879485542]
-custom_minimum_size = Vector2(0, 10)
+custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
+color = Color(0.53333336, 0, 0.08235294, 1)
 
 [node name="Monstruos" type="HFlowContainer" parent="SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=999138605]
+z_index = 2
 layout_mode = 2
+alignment = 1
 
 [node name="2p" parent="SubmenuModificadores/ScrollContainer/VBoxContainer/Monstruos" unique_id=1710672053 groups=["ToggleCartas"] instance=ExtResource("2_xqndx")]
 layout_mode = 2
@@ -565,26 +1015,25 @@ texture_normal = ExtResource("25_n5ppo")
 layout_mode = 2
 texture_normal = ExtResource("26_agjs5")
 
-[node name="ColorRect4" type="ColorRect" parent="SubmenuModificadores/ScrollContainer/VBoxContainer" unique_id=1530329256]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-
 [node name="SubmenuTablaClasificacion" type="Panel" parent="." unique_id=381544872 groups=["Submenus"]]
 visible = false
+z_index = 1
 offset_left = 472.0
-offset_top = 8.0
+offset_top = 160.0
 offset_right = 1144.0
-offset_bottom = 640.0
+offset_bottom = 624.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
+theme = ExtResource("63_smrt3")
 
 [node name="Leaderboard" type="VBoxContainer" parent="SubmenuTablaClasificacion" unique_id=1129719187]
 z_index = 1
-layout_mode = 0
-offset_left = 80.0
-offset_top = 56.0
-offset_right = 672.0
-offset_bottom = 2612.0
+layout_mode = 1
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 632.0
+offset_bottom = 426.0
 mouse_filter = 0
+alignment = 1
 script = ExtResource("2_d7r87")
 
 [node name="Score1" type="RichTextLabel" parent="SubmenuTablaClasificacion/Leaderboard" unique_id=786635872]
@@ -649,144 +1098,175 @@ fit_content = true
 
 [node name="SubmenuComoJugar" type="Panel" parent="." unique_id=1917885997 groups=["Submenus"]]
 visible = false
+z_index = 1
 z_as_relative = false
 offset_left = 472.0
-offset_top = 8.0
+offset_top = 160.0
 offset_right = 1144.0
-offset_bottom = 640.0
+offset_bottom = 544.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
+theme = ExtResource("63_smrt3")
 
 [node name="PopupComoJugar" type="RichTextLabel" parent="SubmenuComoJugar" unique_id=1532880347]
 z_index = 5
 layout_mode = 0
-offset_left = 3.0
-offset_right = 675.0
-offset_bottom = 488.0
+offset_left = 29.0
+offset_top = 29.0
+offset_right = 643.0
+offset_bottom = 353.0
 theme_override_font_sizes/normal_font_size = 29
-text = "OBJETIVO____________________________
+theme_override_styles/normal = SubResource("StyleBoxFlat_smrt3")
+bbcode_enabled = true
+text = "[center][color=ed1c24][font_size=50]OBJETIVO[/font_size][/color][/center]
+[hr color=ed1c24]
+En [color=ffbd37]Scoundrel[/color] te encuentras en una mazmorra llena de monstruos. Para ganar, tienes que eliminar a todos los monstruos y llegar al final de la mazmorra. Para lograr esto, tendrás que ir interactuando con distintas cartas que vayas encontrando a lo largo de la mazmorra.
 
-En Scoundrel te encuentras en una mazmorra llena de monstruos. Para ganar, tienes que eliminar a todos los monstruos y llegar al final de la mazmorra. Para lograr esto, tendrás que ir interactuando con distintas cartas que vayas encontrando a lo largo de la mazmorra.
-
-CARTAS______________________________
-
+[center][color=ed1c24][font_size=50]CARTAS[/font_size][/color][/center]
+[hr color=ed1c24]
 Las cartas usadas son de la baraja francesa, con 4 palos:
 
-- Los corazones te recuperan vida (hasta 20 puntos). Van del 2 al 10.
-- Los diamantes son armas que te ayudarán a luchar contra monstruos. Van del 2 al 10.
-- Los tréboles y picas son monstruos. Van del 2, pasando por J, Q, K hasta el As.
+[ul]
+Los corazones te recuperan vida (hasta 20 puntos). Van del 2 al 10.
+Los diamantes son armas que te ayudarán a luchar contra monstruos. Van del 2 al 10.
+Los tréboles y picas son monstruos. Van del 2, pasando por J, Q, K hasta el As.
+[/ul]
 
-SALAS________________________________
+[center][img=200]res://assets/sprites/ui_y_efectos/como_jugar_1.png[/img][/center]
 
+[center][color=ed1c24][font_size=50]SALAS[/font_size][/color][/center]
+[hr color=ed1c24]
 La mazmorra está dividida en salas. Cada sala contiene 4 cartas, de las que tendrás que interactuar con 3 para pasar a la siguiente sala (la restante se \"arrastrará\" a la siguiente sala).
 
-Si una sala es muy difícil, *mientras esté llena* podrás huir de ella para pasar esas cartas al fondo de la mazmorra. No puedes huir 2 veces seguidas.
+Si una sala es muy difícil, [u]mientras esté llena[/u] podrás huir de ella para pasar esas cartas al fondo de la mazmorra. No puedes huir 2 veces seguidas.
 
-COMBATE___________________________
+[center][img=220]res://assets/sprites/ui_y_efectos/como_jugar_2.png[/img]   [img=250]res://assets/sprites/ui_y_efectos/como_jugar_3.png[/img][/center]
 
+[center][color=ed1c24][font_size=50]COMBATE[/font_size][/color][/center]
+[hr color=ed1c24]
 Puedes luchar estando desarmado o armado.
 
 - Desarmado hará que a tu vida se le reste el daño (el valor de la carta) del monstruo.
+
 - Armado hará que ese daño recibido se reduzca según el valor del arma equipada. Si el valor del arma es superior al del monstruo, se mitiga el daño recibido al completo.
 
-DURACIÓN DE ARMAS______________
+[center][img=300]res://assets/sprites/ui_y_efectos/como_jugar_4.png[/img][/center]
 
+[center][color=ed1c24][font_size=50]DURACIÓN DE ARMAS[/font_size][/color][/center]
+[hr color=ed1c24]
 Cada vez que te equipes una arma se descarta la anterior.
 
 Cuando usas un arma contra un monstruo, no podrás volver a usar esa misma arma contra otro monstruo con un valor igual o mayor al anterior monstruo derrotado con el arma. En este caso tendrás que o bien equipar una arma nueva o bien luchar desarmado (de forma que no pierdes el arma, pero recibes todo el daño).
 
-PUNTUACIÓN_______________________
+[center][img=400]res://assets/sprites/ui_y_efectos/como_jugar_5.png[/img][/center]
 
+[center][color=ed1c24][font_size=50]PUNTUACIÓN[/font_size][/color][/center]
+[hr color=ed1c24]
 Cuando pierdas una partida tendrás -X puntos, siendo X la suma del valor de los monstruos que quedan en la mazmorra. Cuando ganes, los puntos serán positivos e iguales a tu vida restante."
 
 [node name="Tutorial" type="Button" parent="SubmenuComoJugar" unique_id=1903492995]
 layout_mode = 0
 offset_left = 192.0
-offset_top = 512.0
+offset_top = 384.0
 offset_right = 480.0
-offset_bottom = 608.0
+offset_bottom = 480.0
 offset_transform_enabled = true
+theme = ExtResource("63_smrt3")
 text = "TUTORIAL"
 script = ExtResource("56_t6u78")
 metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
 [node name="SubmenuCreditos" type="Panel" parent="." unique_id=1949611291 groups=["Submenus"]]
 visible = false
+z_index = 1
 z_as_relative = false
 offset_left = 472.0
-offset_top = 8.0
+offset_top = 160.0
 offset_right = 1144.0
-offset_bottom = 640.0
+offset_bottom = 624.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
+theme = ExtResource("63_smrt3")
 
 [node name="PopupCreditos" type="RichTextLabel" parent="SubmenuCreditos" unique_id=1749266686]
 z_index = 5
 layout_mode = 0
-offset_right = 672.0
-offset_bottom = 632.0
-theme_override_font_sizes/normal_font_size = 40
-text = "SCOUNDREL DUNGEON
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 648.0
+offset_bottom = 433.0
+theme_override_font_sizes/normal_font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_smrt3")
+bbcode_enabled = true
+text = "[wave connected=no amp=25][color=ffbd37][font_size=50]SCOUNDREL DUNGEON[/font_size][/color][/wave]
 
 Creado por:
-Ángel Sánchez Ruiz
 
+Ángel Sánchez Ruiz
+[hr]
 Pogramación:
-Ángel Sánchez Ruiz
 
+Ángel Sánchez Ruiz
+[hr]
 Sistemas de gameplay:	
-Ángel Sánchez Ruiz
 
+Ángel Sánchez Ruiz
+[hr]
+Creadores originales del juego de cartas Scoundrel:
+
+Zach Gage y Kurt Bieg
+[hr]
 Diseño de interfaz:
-Ángel Sánchez Ruiz
 
+Ángel Sánchez Ruiz
+[hr]
 Diseño gráfico y arte:
 
-· Ángel Sánchez Ruiz
-
-· Viktor Hahn  
-
+[ul]
+Ángel Sánchez Ruiz
+Viktor Hahn  
+[/ul]
+[hr]
 Música y efectos de sonido:
 
-· Eric Matyas www.soundimage.org
-
-· \"Victory Fanfare (8-Bit Thunder) 3\" by Dylan Kelk/SilverIllusionist (Freesound)
-
-· 8-bit Game Over Sound/Tune by EVRetro -- https://freesound.org/s/533034/ -- License: Creative Commons 0
-
-· qubodup - Knife Attack Slash
-
-· Juhani Junkala - The Essential Retro Video Game Sound Effects Collection [512 sounds]
-
-· Chequered Ink - 400 Sounds Pack
-
-·  Leohpaz - Minifantasy Audio Pack
-
-·  Helton Yan - Minifantasy Audio Pack ( https://creativecommons.org/licenses/by/4.0/ some changes may be made)
-
+[ul]
+Eric Matyas www.soundimage.org
+\"Victory Fanfare (8-Bit Thunder) 3\" by Dylan Kelk/SilverIllusionist (Freesound)
+8-bit Game Over Sound/Tune by EVRetro -- https://freesound.org/s/533034/ -- License: Creative Commons 0
+qubodup - Knife Attack Slash
+Juhani Junkala - The Essential Retro Video Game Sound Effects Collection [512 sounds]
+Chequered Ink - 400 Sounds Pack
+Leohpaz - Minifantasy Audio Pack
+Helton Yan - Minifantasy Audio Pack ( https://creativecommons.org/licenses/by/4.0/ some changes may be made)
+[/ul]
+[hr]
 Historia:
+
 Ángel Sánchez Ruiz
 "
+horizontal_alignment = 1
 
 [node name="SubmenuOpciones" type="Panel" parent="." unique_id=318333352 groups=["Submenus"]]
 visible = false
+z_index = 1
 z_as_relative = false
 offset_left = 472.0
-offset_top = 8.0
+offset_top = 168.0
 offset_right = 1144.0
 offset_bottom = 640.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
+theme = ExtResource("63_smrt3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SubmenuOpciones" unique_id=1306048735]
 layout_mode = 0
 offset_left = 56.0
-offset_top = 48.0
+offset_top = 32.0
 offset_right = 612.0
-offset_bottom = 488.0
+offset_bottom = 432.0
 mouse_filter = 0
 theme_override_constants/separation = 37
-alignment = 1
 
 [node name="Sonido" type="Label" parent="SubmenuOpciones/VBoxContainer" unique_id=1314112968]
 layout_mode = 2
+theme = ExtResource("63_smrt3")
 theme_override_font_sizes/font_size = 40
 text = "SONIDO"
 horizontal_alignment = 1
@@ -797,13 +1277,15 @@ theme_override_constants/separation = 12
 
 [node name="General" type="Label" parent="SubmenuOpciones/VBoxContainer/HBoxContainer3" unique_id=1475560713]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme = ExtResource("63_smrt3")
+theme_override_font_sizes/font_size = 27
 text = "General"
 
 [node name="VolumenMasterSlider" type="HSlider" parent="SubmenuOpciones/VBoxContainer/HBoxContainer3" unique_id=1911606504]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
+theme = ExtResource("63_smrt3")
 max_value = 1.0
 step = 0.05
 value = 1.0
@@ -817,13 +1299,15 @@ alignment = 1
 
 [node name="Música" type="Label" parent="SubmenuOpciones/VBoxContainer/HBoxContainer2" unique_id=19168325]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme = ExtResource("63_smrt3")
+theme_override_font_sizes/font_size = 27
 text = "Música"
 
 [node name="VolumenMusicaSlider" type="HSlider" parent="SubmenuOpciones/VBoxContainer/HBoxContainer2" unique_id=1376388750]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
+theme = ExtResource("63_smrt3")
 max_value = 1.0
 step = 0.05
 value = 1.0
@@ -832,13 +1316,15 @@ audio_bus_name = "Musica"
 
 [node name="SFX" type="Label" parent="SubmenuOpciones/VBoxContainer/HBoxContainer2" unique_id=1741359848]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme = ExtResource("63_smrt3")
+theme_override_font_sizes/font_size = 27
 text = "SFX"
 
 [node name="VolumenSFXSlider" type="HSlider" parent="SubmenuOpciones/VBoxContainer/HBoxContainer2" unique_id=1544233301]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
+theme = ExtResource("63_smrt3")
 max_value = 1.0
 step = 0.05
 value = 1.0
@@ -852,6 +1338,7 @@ bus = &"SFX"
 
 [node name="Miscelánea" type="Label" parent="SubmenuOpciones/VBoxContainer" unique_id=1442971073]
 layout_mode = 2
+theme = ExtResource("63_smrt3")
 theme_override_font_sizes/font_size = 40
 text = "MISCELÁNEA"
 horizontal_alignment = 1
@@ -863,86 +1350,306 @@ alignment = 1
 [node name="CheckFullscreen" type="CheckButton" parent="SubmenuOpciones/VBoxContainer/HBoxContainer" unique_id=1248212099]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Pantalla completa"
+text = " Pantalla completa"
 
 [node name="CheckJQKANumbers" type="CheckButton" parent="SubmenuOpciones/VBoxContainer/HBoxContainer" unique_id=531501343]
+z_index = 1
+custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-button_pressed = true
-text = "Mostrar JQKA como números"
+text = " Mostrar JQKA
+ como números"
 
-[node name="SpriteJKQA" type="Sprite2D" parent="SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers" unique_id=1640436627]
-position = Vector2(163, 103)
+[node name="SpriteJQKA" type="Sprite2D" parent="SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers" unique_id=1640436627]
+position = Vector2(83, 71)
 scale = Vector2(0.68999976, 0.68999976)
-texture = ExtResource("55_mg5w1")
+texture = ExtResource("60_smrt3")
+region_enabled = true
+region_rect = Rect2(138.93988, 161.05116, 57.06012, 38.948837)
 
-[node name="Panel" type="Panel" parent="SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers" unique_id=1800019029]
-z_index = -1
+[node name="Panel" type="Panel" parent="SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers/SpriteJQKA" unique_id=1800019029]
+z_index = 1
 z_as_relative = false
+anchors_preset = -1
+anchor_top = -0.30510992
+offset_left = -47.82605
+offset_top = -60.869568
+offset_right = 46.0
+offset_bottom = 40.0
+mouse_filter = 2
+theme = ExtResource("63_smrt3")
+theme_type_variation = &"panel_sin_borde"
+theme_override_styles/panel = SubResource("StyleBoxFlat_v6ae4")
+metadata/_edit_use_anchors_ = true
+
+[node name="Titulo" type="Control" parent="." unique_id=1952970309]
+z_index = -1
+layout_mode = 3
+anchors_preset = 0
+offset_left = -490.0
+offset_right = -490.0
+pivot_offset = Vector2(564, 0)
+
+[node name="1" type="Label" parent="Titulo" unique_id=1403837175]
+clip_children = 1
+layout_mode = 0
+offset_left = 564.0
+offset_top = 22.0
+offset_right = 644.0
+offset_bottom = 134.00137
+text = "S"
+label_settings = SubResource("LabelSettings_g4v7s")
+
+[node name="TextureRect" type="TextureRect" parent="Titulo/1" unique_id=885052172]
+layout_mode = 0
+offset_top = 13.25
+offset_right = 64.0
+offset_bottom = 93.25
+texture = SubResource("GradientTexture2D_yf5fn")
+
+[node name="borde" type="Label" parent="Titulo/1" unique_id=1506912355]
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 112.001465
+text = "S"
+label_settings = SubResource("LabelSettings_rqgnr")
+
+[node name="2" type="Label" parent="Titulo" unique_id=554852741]
+clip_children = 2
+layout_mode = 0
+offset_left = 620.0
+offset_top = 22.0
+offset_right = 700.0
+offset_bottom = 133.99927
+text = "C"
+label_settings = SubResource("LabelSettings_g4v7s")
+
+[node name="TextureRect" type="TextureRect" parent="Titulo/2" unique_id=194754210]
+layout_mode = 0
+offset_top = 13.25
+offset_right = 64.0
+offset_bottom = 93.25
+texture = SubResource("GradientTexture2D_yf5fn")
+
+[node name="borde" type="Label" parent="Titulo/2" unique_id=1795899992]
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 112.001465
+text = "C"
+label_settings = SubResource("LabelSettings_rqgnr")
+
+[node name="3" type="Label" parent="Titulo" unique_id=1927018659]
+clip_children = 2
+layout_mode = 0
+offset_left = 683.0
+offset_top = 22.0
+offset_right = 763.0
+offset_bottom = 134.0
+text = "O"
+label_settings = SubResource("LabelSettings_g4v7s")
+
+[node name="TextureRect" type="TextureRect" parent="Titulo/3" unique_id=1989773981]
+layout_mode = 0
+offset_top = 13.25
+offset_right = 64.0
+offset_bottom = 93.25
+texture = SubResource("GradientTexture2D_yf5fn")
+
+[node name="borde" type="Label" parent="Titulo/3" unique_id=110700922]
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 112.001465
+text = "O"
+label_settings = SubResource("LabelSettings_rqgnr")
+
+[node name="4" type="Label" parent="Titulo" unique_id=895875749]
+clip_children = 2
+layout_mode = 0
+offset_left = 743.0
+offset_top = 22.0
+offset_right = 823.0
+offset_bottom = 134.00006
+text = "U"
+label_settings = SubResource("LabelSettings_g4v7s")
+
+[node name="TextureRect" type="TextureRect" parent="Titulo/4" unique_id=898393510]
+layout_mode = 0
+offset_top = 13.25
+offset_right = 64.0
+offset_bottom = 93.25
+texture = SubResource("GradientTexture2D_yf5fn")
+
+[node name="borde" type="Label" parent="Titulo/4" unique_id=473725510]
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 112.001465
+text = "U"
+label_settings = SubResource("LabelSettings_rqgnr")
+
+[node name="5" type="Label" parent="Titulo" unique_id=1006214206]
+clip_children = 2
+layout_mode = 0
+offset_left = 807.0
+offset_top = 22.0
+offset_right = 887.0
+offset_bottom = 133.99933
+text = "N"
+label_settings = SubResource("LabelSettings_g4v7s")
+
+[node name="TextureRect" type="TextureRect" parent="Titulo/5" unique_id=719818388]
+layout_mode = 0
+offset_top = 13.25
+offset_right = 75.0
+offset_bottom = 93.25
+texture = SubResource("GradientTexture2D_yf5fn")
+
+[node name="borde" type="Label" parent="Titulo/5" unique_id=1361433513]
+layout_mode = 0
+offset_right = 75.0
+offset_bottom = 112.001465
+text = "N"
+label_settings = SubResource("LabelSettings_rqgnr")
+
+[node name="6" type="Label" parent="Titulo" unique_id=292230274]
+clip_children = 2
+layout_mode = 0
+offset_left = 879.0
+offset_top = 22.0
+offset_right = 959.0
+offset_bottom = 133.99808
+text = "D"
+label_settings = SubResource("LabelSettings_g4v7s")
+
+[node name="TextureRect" type="TextureRect" parent="Titulo/6" unique_id=1051705933]
+layout_mode = 0
+offset_top = 13.25
+offset_right = 64.0
+offset_bottom = 93.25
+texture = SubResource("GradientTexture2D_yf5fn")
+
+[node name="borde" type="Label" parent="Titulo/6" unique_id=1228891199]
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 112.001465
+text = "D"
+label_settings = SubResource("LabelSettings_rqgnr")
+
+[node name="7" type="Label" parent="Titulo" unique_id=1766227783]
+clip_children = 2
+layout_mode = 0
+offset_left = 942.0
+offset_top = 22.0
+offset_right = 1021.99915
+offset_bottom = 133.99896
+text = "R"
+label_settings = SubResource("LabelSettings_g4v7s")
+
+[node name="TextureRect" type="TextureRect" parent="Titulo/7" unique_id=565085953]
+layout_mode = 0
+offset_top = 13.25
+offset_right = 64.0
+offset_bottom = 93.25
+texture = SubResource("GradientTexture2D_yf5fn")
+
+[node name="borde" type="Label" parent="Titulo/7" unique_id=1663979356]
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 112.001465
+text = "R"
+label_settings = SubResource("LabelSettings_rqgnr")
+
+[node name="8" type="Label" parent="Titulo" unique_id=193864970]
+clip_children = 2
+layout_mode = 0
+offset_left = 1002.0
+offset_top = 22.0
+offset_right = 1081.9961
+offset_bottom = 133.99872
+text = "E"
+label_settings = SubResource("LabelSettings_g4v7s")
+
+[node name="TextureRect" type="TextureRect" parent="Titulo/8" unique_id=1656625244]
+layout_mode = 0
+offset_top = 13.25
+offset_right = 64.0
+offset_bottom = 93.25
+texture = SubResource("GradientTexture2D_yf5fn")
+
+[node name="borde" type="Label" parent="Titulo/8" unique_id=1952823632]
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 112.001465
+text = "E"
+label_settings = SubResource("LabelSettings_rqgnr")
+
+[node name="9" type="Label" parent="Titulo" unique_id=737619910]
+clip_children = 2
+layout_mode = 0
+offset_left = 1052.0
+offset_top = 22.0
+offset_right = 1132.0167
+offset_bottom = 133.9997
+text = "L"
+label_settings = SubResource("LabelSettings_g4v7s")
+
+[node name="TextureRect" type="TextureRect" parent="Titulo/9" unique_id=2097920190]
+layout_mode = 0
+offset_top = 13.25
+offset_right = 64.0
+offset_bottom = 93.25
+texture = SubResource("GradientTexture2D_yf5fn")
+
+[node name="borde" type="Label" parent="Titulo/9" unique_id=384029325]
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 112.001465
+text = "L"
+label_settings = SubResource("LabelSettings_rqgnr")
+
+[node name="completo" type="Label" parent="Titulo" unique_id=599658591]
+visible = false
+clip_children = 2
+layout_mode = 0
+offset_left = 67.27273
+offset_top = 22.0
+offset_right = 603.2727
+offset_bottom = 134.0
+text = "SCOUNDREL"
+label_settings = SubResource("LabelSettings_g4v7s")
+
+[node name="10" type="Label" parent="Titulo" unique_id=1644998511]
+clip_children = 2
+layout_mode = 0
+offset_left = 940.0
+offset_top = 111.999985
+offset_right = 1171.0
+offset_bottom = 161.99998
+text = "dungeon"
+label_settings = SubResource("LabelSettings_smrt3")
+
+[node name="TextureRect" type="TextureRect" parent="Titulo/10" unique_id=1316712024]
+layout_mode = 0
+offset_top = -8.0
+offset_right = 222.0
+offset_bottom = 40.000015
+texture = SubResource("GradientTexture2D_en5ph")
+
+[node name="borde" type="Label" parent="Titulo/10" unique_id=1647868916]
 layout_mode = 0
 offset_left = -1.0
-offset_top = -4.0
-offset_right = 332.0
-offset_bottom = 175.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_v6ae4")
-
-[node name="Titulo" type="Node2D" parent="." unique_id=776161806]
-z_index = -1
-
-[node name="1" type="Sprite2D" parent="Titulo" unique_id=1360746803]
-position = Vector2(800, -88)
-texture = ExtResource("59_5kuwt")
-
-[node name="2" type="Sprite2D" parent="Titulo" unique_id=506271652]
-position = Vector2(800, -88)
-texture = ExtResource("59_5kuwt")
-
-[node name="3" type="Sprite2D" parent="Titulo" unique_id=672598008]
-position = Vector2(800, -88)
-texture = ExtResource("59_5kuwt")
-
-[node name="4" type="Sprite2D" parent="Titulo" unique_id=1774704724]
-position = Vector2(800, -88)
-texture = ExtResource("59_5kuwt")
-
-[node name="5" type="Sprite2D" parent="Titulo" unique_id=824236477]
-position = Vector2(800, -88)
-texture = ExtResource("59_5kuwt")
-
-[node name="6" type="Sprite2D" parent="Titulo" unique_id=221392654]
-position = Vector2(800, -88)
-texture = ExtResource("59_5kuwt")
-
-[node name="7" type="Sprite2D" parent="Titulo" unique_id=346403030]
-position = Vector2(800, -88)
-texture = ExtResource("59_5kuwt")
-
-[node name="8" type="Sprite2D" parent="Titulo" unique_id=1666316036]
-position = Vector2(800, -88)
-texture = ExtResource("59_5kuwt")
-
-[node name="9" type="Sprite2D" parent="Titulo" unique_id=791383915]
-position = Vector2(800, -88)
-texture = ExtResource("59_5kuwt")
-
-[node name="10" type="Sprite2D" parent="Titulo" unique_id=132459140]
-modulate = Color(1, 1, 1, 0)
-position = Vector2(1007.99994, 143.99998)
-scale = Vector2(3.0792685, 0.43220338)
-texture = ExtResource("59_5kuwt")
+offset_right = 206.0
+offset_bottom = 112.001465
+text = "DUNGEON"
+label_settings = SubResource("LabelSettings_arrj7")
 
 [node name="Personaje" type="Sprite2D" parent="." unique_id=573426345]
-z_index = -1
-position = Vector2(800, 598)
-texture = ExtResource("59_5kuwt")
-offset = Vector2(0, -40)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Personaje" unique_id=1217063884]
-libraries/ = SubResource("AnimationLibrary_ktgrc")
+z_index = -2
+position = Vector2(809.2945, 514.25)
+scale = Vector2(2.561, 1.514)
+texture = ExtResource("61_baqjt")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Personaje" unique_id=1381709606]
-position = Vector2(0, -88.5)
+position = Vector2(0, -25.091736)
 emitting = false
 amount = 5
 texture = ExtResource("60_vrgld")
@@ -952,15 +1659,8 @@ speed_scale = 2.0
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_g4v7s")
 
-[node name="EspadaPlaceholder" type="Polygon2D" parent="." unique_id=380975880]
-z_index = -2
-position = Vector2(168, 44)
-scale = Vector2(1, 1.5000001)
-color = Color(0.4382773, 0.43827733, 0.4382773, 1)
-polygon = PackedVector2Array(-128, 24, -160, 24, -160, 8, -128.00002, 8, -128.00002, -8, -112, -8, -112, 8, 320, 7.999998, 352, 15.999998, 320, 24.000002, -112, 24.000004, -112, 39.999996, -128.00002, 39.999996)
-uv = PackedVector2Array(-128, 24, -160, 24, -160, 8, -128.00002, 8, -128.00002, -8, -112, -8, -112, 8, 135.99997, 8, 167.99997, 15.999996, 135.99997, 24.000004, -112, 24.000004, -112, 39.999996, -128.00002, 39.999996)
-
 [node name="Botones" type="Node2D" parent="." unique_id=267885352]
+position = Vector2(480, 0)
 
 [node name="Jugar" type="Button" parent="Botones" unique_id=787941081]
 offset_left = -416.0
@@ -968,6 +1668,7 @@ offset_top = 152.0
 offset_right = -56.0
 offset_bottom = 245.0
 offset_transform_enabled = true
+theme = ExtResource("63_smrt3")
 text = "JUGAR"
 script = ExtResource("56_t6u78")
 metadata/_custom_type_script = "uid://b0e3f1taa4udn"
@@ -978,7 +1679,9 @@ offset_top = 272.0
 offset_right = -56.0
 offset_bottom = 365.0
 offset_transform_enabled = true
+theme = ExtResource("63_smrt3")
 text = "TABLA DE CLASIFICACIONES"
+autowrap_mode = 2
 script = ExtResource("56_t6u78")
 metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
@@ -988,6 +1691,7 @@ offset_top = 392.0
 offset_right = -56.0
 offset_bottom = 485.0
 offset_transform_enabled = true
+theme = ExtResource("63_smrt3")
 text = "CÓMO JUGAR
 "
 script = ExtResource("56_t6u78")
@@ -999,7 +1703,8 @@ offset_top = 512.0
 offset_right = -240.0
 offset_bottom = 605.0
 offset_transform_enabled = true
-text = "CREDITOS"
+theme = ExtResource("63_smrt3")
+text = "CRÉDITOS"
 script = ExtResource("56_t6u78")
 metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
@@ -1009,9 +1714,32 @@ offset_top = 512.0
 offset_right = -55.99994
 offset_bottom = 605.0
 offset_transform_enabled = true
+theme = ExtResource("63_smrt3")
 text = "OPCIONES"
 script = ExtResource("56_t6u78")
 metadata/_custom_type_script = "uid://b0e3f1taa4udn"
+
+[node name="EspadaTitullo" type="Sprite2D" parent="." unique_id=1717980600]
+z_index = -2
+position = Vector2(307.99997, 76)
+scale = Vector2(2.3601532, 2.4827583)
+texture = ExtResource("64_en5ph")
+
+[node name="FondoMenu" type="Sprite2D" parent="." unique_id=2140400820]
+z_index = -3
+position = Vector2(577.7778, 323)
+scale = Vector2(2.006173, 2.006173)
+texture = ExtResource("63_5bsce")
+
+[node name="FondoMenuLuz" type="Sprite2D" parent="." unique_id=1795356690]
+position = Vector2(560, 323)
+scale = Vector2(2, 2.006173)
+texture = ExtResource("64_5bsce")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1217063884]
+root_node = NodePath("../Personaje")
+libraries/ = SubResource("AnimationLibrary_ktgrc")
+autoplay = &"animacion_menu"
 
 [connection signal="finished" from="BGM" to="BGM" method="_on_finished"]
 [connection signal="button_up" from="SubmenuModificadores/JugarSimple" to="." method="_on_jugar_simple_button_up"]

@@ -2,11 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://djy6fwgo6od1" path="res://assets/sprites/vida/2c.png" id="1_ma6gd"]
 [ext_resource type="Script" uid="uid://c5lyk06kwmfw6" path="res://scripts/toggle_cartas.gd" id="2_4dhhi"]
-[ext_resource type="StyleBox" uid="uid://cggbrq0141nq0" path="res://themes/style_box_sin_borde.tres" id="3_4dhhi"]
+[ext_resource type="Theme" uid="uid://cg414t0f61orr" path="res://themes/menu.tres" id="3_4w7ty"]
 
 [node name="TextureButton" type="TextureButton" unique_id=1710672053]
-z_index = 1
-custom_minimum_size = Vector2(120, 120)
+custom_minimum_size = Vector2(110, 110)
+custom_maximum_size = Vector2(110, 110)
 offset_right = 128.0
 offset_bottom = 128.0
 toggle_mode = true
@@ -16,12 +16,14 @@ stretch_mode = 0
 script = ExtResource("2_4dhhi")
 
 [node name="Panel" type="Panel" parent="." unique_id=1492342436]
-z_as_relative = false
+z_index = -1
+custom_minimum_size = Vector2(110, 110)
 layout_mode = 0
-offset_right = 120.0
-offset_bottom = 120.0
+offset_right = 112.0
+offset_bottom = 112.0
 mouse_filter = 2
-theme_override_styles/panel = ExtResource("3_4dhhi")
+theme = ExtResource("3_4w7ty")
+theme_type_variation = &"panel_sin_borde"
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

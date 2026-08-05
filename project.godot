@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="TFG"
-run/main_scene="res://escenas/menu.tscn"
+run/main_scene="uid://der8n17qx0vyd"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 

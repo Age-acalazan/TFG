@@ -7,21 +7,8 @@ var tweens: Array[Tween] = []
 @onready var click_button: AudioStreamPlayer = $ClickButton
 
 func _input(e):
-	if !$TimerAnimacionInicio.is_stopped() and e is InputEventMouseButton:
-		for t in tweens:
-			if is_instance_valid(t):
-				t.kill()
-		$TimerAnimacionInicio.stop()
-		skip = 0
-		var letras = $Titulo.get_children()
-		for index in range(9):
-			var letra = letras[index]
-			letra.position = Vector2(464.0 + index * 60, 72)
-		letras[-1].modulate = Color.WHITE
-		$Titulo.position.x = -350
-		$Botones.position.x = 480
-		$Personaje/AnimationPlayer.stop()
-		$Personaje.scale = Vector2.ONE
+	if $AnimationPlayer.is_playing() and e is InputEventMouseButton:
+		$AnimationPlayer.play("RESET")
 
 
 func _ready() -> void:
@@ -32,8 +19,6 @@ func _ready() -> void:
 	for boton in botones:
 		boton.connect("button_up",button_pressed)
 		boton.connect("mouse_entered",button_mouse_entered)
-	animacion_inicio()
-	$TimerAnimacionInicio.start()
 
 # Conectamos por otra parte todos los botones para que hagan sonidos
 func button_mouse_entered() -> void:
@@ -50,9 +35,9 @@ func  actualizar_interfaz_ajustes() -> void:
 	$SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen.button_pressed = Configuracion.pantalla_completa
 	$SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers.button_pressed = Configuracion.JQKA_numeros
 	if Configuracion.JQKA_numeros:
-		$SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers/SpriteJKQA.texture = preload("uid://dddqqgpgufuhq")
+		$SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers/SpriteJQKA.texture = preload("uid://pl06f2wvhjnu")
 	else:
-		$SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers/SpriteJKQA.texture = preload("uid://bsodmfm4l6vab")
+		$SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers/SpriteJQKA.texture = preload("uid://v0q2xce3l23k")
 
 func _on_jugar_simple_button_up():
 	var partida = preload("res://escenas/partida.tscn").instantiate()
@@ -178,49 +163,14 @@ func _on_check_fullscreen_toggled(toggled_on: bool) -> void:
 func _on_check_jqka_numbers_toggled(toggled_on: bool) -> void:
 	Configuracion.JQKA_numeros = toggled_on
 	if toggled_on:
-		$SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers/SpriteJKQA.texture = preload("uid://dddqqgpgufuhq")
+		$SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers/SpriteJQKA.texture = preload("uid://pl06f2wvhjnu")
 	else:
-		$SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers/SpriteJKQA.texture = preload("uid://bsodmfm4l6vab")
+		$SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers/SpriteJQKA.texture = preload("uid://v0q2xce3l23k")
 
 
 func _on_alternar_todas_toggled(toggled_on: bool) -> void:
 	for n in find_children("*","TextureButton"):
 		n.button_pressed = toggled_on
-
-
-
-func animacion_inicio():
-	var letras = $Titulo.get_children()
-	await get_tree().create_timer(1 * skip).timeout
-	if skip == 0 : return
-	for index in range(9):
-		var letra = letras[index]
-		var tween = create_tween()
-		tweens.append(tween)
-		tween.tween_property(letra,"position:y",456.0,0.5 * skip).set_delay(index*0.25 * skip)
-		tween.tween_property(letra,"position",Vector2(564.0+index*60,72),1 * skip) \
-		.set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)#.set_delay(0.25)
-	squash_personaje_funcion()
-	await get_tree().create_timer(3 * skip).timeout
-	if skip == 0 : return
-	var tween2 = create_tween()
-	tweens.append(tween2)
-	tween2.tween_property($Titulo,"position:x",40,0.5 * skip).set_trans(Tween.TRANS_SINE)
-	tween2.tween_property($Titulo,"position:x",-450,0.25 * skip).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
-	tween2.tween_property(letras[-1],"modulate",Color.WHITE,1 * skip).set_delay(1 * skip)
-	await get_tree().create_timer(0.4 * skip).timeout
-	if skip == 0 : return
-	var tween3 = create_tween()
-	tweens.append(tween3)
-	tween3.tween_property($Botones,"position:x",480,0.5 * skip).set_trans(Tween.TRANS_BACK)
-
-func squash_personaje_funcion():
-	await get_tree().create_timer(0.45 * skip).timeout
-	if skip == 0 : return
-	$Personaje/AnimationPlayer.play("squash_personaje")
-	particulas_estrellas()
-	await get_tree().create_timer(2.25 * skip).timeout
-	$Personaje/AnimationPlayer.play("RESET")
 
 
 func particulas_estrellas():

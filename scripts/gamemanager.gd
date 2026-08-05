@@ -85,7 +85,7 @@ var animaciones_arma_escena = preload("res://escenas/animaciones_armas.tscn")
 
 func _ready():
 	baraja.inicializar_partida()
-	$HUD/LabelVida.set_text(str(vida))
+	$HUD/LabelVida.set_text(str(vida_max))
 	usando_arma = false
 	oro = 1000
 	label_arma.text="Sin arma"
@@ -286,6 +286,13 @@ func victoria():
 	
 	baraja.visible = false
 	$HUD.visible = false
+	$Sonido/BGM.stop()
+	# Se reproduce la cinemática del final
+	if !baraja.modificadores_activos or baraja.modificadores_activos:
+		var cinematica_final = preload("res://escenas/cinematica_final.tscn").instantiate()
+		add_child(cinematica_final)
+		await cinematica_final.get_node("AnimationPlayer").animation_finished
+		cinematica_final.queue_free()
 	$FinPartida/Letrero.text = "VICTORIA"
 	$FinPartida.visible = true
 	mostrar_puntuacion(vida)
@@ -293,7 +300,6 @@ func victoria():
 		$FinPartida/Leaderboard.save_score(vida)
 	$FinPartida/Leaderboard.show_leaderboard()
 	
-	$Sonido/BGM.stop()
 	$Sonido/MusicaFinPartida.stream = preload("uid://cdqt0oe741oie")
 	$Sonido/MusicaFinPartida.play()
 
