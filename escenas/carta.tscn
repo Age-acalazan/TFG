@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://clq22wtips7ws" path="res://scripts/carta.gd" id="1_yo80u"]
 [ext_resource type="Texture2D" uid="uid://dl1gg4bdqfjxi" path="res://assets/sprites/monstruos/14p.png" id="2_sllcx"]
 [ext_resource type="Texture2D" uid="uid://bvqol24juvt4n" path="res://assets/sprites/ui_y_efectos/corazon.png" id="3_sllcx"]
+[ext_resource type="Theme" uid="uid://cg414t0f61orr" path="res://themes/menu.tres" id="3_up28s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_up28s"]
 size = Vector2(17.592592, 17.543861)
@@ -130,6 +131,8 @@ offset_left = -31.0
 offset_top = -151.0
 offset_right = 6.0
 offset_bottom = -115.0
+theme = ExtResource("3_up28s")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 26
 text = "-1"
 horizontal_alignment = 2

@@ -24,7 +24,6 @@ scale_max = 10.0
 alpha_curve = SubResource("CurveTexture_3gngh")
 
 [node name="ParticulasCuracion" type="GPUParticles2D" unique_id=3870396]
-emitting = false
 texture = ExtResource("1_d6q4y")
 lifetime = 2.0
 one_shot = true

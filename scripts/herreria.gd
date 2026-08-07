@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 var durabilidad_actual : int
 var valor_arma : int

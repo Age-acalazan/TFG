@@ -1,7 +1,7 @@
 extends Node2D
 
-@export var vida_max : int = 20 
-var vida : int = vida_max:
+@export var vida_max : int 
+var vida : int :
 	set(valor):
 		if vida < valor:
 			$HUD/LabelVida.modulate = Color.GREEN
@@ -19,6 +19,7 @@ var valor_monstruo_sobre_arma : int
 var valor_arma : int = 0:
 	set(valor):
 		valor_arma = valor
+		# Efecto de sonido del arma
 		sonido_arma.volume_db = 0.0
 		match valor_arma:
 			2:
@@ -42,9 +43,9 @@ var usando_arma : bool:
 	set(valor):
 		usando_arma = valor
 		if valor:
-			$HUD/CambiarArma.text = "Usando arma"
+			$HUD/CambiarArma.icon = load("res://assets/sprites/armas/%dd.png" % valor_arma)
 		else:
-			$HUD/CambiarArma.text = "Desarmado"
+			$HUD/CambiarArma.icon = imagen_puño
 var numero_total_cartas : int
 var oro : int:
 	set(valor):
@@ -53,6 +54,7 @@ var oro : int:
 
 var particulas_curacion_escena = preload("res://escenas/particulas_curacion.tscn")
 var animaciones_arma_escena = preload("res://escenas/animaciones_armas.tscn")
+var imagen_puño = preload("res://assets/sprites/ui_y_efectos/puño.png")
 
 
 @onready var label_arma: Label = $HUD/LabelArma
@@ -85,9 +87,9 @@ var animaciones_arma_escena = preload("res://escenas/animaciones_armas.tscn")
 
 func _ready():
 	baraja.inicializar_partida()
-	$HUD/LabelVida.set_text(str(vida_max))
+	vida = vida_max
 	usando_arma = false
-	oro = 1000
+	oro = 0
 	label_arma.text="Sin arma"
 	label_monstruo_anterior.text="Sin monstruo anterior"
 	numero_total_cartas = baraja.baraja.size()+4
@@ -104,8 +106,8 @@ func conectar_botones_con_sonido():
 		$HUD/Opciones,
 		$FinPartida/Menu,
 		$SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen,
-		$SubmenuOpciones/VBoxContainer/Continuar,
-		$SubmenuOpciones/VBoxContainer/SalirDePartida
+		$SubmenuOpciones/VBoxContainer/HBoxContainer4/Continuar,
+		$SubmenuOpciones/VBoxContainer/HBoxContainer4/SalirDePartida
 	]
 	for boton in botones_hover_normal:
 		boton.mouse_entered.connect(button_mouse_entered.bind(sonido_hover,boton))
@@ -118,7 +120,7 @@ func conectar_botones_con_sonido():
 	
 	# Lista de nodos tipo boton cuyos sonidos de hover o click son especiales
 	$HUD/Opciones.button_up.connect(button_pressed.bind(sonido_pausa_in))
-	$SubmenuOpciones/VBoxContainer/Continuar.button_up.connect(button_pressed.bind(sonido_pausa_out))
+	$SubmenuOpciones/VBoxContainer/HBoxContainer4/Continuar.button_up.connect(button_pressed.bind(sonido_pausa_out))
 	$HUD/CambiarArma.button_up.connect(button_pressed_cambiar_arma)
 	$HUD/Huir.button_up.connect(button_pressed.bind(sonido_huir))
 
@@ -181,8 +183,8 @@ func _on_baraja_carta_clicada(carta: Carta) -> void:
 			borrar_carta(carta)
 			
 		Carta.PALO.DIAMANTES:#####################################################
-			usando_arma = true
 			valor_arma = carta.valor
+			usando_arma = true
 			valor_monstruo_sobre_arma = 15
 			monstruo_anterior.texture = null
 			label_arma.text = "Valor del arma: "+ str(valor_arma)
@@ -259,14 +261,16 @@ func muerte():
 	$FinPartida.visible = true
 	mostrar_puntuacion(baraja.calcular_puntuacion_muerte())
 	if !baraja.modificadores_activos:
-		$FinPartida/Leaderboard.save_score(baraja.calcular_puntuacion_muerte())
-	$FinPartida/Leaderboard.show_leaderboard()
+		$FinPartida/Panel/Leaderboard.save_score(baraja.calcular_puntuacion_muerte())
+	$FinPartida/Panel/Leaderboard.show_leaderboard()
 	
 	$Sonido/BGM.stop()
 	$Sonido/MusicaFinPartida.stream = preload("uid://byob06le748u7")
 	$Sonido/MusicaFinPartida.play()
 
 func victoria():
+	$FinPartida/Letrero.add_theme_color_override("font_color", Color.WHITE)
+	$FinPartida/Puntos.add_theme_color_override("font_color", Color.WHITE)
 	# Espera a que termine el tween de esa función
 	await camera_3d.secuencia_victoria()
 	# lógica de el giro de las puertas
@@ -288,7 +292,7 @@ func victoria():
 	$HUD.visible = false
 	$Sonido/BGM.stop()
 	# Se reproduce la cinemática del final
-	if !baraja.modificadores_activos or baraja.modificadores_activos:
+	if !baraja.modificadores_activos:
 		var cinematica_final = preload("res://escenas/cinematica_final.tscn").instantiate()
 		add_child(cinematica_final)
 		await cinematica_final.get_node("AnimationPlayer").animation_finished
@@ -297,8 +301,8 @@ func victoria():
 	$FinPartida.visible = true
 	mostrar_puntuacion(vida)
 	if !baraja.modificadores_activos:
-		$FinPartida/Leaderboard.save_score(vida)
-	$FinPartida/Leaderboard.show_leaderboard()
+		$FinPartida/Panel/Leaderboard.save_score(vida)
+	$FinPartida/Panel/Leaderboard.show_leaderboard()
 	
 	$Sonido/MusicaFinPartida.stream = preload("uid://cdqt0oe741oie")
 	$Sonido/MusicaFinPartida.play()
@@ -386,8 +390,8 @@ func compra_realizada(datos : Array):
 		vida += datos[0]
 		vida = clampi(vida, 0, vida_max)
 	else:
-		usando_arma = true
 		valor_arma = datos[0]
+		usando_arma = true
 		valor_monstruo_sobre_arma = 15
 		monstruo_anterior.texture = null
 		label_arma.text = "Valor del arma: "+ str(valor_arma)
@@ -428,6 +432,7 @@ func spawnear_particulas_curacion(coordenadas : Vector2):
 	var particulas_curacion = particulas_curacion_escena.instantiate()
 	particulas_curacion.position = coordenadas
 	add_child(particulas_curacion)
+	particulas_curacion.restart()
 	await get_tree().create_timer(2.0).timeout
 	particulas_curacion.queue_free()
 
@@ -438,3 +443,9 @@ func ejecutar_animacion_arma(valor_arma_pasado:int, coordenadas:Vector2):
 	animacion.play(str(valor_arma_pasado))
 	await animacion.animation_finished
 	animacion.queue_free()
+
+
+func _on_button_button_up() -> void:
+	vida_max = 500
+	vida = 500
+	oro = 2000

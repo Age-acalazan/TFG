@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 var objetos : Dictionary[int, Array] = {} 
 var oro : int = 0

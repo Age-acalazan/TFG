@@ -74,6 +74,7 @@ func _on_jugar_modificadores_button_up() -> void:
 		baraja_nodo.flags_cartas = flags_cartas
 		baraja_nodo.num_cartas_extra = num_cartas_extra
 		partida.vida_max = vida_max
+		partida.vida = vida_max
 		
 		# Se cambia de escena
 		get_tree().root.add_child(partida)

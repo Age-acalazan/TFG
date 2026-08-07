@@ -1292,10 +1292,6 @@ mesh = SubResource("PlaneMesh_57qmd")
 transform = Transform3D(0.16263457, -0.16263457, 0, 0.16263457, 0.16263457, 0, 0, 0, 0.23, 0, 0, -16.199999)
 mesh = SubResource("PlaneMesh_57qmd")
 
-[node name="Chetos" type="Button" parent="." unique_id=1174774130]
-offset_right = 8.0
-offset_bottom = 8.0
-
 [connection signal="finished" from="Sonido/BGM" to="Sonido/BGM" method="_on_finished"]
 [connection signal="_on_cursor_entra_area_monstruo2" from="Baraja" to="." method="_on_cursor_entra_area_monstruo2"]
 [connection signal="carta_clicada" from="Baraja" to="." method="_on_baraja_carta_clicada"]
@@ -1313,4 +1309,3 @@ offset_bottom = 8.0
 [connection signal="toggled" from="SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen" to="." method="_on_check_fullscreen_toggled"]
 [connection signal="button_up" from="SubmenuOpciones/VBoxContainer/HBoxContainer4/Continuar" to="." method="_on_continuar_button_up"]
 [connection signal="button_up" from="SubmenuOpciones/VBoxContainer/HBoxContainer4/SalirDePartida" to="." method="_on_salir_de_partida_button_up"]
-[connection signal="button_up" from="Chetos" to="." method="_on_button_button_up"]
