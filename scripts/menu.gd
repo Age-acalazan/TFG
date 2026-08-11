@@ -7,7 +7,7 @@ var tweens: Array[Tween] = []
 @onready var click_button: AudioStreamPlayer = $ClickButton
 
 func _input(e):
-	if $AnimationPlayer.is_playing() and e is InputEventMouseButton:
+	if $AnimationPlayer.is_playing() and e is InputEventMouseButton and e.is_pressed() and e.get_button_index() == 1:
 		$AnimationPlayer.play("RESET")
 
 
@@ -179,3 +179,14 @@ func particulas_estrellas():
 		$Personaje/GPUParticles2D.restart()
 		await get_tree().create_timer(0.25 * skip).timeout
 		if skip == 0 : return
+
+
+func _on_animated_button_button_up() -> void:
+	get_tree().quit()
+
+
+func _on_tutorial_button_up() -> void:
+	var partida_tuto = preload("res://escenas/partida_tutorial.tscn").instantiate()
+	get_tree().root.add_child(partida_tuto)
+	queue_free()
+	get_tree().current_scene = partida_tuto

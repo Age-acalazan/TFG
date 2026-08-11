@@ -51,6 +51,13 @@ var oro : int:
 	set(valor):
 		oro = valor
 		$HUD/Oro.set_text(str(oro))
+var paso : int = 1:
+	set(valor):
+		paso = valor
+		paso_actualizado()
+		print(paso)
+var monstruo_7_clicado : bool = false
+var monstruo_8_clicado : bool = false
 
 var particulas_curacion_escena = preload("res://escenas/particulas_curacion.tscn")
 var animaciones_arma_escena = preload("res://escenas/animaciones_armas.tscn")
@@ -84,6 +91,7 @@ var imagen_puño = preload("res://assets/sprites/ui_y_efectos/puño.png")
 @onready var sonido_bomba: AudioStreamPlayer = $Sonido/Bomba
 @onready var sonido_puerta: AudioStreamPlayer = $Sonido/Puerta
 
+signal recarga_paso_7
 
 func _ready():
 	baraja.inicializar_partida()
@@ -145,7 +153,7 @@ func actualizar_interfaz_ajustes() -> void:
 	$SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider.value = Configuracion.volumen_sfx
 
 func _on_baraja_carta_clicada(carta: Carta) -> void:
-	if not (baraja.num_cartas_activas() > 1 or baraja.baraja.is_empty()): return
+	#if not (baraja.num_cartas_activas() > 1 or baraja.baraja.is_empty()): return
 	# Reduce o aumenta la vida
 	match carta.palo_carta:
 		Carta.PALO.TREBOLES, Carta.PALO.PICAS:#####################################################
@@ -246,12 +254,41 @@ func _on_baraja_carta_clicada(carta: Carta) -> void:
 	if baraja.sala.size() < 4:
 		$HUD/Huir.disabled = true
 	
+	
+	
 	# Contar cartas restantes
 	$HUD/LabelRestantes.text = str(baraja.baraja.size()+baraja.sala.size())+"/"+str(numero_total_cartas)
 	
 	if baraja.check_no_mas_cartas() and vida > 0:
 		victoria()
 		$HUD/Opciones.disabled = true
+	
+	# Lógica del tutorial
+	match paso:
+		6,9,10:
+			paso = paso +1
+		4:
+			if baraja.sala.size() == 2:
+				paso = 5
+		11:
+			baraja.sala[0].desactivar()
+			await baraja.sala_recargada
+			paso = 12
+		13:
+			if carta.valor == 8:
+				monstruo_8_clicado = true
+			else:
+				monstruo_7_clicado = true
+			if monstruo_7_clicado and monstruo_8_clicado:
+				paso = 14
+		14:
+			if baraja.sala.size() == 2:
+				paso = 15
+		15:
+			baraja.sala[0].desactivar()
+			await baraja.sala_recargada
+			paso = 16
+
 
 
 func muerte():
@@ -260,9 +297,6 @@ func muerte():
 	$FinPartida/Letrero.text = "HAS MUERTO"
 	$FinPartida.visible = true
 	mostrar_puntuacion(baraja.calcular_puntuacion_muerte())
-	if !baraja.modificadores_activos:
-		$FinPartida/Panel/Leaderboard.save_score(baraja.calcular_puntuacion_muerte())
-	$FinPartida/Panel/Leaderboard.show_leaderboard()
 	
 	$Sonido/BGM.stop()
 	$Sonido/MusicaFinPartida.stream = preload("uid://byob06le748u7")
@@ -338,6 +372,8 @@ func borrar_carta(carta : Carta):
 	await carta.animacion_borrar()
 	carta.queue_free()
 	baraja.mostrar_sala()
+	if paso == 7:
+		await recarga_paso_7
 	baraja.recargar_sala()
 
 func _on_cambiar_arma_pressed() -> void:
@@ -345,6 +381,8 @@ func _on_cambiar_arma_pressed() -> void:
 		usando_arma = !usando_arma
 
 func _on_huir_pressed() -> void:
+	if paso == 8:
+		paso = 9
 	baraja.huir()
 	#Para que no puedas huir dos veces seguidas
 	$HUD/Huir.disabled = true
@@ -451,5 +489,103 @@ func _on_button_button_up() -> void:
 	oro = 2000
 
 
-func _on_animated_button_button_up() -> void:
-	get_tree().quit()
+func paso_actualizado():
+	match paso:
+		1:
+			pass
+		2:
+			$HUD/Popup/FlechaIndicadora.visible = true
+			$HUD/Popup/FlechaIndicadora.position = Vector2(784.0,-320.0)
+			$HUD/Popup/FlechaIndicadora.rotation = 0.0
+			$HUD/Popup/TextoPopup.text = "Este es el contador de cartas. Indica las cartas restantes que quedan en la mazmorra. Para salir victorioso, tendrás que eliminar todas las cartas del mazo. Haz click aquí para continuar."
+		3:
+			$Baraja.visible = true
+			baraja.sala[0].desactivar()
+			baraja.sala[1].desactivar()
+			baraja.sala[2].desactivar()
+			baraja.sala[3].desactivar()
+			$HUD/Popup/FlechaIndicadora.visible = false
+			$HUD/Popup/TextoPopup.text = "Esto es una sala, cada sala tiene hasta 4 cartas. Pueden ser monstruos de [color=121212]tréboles[/color] o [color=121212]picas[/color], comidas de [color=ed1c24]corazones[/color], o armas de [color=ed1c24]diamantes[/color]. Haz click aquí para continuar."
+		4:
+			baraja.sala[2].activar()
+			baraja.sala[3].activar()
+			$HUD/Popup/TextoPopup.text = "Puedes luchar contra monstruos clicando sobre ellos. ¡Prueba a derrotar a los dos de la derecha!"
+		5:
+			$HUD/Popup/FlechaIndicadora.visible = true
+			$HUD/Popup/FlechaIndicadora.position = Vector2(16.0,-312.0)
+			$HUD/Popup/FlechaIndicadora.rotation = -PI/2
+			$HUD/Popup/TextoPopup.text = "Uff, parece que eso ha dolido… Cada uno de los monstruos te ha quitado [color=ffbd37]tanta vida como indica en su carta[/color]. Haz click aquí para continuar."
+		6:
+			$HUD/Popup/FlechaIndicadora.visible = false
+			baraja.sala[0].activar()
+			$HUD/Popup/TextoPopup.text = "Vamos a sanar esas heridas. Interactúa con la ensalada para comértela."
+		7:
+			$HUD/Popup/TextoPopup.text = "Cuando sólo queda una carta en la sala, se rellenan las cartas y pasamos a [color=ffbd37]la siguiente sala[/color]. Haz click aquí para continuar."
+		8:
+			$HUD/Popup/TextoPopup.text = ""
+			await baraja.sala_recargada
+			$HUD/Popup/FlechaIndicadora.visible = true
+			$HUD/Popup/FlechaIndicadora.position = Vector2(40.0,-208.0)
+			$HUD/Popup/FlechaIndicadora.rotation = -PI/2
+			$BloqueadorHuir.visible = false
+			baraja.sala[0].desactivar()
+			baraja.sala[1].desactivar()
+			baraja.sala[2].desactivar()
+			baraja.sala[3].desactivar()
+			$HUD/Popup/TextoPopup.text = "Vaya… Los monstruos de esta sala son muy fuertes, mejor huimos para que estas cartas se coloquen al final del mazo. Puedes huir mientras la sala esté llena pero no puedes dos veces seguidas."
+		9:
+			await baraja.huir_finalizado
+			$HUD/Popup/FlechaIndicadora.visible = false
+			$BloqueadorHuir.visible = true
+			baraja.sala[0].desactivar()
+			baraja.sala[1].desactivar()
+			baraja.sala[3].desactivar()
+			$HUD/Popup/TextoPopup.text = "Ahí tienes un arma. ¡Cógela!"
+		10:
+			baraja.sala[2].activar()
+			$HUD/Popup/TextoPopup.text = "Ahora ese monstruo no te hará 8 de daño, sino 4. [color=ffbd37]Al daño del monstruo se le resta el de tu arma[/color], pudiendo mitigar el daño por completo con un buen arma. Atácalo y luego cúrate."
+		11:
+			baraja.sala[0].activar()
+			baraja.sala[1].activar()
+		12:
+			baraja.sala[0].desactivar()
+			baraja.sala[1].desactivar()
+			baraja.sala[2].desactivar()
+			baraja.sala[3].desactivar()
+			$HUD/Popup/FlechaIndicadora.visible = true
+			$HUD/Popup/FlechaIndicadora.position = Vector2(-80.0,-56.0)
+			$HUD/Popup/FlechaIndicadora.rotation = deg_to_rad(-135.0)
+			$HUD/Popup/TextoPopup.text = "Este es el último monstruo con el que has usado tu arma actual y representa su durabilidad. Haz click aquí para continuar."
+		13:
+			baraja.sala[1].activar()
+			baraja.sala[2].activar()
+			$HUD/Popup/FlechaIndicadora.visible = false
+			$HUD/Popup/TextoPopup.text = "Podrás seguir usando el arco contra monstruos menores a la durabilidad de tu arma, pero [color=ffbd37]no contra monstruos mayores o iguales[/color]. Lucha contra los monstruos."
+		14:
+			$HUD/Popup/FlechaIndicadora.visible = true
+			$HUD/Popup/FlechaIndicadora.position = Vector2(40.0,-96.0)
+			$HUD/Popup/FlechaIndicadora.rotation = -PI/2
+			$BloqueadorCambiarArma.visible = false
+			$HUD/Popup/TextoPopup.text = "Para derrotar al 8 de tréboles tendrás que [color=ffbd37]luchar a puños[/color]. Desequipa tu arco."
+		15:
+			baraja.sala[0].activar()
+			baraja.sala[1].activar()
+			$HUD/Popup/FlechaIndicadora.visible = false
+			$HUD/Popup/TextoPopup.text = "Pasa a la siguiente sala."
+		16:
+			baraja.sala[0].activar()
+			baraja.sala[1].activar()
+			baraja.sala[2].activar()
+			baraja.sala[3].activar()
+			$HUD/Popup/TextoPopup.text = "Pues parece que hasta aquí has llegado. [color=ffbd37]¡Suerte en la próxima![/color]"
+
+
+func _on_texto_popup_gui_input(event: InputEvent) -> void:
+	# Es un evento del ratón en el que se presiona(no se suelta) y además es con el click izquierdo
+	if event is InputEventMouseButton and event.is_pressed() and event.get_button_index() == 1:
+		match paso:
+			1,2,3,5,12:
+				paso = paso + 1
+			7:
+				paso = paso + 1
+				emit_signal("recarga_paso_7")

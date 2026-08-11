@@ -1,7 +1,7 @@
 extends Node2D
 
 func _input(e):
-	if e is InputEventMouseButton:
+	if e is InputEventMouseButton and e is InputEventMouseButton and e.is_pressed() and e.get_button_index() == 1:
 		var menu = preload("res://escenas/menu.tscn").instantiate()
 		get_tree().root.add_child(menu)
 		queue_free()

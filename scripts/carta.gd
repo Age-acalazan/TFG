@@ -6,6 +6,8 @@ enum PALO { PICAS, TREBOLES, CORAZONES, DIAMANTES, TIENDA, HERRERIA, BOMBA }
 const HOVER_ARRIBA := 8
 const HOVER_TIEMPO := 0.1
 
+var tween_rojo : Tween
+
 signal carta_clicada(carta : Carta)
 signal cursor_entra_area_monstruo(carta : Carta)
 
@@ -26,11 +28,13 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 #________________________________________________________________
 # Enrojece el sprite para dar feedback de que no se puede clicar con el arma
 func poner_en_rojo():
-	var tween = create_tween()
+	if tween_rojo and tween_rojo.is_running():
+		tween_rojo.kill()
+	tween_rojo = create_tween()
 	
 	modulate = Color(1,0,0,1)
 	
-	tween.tween_property(
+	tween_rojo.tween_property(
 		self,
 		"modulate",
 		Color.WHITE,
@@ -41,6 +45,9 @@ func poner_en_rojo():
 
 func desactivar():
 	$Area2D/CollisionShape2D.disabled = true
+
+func activar():
+	$Area2D/CollisionShape2D.disabled = false
 
 func esta_activa() -> bool:
 	return !$Area2D/CollisionShape2D.disabled

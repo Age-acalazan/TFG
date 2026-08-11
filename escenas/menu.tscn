@@ -294,6 +294,18 @@ tracks/11/keys = {
 "update": 0,
 "values": [Vector2(1052, 22)]
 }
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath(".:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
 
 [sub_resource type="Animation" id="Animation_vrgld"]
 resource_name = "animacion_menu"
@@ -1039,61 +1051,51 @@ script = ExtResource("2_d7r87")
 [node name="Score1" type="RichTextLabel" parent="SubmenuTablaClasificacion/Leaderboard" unique_id=786635872]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 30
-text = "Score"
 fit_content = true
 
 [node name="Score2" type="RichTextLabel" parent="SubmenuTablaClasificacion/Leaderboard" unique_id=795616159]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 30
-text = "Score"
 fit_content = true
 
 [node name="Score3" type="RichTextLabel" parent="SubmenuTablaClasificacion/Leaderboard" unique_id=501226533]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 30
-text = "Score"
 fit_content = true
 
 [node name="Score4" type="RichTextLabel" parent="SubmenuTablaClasificacion/Leaderboard" unique_id=1363975622]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 30
-text = "Score"
 fit_content = true
 
 [node name="Score5" type="RichTextLabel" parent="SubmenuTablaClasificacion/Leaderboard" unique_id=1238687438]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 30
-text = "Score"
 fit_content = true
 
 [node name="Score6" type="RichTextLabel" parent="SubmenuTablaClasificacion/Leaderboard" unique_id=915495814]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 30
-text = "Score"
 fit_content = true
 
 [node name="Score7" type="RichTextLabel" parent="SubmenuTablaClasificacion/Leaderboard" unique_id=1099521995]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 30
-text = "Score"
 fit_content = true
 
 [node name="Score8" type="RichTextLabel" parent="SubmenuTablaClasificacion/Leaderboard" unique_id=2066315451]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 30
-text = "Score"
 fit_content = true
 
 [node name="Score9" type="RichTextLabel" parent="SubmenuTablaClasificacion/Leaderboard" unique_id=1501875016]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 30
-text = "Score"
 fit_content = true
 
 [node name="Score10" type="RichTextLabel" parent="SubmenuTablaClasificacion/Leaderboard" unique_id=488317284]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 30
-text = "Score"
 fit_content = true
 
 [node name="SubmenuComoJugar" type="Panel" parent="." unique_id=1917885997 groups=["Submenus"]]
@@ -1151,7 +1153,7 @@ Puedes luchar estando desarmado o armado.
 
 [center][img=300]res://assets/sprites/ui_y_efectos/como_jugar_4.png[/img][/center]
 
-[center][color=ed1c24][font_size=50]DURACIÓN DE ARMAS[/font_size][/color][/center]
+[center][color=ed1c24][font_size=50]DURABILIDAD DE ARMAS[/font_size][/color][/center]
 [hr color=ed1c24]
 Cada vez que te equipes una arma se descarta la anterior.
 
@@ -1348,9 +1350,12 @@ layout_mode = 2
 alignment = 1
 
 [node name="CheckFullscreen" type="CheckButton" parent="SubmenuOpciones/VBoxContainer/HBoxContainer" unique_id=1248212099]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = " Pantalla completa"
+text = "Pantalla
+completa"
+alignment = 1
 
 [node name="CheckJQKANumbers" type="CheckButton" parent="SubmenuOpciones/VBoxContainer/HBoxContainer" unique_id=531501343]
 z_index = 1
@@ -1359,6 +1364,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = " Mostrar JQKA
  como números"
+alignment = 1
 
 [node name="SpriteJQKA" type="Sprite2D" parent="SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers" unique_id=1640436627]
 position = Vector2(83, 71)
@@ -1381,6 +1387,15 @@ theme = ExtResource("63_smrt3")
 theme_type_variation = &"panel_sin_borde"
 theme_override_styles/panel = SubResource("StyleBoxFlat_v6ae4")
 metadata/_edit_use_anchors_ = true
+
+[node name="AnimatedButton" type="Button" parent="SubmenuOpciones/VBoxContainer/HBoxContainer" unique_id=1364194862]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Salir del
+juego"
+script = ExtResource("56_t6u78")
+metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
 [node name="Titulo" type="Control" parent="." unique_id=1952970309]
 z_index = -1
@@ -1645,7 +1660,7 @@ label_settings = SubResource("LabelSettings_arrj7")
 [node name="Personaje" type="Sprite2D" parent="." unique_id=573426345]
 z_index = -2
 position = Vector2(809.2945, 514.25)
-scale = Vector2(2.561, 1.514)
+scale = Vector2(2, 2)
 texture = ExtResource("61_baqjt")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Personaje" unique_id=1381709606]
@@ -1749,11 +1764,13 @@ autoplay = &"animacion_menu"
 [connection signal="value_changed" from="SubmenuModificadores/ScrollContainer/VBoxContainer/HerreriaCartasExtra2/Herreria" to="SubmenuModificadores/ScrollContainer/VBoxContainer/HerreriaCartasExtra2/Herreria" method="_on_value_changed"]
 [connection signal="value_changed" from="SubmenuModificadores/ScrollContainer/VBoxContainer/BombaCartasExtra3/Bomba" to="SubmenuModificadores/ScrollContainer/VBoxContainer/BombaCartasExtra3/Bomba" method="_on_value_changed"]
 [connection signal="toggled" from="SubmenuModificadores/ScrollContainer/VBoxContainer/Label/AlternarTodas" to="." method="_on_alternar_todas_toggled"]
+[connection signal="button_up" from="SubmenuComoJugar/Tutorial" to="." method="_on_tutorial_button_up"]
 [connection signal="value_changed" from="SubmenuOpciones/VBoxContainer/HBoxContainer3/VolumenMasterSlider" to="SubmenuOpciones/VBoxContainer/HBoxContainer3/VolumenMasterSlider" method="_on_value_changed"]
 [connection signal="value_changed" from="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider" to="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider" method="_on_value_changed"]
 [connection signal="value_changed" from="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" to="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" method="_on_value_changed"]
 [connection signal="toggled" from="SubmenuOpciones/VBoxContainer/HBoxContainer/CheckFullscreen" to="." method="_on_check_fullscreen_toggled"]
 [connection signal="toggled" from="SubmenuOpciones/VBoxContainer/HBoxContainer/CheckJQKANumbers" to="." method="_on_check_jqka_numbers_toggled"]
+[connection signal="button_up" from="SubmenuOpciones/VBoxContainer/HBoxContainer/AnimatedButton" to="." method="_on_animated_button_button_up"]
 [connection signal="button_up" from="Botones/Jugar" to="." method="_on_jugar_button_up"]
 [connection signal="button_up" from="Botones/TablaClasificacion" to="." method="_on_tabla_clasificacion_button_up"]
 [connection signal="button_up" from="Botones/ComoJugar" to="." method="_on_como_jugar_button_up"]
