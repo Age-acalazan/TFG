@@ -30,7 +30,7 @@ func _ready() -> void:
 
 
 func oro_aleatorio_pesado(valor : int):
-	return ceili(randi_range(100,150)*valor/10.0)
+	return ceili(randi_range(50,100)*valor/10.0)
 
 func poner_en_rojo(nodo : Node):
 	var tween = create_tween()

@@ -46,6 +46,7 @@
 [ext_resource type="Texture2D" uid="uid://bjmlc3wfi874y" path="res://assets/sprites/ui_y_efectos/Explosion.png" id="28_yjeck"]
 [ext_resource type="Texture2D" uid="uid://dy3xsyy6716pq" path="res://assets/sprites/ui_y_efectos/explosion-2.png" id="29_om6g6"]
 [ext_resource type="Texture2D" uid="uid://cemdpm8dvbv8b" path="res://assets/sprites/ui_y_efectos/dolar.png" id="32_8x0ef"]
+[ext_resource type="Script" uid="uid://dpkxgnxww5vam" path="res://scripts/timer_reto.gd" id="36_gykd2"]
 [ext_resource type="Texture2D" uid="uid://dupsudt32h7ds" path="res://assets/sprites/pasillo_mazmorra/puertaxd.png" id="41_uleqa"]
 [ext_resource type="Texture2D" uid="uid://dfxe3745yedau" path="res://assets/sprites/ui_y_efectos/UI_partida.png" id="49_gykd2"]
 
@@ -775,6 +776,32 @@ position = Vector2(175, 320.77704)
 scale = Vector2(2.391892, 2.391892)
 texture = ExtResource("49_gykd2")
 
+[node name="TiempoRestante" type="Label" parent="HUD" unique_id=1816659294]
+visible = false
+layout_mode = 0
+offset_left = 624.0
+offset_top = 8.0
+offset_right = 784.0
+offset_bottom = 71.0
+theme = ExtResource("24_g0h0e")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 56
+text = "120"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="HUD/TiempoRestante" unique_id=242571937]
+z_index = -1
+layout_mode = 0
+offset_left = -16.0
+offset_top = -56.0
+offset_right = 176.0
+offset_bottom = 96.0
+
+[node name="TimerReto" type="Timer" parent="HUD" unique_id=639125949]
+wait_time = 120.0
+one_shot = true
+script = ExtResource("36_gykd2")
+
 [node name="FadeNegro" type="ColorRect" parent="." unique_id=1282061690]
 visible = false
 z_index = 1
@@ -1307,6 +1334,7 @@ offset_bottom = 8.0
 [connection signal="pressed" from="HUD/CambiarArma" to="." method="_on_cambiar_arma_pressed"]
 [connection signal="pressed" from="HUD/Huir" to="." method="_on_huir_pressed"]
 [connection signal="button_up" from="HUD/Opciones" to="." method="_on_opciones_button_up"]
+[connection signal="timeout" from="HUD/TimerReto" to="." method="_on_timer_reto_timeout"]
 [connection signal="button_up" from="FinPartida/Menu" to="." method="_on_menu_button_up"]
 [connection signal="value_changed" from="SubmenuOpciones/VBoxContainer/HBoxContainer3/VolumenMasterSlider" to="SubmenuOpciones/VBoxContainer/HBoxContainer3/VolumenMasterSlider" method="_on_value_changed"]
 [connection signal="value_changed" from="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider" to="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider" method="_on_value_changed"]

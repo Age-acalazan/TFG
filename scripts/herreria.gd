@@ -15,7 +15,7 @@ func _ready() -> void:
 		$NoTieneArma.visible = false
 		$TieneArma/ImagenArma.texture = load("res://assets/sprites/armas/"+str(valor_arma)+"d.png")
 		$TieneArma/LabelActual.text = "Durabilidad\nactual:\n"+str(durabilidad_actual)
-		precio = ceili(randi_range(100,150)*valor_arma/10.0)
+		precio = ceili(randi_range(50,100)*valor_arma/10.0)
 		$TieneArma/Precio.text = "Precio: "+str(precio)
 		if oro < precio:
 			$TieneArma/Reparar.disabled = true

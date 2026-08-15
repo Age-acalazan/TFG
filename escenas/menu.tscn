@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://bd4pbq2m3apu0" path="res://assets/sprites/monstruos/4p.png" id="7_f5v4n"]
 [ext_resource type="Texture2D" uid="uid://bvqol24juvt4n" path="res://assets/sprites/ui_y_efectos/corazon.png" id="8_ktgrc"]
 [ext_resource type="Texture2D" uid="uid://b4tljv6b7khk" path="res://assets/sprites/monstruos/4t.png" id="8_mxagn"]
+[ext_resource type="Texture2D" uid="uid://dky5s0lrmgb2l" path="res://assets/sprites/ui_y_efectos/slider_grabber.png" id="9_arrj7"]
 [ext_resource type="Texture2D" uid="uid://cbkjb64yfiygm" path="res://assets/sprites/monstruos/5p.png" id="9_tatqo"]
 [ext_resource type="Texture2D" uid="uid://cj27gx88hh4e5" path="res://assets/sprites/monstruos/5t.png" id="10_mg5w1"]
 [ext_resource type="Texture2D" uid="uid://br7lfqfwg02s5" path="res://assets/sprites/monstruos/6p.png" id="11_v6ae4"]
@@ -600,48 +601,110 @@ bus = &"SFX"
 
 [node name="AudioAnimacion" type="AudioStreamPlayer" parent="." unique_id=1647139860]
 
+[node name="SubmenuJugar" type="Panel" parent="." unique_id=1623471240 groups=["Submenus"]]
+visible = false
+z_index = 1
+z_as_relative = false
+offset_left = 536.0
+offset_top = 160.0
+offset_right = 1083.0
+offset_bottom = 540.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme = ExtResource("63_smrt3")
+
+[node name="JugarSimple" type="Button" parent="SubmenuJugar" unique_id=1499179794]
+z_index = 3
+layout_mode = 0
+offset_left = 116.0
+offset_top = 65.0
+offset_right = 416.0
+offset_bottom = 158.0
+offset_transform_enabled = true
+text = "PARTIDA SIMPLE"
+script = ExtResource("56_t6u78")
+metadata/_custom_type_script = "uid://b0e3f1taa4udn"
+
+[node name="BotonMenuModificadores" type="Button" parent="SubmenuJugar" unique_id=269324179]
+z_index = 3
+layout_mode = 0
+offset_left = 116.0
+offset_top = 209.0
+offset_right = 416.0
+offset_bottom = 303.0
+offset_transform_enabled = true
+text = "PARTIDA CON
+ MODIFICADORES"
+script = ExtResource("56_t6u78")
+metadata/_custom_type_script = "uid://b0e3f1taa4udn"
+
 [node name="SubmenuModificadores" type="Panel" parent="." unique_id=2083655635 groups=["Submenus"]]
 visible = false
 z_index = 1
 z_as_relative = false
 offset_left = 472.0
 offset_top = 160.0
-offset_right = 1147.0
-offset_bottom = 540.0
+offset_right = 1144.0
+offset_bottom = 624.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 theme = ExtResource("63_smrt3")
-
-[node name="JugarSimple" type="Button" parent="SubmenuModificadores" unique_id=1499179794]
-z_index = 3
-layout_mode = 0
-offset_left = 42.0
-offset_top = 385.0
-offset_right = 330.0
-offset_bottom = 478.0
-offset_transform_enabled = true
-text = "PARTIDA SIMPLE"
-script = ExtResource("56_t6u78")
-metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
 [node name="JugarModificadores" type="Button" parent="SubmenuModificadores" unique_id=1576979494]
 z_index = 3
 layout_mode = 0
-offset_left = 342.0
-offset_top = 385.0
-offset_right = 630.0
-offset_bottom = 479.0
+offset_left = 424.0
+offset_top = -120.0
+offset_right = 648.0
+offset_bottom = -33.0
 offset_transform_enabled = true
-text = "PARTIDA CON MODIFICADORES"
+text = "JUGAR
+"
 autowrap_mode = 2
 script = ExtResource("56_t6u78")
 metadata/_custom_type_script = "uid://b0e3f1taa4udn"
+
+[node name="OptionButton" type="OptionButton" parent="SubmenuModificadores" unique_id=1609341849]
+custom_maximum_size = Vector2(224, -1)
+layout_mode = 0
+offset_left = 188.0
+offset_top = -119.0
+offset_right = 412.0
+offset_bottom = -32.0
+theme_override_font_sizes/font_size = 33
+alignment = 1
+autowrap_mode = 2
+selected = 0
+fit_to_longest_item = false
+item_count = 8
+popup/item_0/text = "Modo libre"
+popup/item_0/id = 0
+popup/item_1/text = "De compras"
+popup/item_1/id = 1
+popup/item_2/text = "Speedrun"
+popup/item_2/id = 2
+popup/item_3/text = "Campo de minas"
+popup/item_3/id = 3
+popup/item_4/text = "Hardcore"
+popup/item_4/id = 4
+popup/item_5/text = "Crisis"
+popup/item_5/id = 5
+popup/item_6/text = "Hambruna"
+popup/item_6/id = 6
+popup/item_7/text = "Cada golpe cuenta"
+popup/item_7/id = 7
+
+[node name="GemaPasado" type="Sprite2D" parent="SubmenuModificadores/OptionButton" unique_id=137108648]
+visible = false
+modulate = Color(0, 2.1059341, 0, 1)
+position = Vector2(216, 87.999985)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("9_arrj7")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="SubmenuModificadores" unique_id=1127529475]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 30.0
 offset_right = 629.8305
-offset_bottom = 349.0
+offset_bottom = 433.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 0
@@ -1756,9 +1819,64 @@ root_node = NodePath("../Personaje")
 libraries/ = SubResource("AnimationLibrary_ktgrc")
 autoplay = &"animacion_menu"
 
+[node name="PopupTutorial" type="Control" parent="." unique_id=2145533522]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("63_smrt3")
+
+[node name="ColorRect" type="ColorRect" parent="PopupTutorial" unique_id=1111700727]
+layout_mode = 0
+offset_right = 1160.0
+offset_bottom = 648.0
+color = Color(1, 1, 1, 0)
+
+[node name="Panel" type="Panel" parent="PopupTutorial" unique_id=417149023]
+visible = false
+layout_mode = 1
+offset_left = 312.0
+offset_top = 192.0
+offset_right = 840.0
+offset_bottom = 448.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="Si" type="Button" parent="PopupTutorial/Panel" unique_id=1457489004]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 128.0
+offset_right = 232.0
+offset_bottom = 193.0
+text = "Si"
+script = ExtResource("56_t6u78")
+metadata/_custom_type_script = "uid://b0e3f1taa4udn"
+
+[node name="No" type="Button" parent="PopupTutorial/Panel" unique_id=1793059902]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 128.0
+offset_right = 416.0
+offset_bottom = 193.0
+text = "No
+"
+script = ExtResource("56_t6u78")
+metadata/_custom_type_script = "uid://b0e3f1taa4udn"
+
+[node name="Label" type="Label" parent="PopupTutorial/Panel" unique_id=1570510202]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 56.0
+offset_right = 469.0
+offset_bottom = 101.0
+theme_override_font_sizes/font_size = 35
+text = "¿Quieres jugar el tutorial?"
+
 [connection signal="finished" from="BGM" to="BGM" method="_on_finished"]
-[connection signal="button_up" from="SubmenuModificadores/JugarSimple" to="." method="_on_jugar_simple_button_up"]
+[connection signal="button_up" from="SubmenuJugar/JugarSimple" to="." method="_on_jugar_simple_button_up"]
+[connection signal="button_up" from="SubmenuJugar/BotonMenuModificadores" to="." method="_on_boton_menu_modificadores_button_up"]
 [connection signal="button_up" from="SubmenuModificadores/JugarModificadores" to="." method="_on_jugar_modificadores_button_up"]
+[connection signal="item_selected" from="SubmenuModificadores/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="value_changed" from="SubmenuModificadores/ScrollContainer/VBoxContainer/VidaMaxima/SliderVidaMax" to="SubmenuModificadores/ScrollContainer/VBoxContainer/VidaMaxima/SliderVidaMax" method="_on_value_changed"]
 [connection signal="value_changed" from="SubmenuModificadores/ScrollContainer/VBoxContainer/TiendaCartasExtra/Tienda" to="SubmenuModificadores/ScrollContainer/VBoxContainer/TiendaCartasExtra/Tienda" method="_on_value_changed"]
 [connection signal="value_changed" from="SubmenuModificadores/ScrollContainer/VBoxContainer/HerreriaCartasExtra2/Herreria" to="SubmenuModificadores/ScrollContainer/VBoxContainer/HerreriaCartasExtra2/Herreria" method="_on_value_changed"]
@@ -1776,3 +1894,6 @@ autoplay = &"animacion_menu"
 [connection signal="button_up" from="Botones/ComoJugar" to="." method="_on_como_jugar_button_up"]
 [connection signal="button_up" from="Botones/Creditos" to="." method="_on_creditos_button_up"]
 [connection signal="button_up" from="Botones/Opciones" to="." method="_on_opciones_button_up"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="button_up" from="PopupTutorial/Panel/Si" to="." method="_on_si_button_up"]
+[connection signal="button_up" from="PopupTutorial/Panel/No" to="." method="_on_no_button_up"]

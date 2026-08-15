@@ -22,7 +22,7 @@ func _ready():
 
 # Cuando se clica
 func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if event is InputEventMouseButton and event.pressed:
+	if event is InputEventMouseButton and event.is_pressed() and event.get_button_index() == 1:
 		emit_signal("carta_clicada", self)
 
 #________________________________________________________________

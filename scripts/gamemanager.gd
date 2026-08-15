@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var vida_max : int 
-var vida : int :
+var vida : int = 20:
 	set(valor):
 		if vida < valor:
 			$HUD/LabelVida.modulate = Color.GREEN
@@ -51,6 +51,7 @@ var oro : int:
 	set(valor):
 		oro = valor
 		$HUD/Oro.set_text(str(oro))
+var reto_activo : int = 0
 
 var particulas_curacion_escena = preload("res://escenas/particulas_curacion.tscn")
 var animaciones_arma_escena = preload("res://escenas/animaciones_armas.tscn")
@@ -87,7 +88,6 @@ var imagen_puño = preload("res://assets/sprites/ui_y_efectos/puño.png")
 
 func _ready():
 	baraja.inicializar_partida()
-	vida = vida_max
 	usando_arma = false
 	oro = 0
 	label_arma.text="Sin arma"
@@ -97,6 +97,11 @@ func _ready():
 	$HUD/Oro.visible = true if baraja.modificadores_activos else false
 	actualizar_interfaz_ajustes()
 	conectar_botones_con_sonido()
+	if reto_activo == 2:
+		$HUD/TimerReto.start()
+		$HUD/TiempoRestante.visible = true
+	elif reto_activo == 5:
+		oro = 100
 
 func conectar_botones_con_sonido():
 	# Lista de nodos tipo boton cuyos sonidos de hover o click son los básicos
@@ -302,6 +307,10 @@ func victoria():
 	mostrar_puntuacion(vida)
 	if !baraja.modificadores_activos:
 		$FinPartida/Panel/Leaderboard.save_score(vida)
+	#Guardar flag del reto | La primera condición no es necesaria, pero la pongo por legibilidad
+	if baraja.modificadores_activos and reto_activo != 0: 
+		guardar_flag_reto()
+	
 	$FinPartida/Panel/Leaderboard.show_leaderboard()
 	
 	$Sonido/MusicaFinPartida.stream = preload("uid://cdqt0oe741oie")
@@ -331,6 +340,29 @@ func mostrar_puntuacion(puntos : int):
 		1.5 #Tiempo desde el inicio hasta el final del tween
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	
+func guardar_flag_reto():
+	print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+	var filepath = "user://retos_flags.json"
+	var file : FileAccess
+	var flag_array : Array[bool] = [false, false, false, false, false, false, false]
+		
+	#Lee el archivo si existe
+	if FileAccess.file_exists(filepath):
+		file = FileAccess.open(filepath, FileAccess.READ)
+		var content = file.get_as_text()
+		file.close()
+		
+		var parsed = JSON.parse_string(content)
+		if parsed is Array:
+			flag_array = parsed
+	
+	#Modifica la entrada del reto actual
+	flag_array[reto_activo-1] = true
+
+	#Guarda en el archivo de vuelta
+	file = FileAccess.open(filepath, FileAccess.WRITE)
+	file.store_string(JSON.stringify(flag_array))
+	file.close()
 
 func borrar_carta(carta : Carta):
 	carta.desactivar()
@@ -453,3 +485,7 @@ func _on_button_button_up() -> void:
 
 func _on_animated_button_button_up() -> void:
 	get_tree().quit()
+
+
+func _on_timer_reto_timeout() -> void:
+	muerte()

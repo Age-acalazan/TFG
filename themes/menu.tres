@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bmg5jt2rmx6oc" path="res://assets/sprites/ui_y_efectos/slider_grabber_highlight.png" id="3_pw0cd"]
 [ext_resource type="Texture2D" uid="uid://7v2lfpu8g4m" path="res://assets/sprites/ui_y_efectos/bordes_panel.png" id="3_rukvw"]
 [ext_resource type="Texture2D" uid="uid://dujs0c55jij88" path="res://assets/sprites/ui_y_efectos/slider_grabber_area.png" id="4_be6oh"]
+[ext_resource type="Texture2D" uid="uid://dngg85hkslugw" path="res://assets/sprites/ui_y_efectos/flecha_dropdown.png" id="5_cg3em"]
 [ext_resource type="StyleBox" uid="uid://cggbrq0141nq0" path="res://themes/style_box_sin_borde.tres" id="5_rukvw"]
 [ext_resource type="StyleBox" uid="uid://dqb6i6ejuooq8" path="res://themes/style_box_borde_blanco.tres" id="6_0mtrw"]
 
@@ -114,6 +115,28 @@ texture_margin_right = 51.47651
 texture_margin_bottom = 52.983086
 region_rect = Rect2(0, 0, 100, 100)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fbcv1"]
+bg_color = Color(0.9372549, 0.89411765, 0.6901961, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pwq8t"]
+bg_color = Color(0.53333336, 0, 0.08235294, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_pwax5"]
+thickness = 3
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hd55h"]
 bg_color = Color(0.6392157, 0.28627452, 0.6431373, 1)
 border_width_left = 2
@@ -163,6 +186,7 @@ CheckButton/styles/hover_pressed = SubResource("StyleBoxFlat_cg3em")
 CheckButton/styles/normal = SubResource("StyleBoxFlat_2yrsw")
 CheckButton/styles/pressed = SubResource("StyleBoxFlat_jety4")
 HSlider/icons/grabber = ExtResource("2_pw0cd")
+HSlider/icons/grabber_disabled = ExtResource("2_pw0cd")
 HSlider/icons/grabber_highlight = ExtResource("3_pw0cd")
 HSlider/styles/grabber_area = SubResource("StyleBoxTexture_rqgnr")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_rqgnr")
@@ -170,7 +194,17 @@ HSlider/styles/slider = SubResource("StyleBoxLine_be6oh")
 Label/colors/font_color = Color(0.92941177, 0.10980392, 0.14117648, 1)
 Label/constants/outline_size = 6
 Label/fonts/font = ExtResource("1_im3bc")
+OptionButton/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+OptionButton/icons/arrow = ExtResource("5_cg3em")
 Panel/styles/panel = SubResource("StyleBoxTexture_j4ovl")
+PopupMenu/colors/font_color = Color(1, 1, 1, 1)
+PopupMenu/constants/outline_size = 4
+PopupMenu/font_sizes/font_size = 22
+PopupMenu/fonts/font = ExtResource("1_im3bc")
+PopupMenu/icons/radio_checked = ExtResource("2_pw0cd")
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_fbcv1")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_pwq8t")
+PopupMenu/styles/separator = SubResource("StyleBoxLine_pwax5")
 RichTextLabel/constants/outline_size = 4
 RichTextLabel/fonts/normal_font = ExtResource("1_im3bc")
 RichTextLabel/styles/normal = ExtResource("5_rukvw")
