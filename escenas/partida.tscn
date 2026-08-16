@@ -685,6 +685,7 @@ text = "44/44"
 horizontal_alignment = 2
 
 [node name="Oro" type="Label" parent="HUD" unique_id=2061341664]
+visible = false
 layout_mode = 0
 offset_left = 776.0
 offset_top = 56.0
@@ -830,12 +831,24 @@ horizontal_alignment = 1
 
 [node name="Menu" type="Button" parent="FinPartida" unique_id=1839784645]
 layout_mode = 0
-offset_left = 320.0
+offset_left = 280.0
 offset_top = 530.0
-offset_right = 832.0
-offset_bottom = 614.0
+offset_right = 560.0
+offset_bottom = 626.0
 theme_override_font_sizes/font_size = 41
-text = "Volver al menú de inicio"
+text = "Volver al menú
+de inicio"
+script = ExtResource("24_bwgp7")
+metadata/_custom_type_script = "uid://b0e3f1taa4udn"
+
+[node name="VolverAJugar" type="Button" parent="FinPartida" unique_id=6956180]
+layout_mode = 0
+offset_left = 592.0
+offset_top = 530.0
+offset_right = 872.0
+offset_bottom = 626.0
+theme_override_font_sizes/font_size = 41
+text = "Volver a jugar"
 script = ExtResource("24_bwgp7")
 metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
@@ -1336,6 +1349,7 @@ offset_bottom = 8.0
 [connection signal="button_up" from="HUD/Opciones" to="." method="_on_opciones_button_up"]
 [connection signal="timeout" from="HUD/TimerReto" to="." method="_on_timer_reto_timeout"]
 [connection signal="button_up" from="FinPartida/Menu" to="." method="_on_menu_button_up"]
+[connection signal="button_up" from="FinPartida/VolverAJugar" to="." method="_on_volver_a_jugar_button_up"]
 [connection signal="value_changed" from="SubmenuOpciones/VBoxContainer/HBoxContainer3/VolumenMasterSlider" to="SubmenuOpciones/VBoxContainer/HBoxContainer3/VolumenMasterSlider" method="_on_value_changed"]
 [connection signal="value_changed" from="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider" to="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenMusicaSlider" method="_on_value_changed"]
 [connection signal="value_changed" from="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" to="SubmenuOpciones/VBoxContainer/HBoxContainer2/VolumenSFXSlider" method="_on_value_changed"]

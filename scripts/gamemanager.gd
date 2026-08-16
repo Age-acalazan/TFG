@@ -94,14 +94,17 @@ func _ready():
 	label_monstruo_anterior.text="Sin monstruo anterior"
 	numero_total_cartas = baraja.baraja.size()+4
 	$HUD/LabelRestantes.text = str(baraja.baraja.size()+baraja.sala.size())+"/"+str(numero_total_cartas)
-	$HUD/Oro.visible = true if baraja.modificadores_activos else false
 	actualizar_interfaz_ajustes()
 	conectar_botones_con_sonido()
-	if reto_activo == 2:
-		$HUD/TimerReto.start()
-		$HUD/TiempoRestante.visible = true
-	elif reto_activo == 5:
-		oro = 100
+	match reto_activo:
+		2:
+			$HUD/TimerReto.start()
+			$HUD/TiempoRestante.visible = true
+		5, 7:
+			oro = 200
+	if baraja.modificadores_activos and (baraja.num_cartas_extra.get("Tienda")>0 or baraja.num_cartas_extra.get("Herreria")>0):
+		$HUD/Oro.visible = true
+	
 
 func conectar_botones_con_sonido():
 	# Lista de nodos tipo boton cuyos sonidos de hover o click son los básicos
@@ -257,6 +260,7 @@ func _on_baraja_carta_clicada(carta: Carta) -> void:
 	if baraja.check_no_mas_cartas() and vida > 0:
 		victoria()
 		$HUD/Opciones.disabled = true
+		$HUD/TimerReto.stop()
 
 
 func muerte():
@@ -298,6 +302,7 @@ func victoria():
 	$Sonido/BGM.stop()
 	# Se reproduce la cinemática del final
 	if !baraja.modificadores_activos:
+		$FadeNegro.visible = false
 		var cinematica_final = preload("res://escenas/cinematica_final.tscn").instantiate()
 		add_child(cinematica_final)
 		await cinematica_final.get_node("AnimationPlayer").animation_finished
@@ -341,7 +346,6 @@ func mostrar_puntuacion(puntos : int):
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	
 func guardar_flag_reto():
-	print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
 	var filepath = "user://retos_flags.json"
 	var file : FileAccess
 	var flag_array : Array[bool] = [false, false, false, false, false, false, false]
@@ -489,3 +493,22 @@ func _on_animated_button_button_up() -> void:
 
 func _on_timer_reto_timeout() -> void:
 	muerte()
+
+
+func _on_volver_a_jugar_button_up() -> void:
+	
+	# Se precarga la escena...
+	var partida = preload("res://escenas/partida.tscn").instantiate()
+	var baraja_nodo = partida.get_node("Baraja")
+	# ...para seguidamente adignarlo los valores obtenidos
+	baraja_nodo.modificadores_activos = baraja.modificadores_activos
+	baraja_nodo.flags_cartas = baraja.flags_cartas
+	baraja_nodo.num_cartas_extra = baraja.num_cartas_extra
+	partida.vida_max = vida_max
+	partida.vida = vida_max
+	partida.reto_activo = reto_activo
+	
+	# Se cambia de escena
+	get_tree().root.add_child(partida)
+	get_tree().current_scene.queue_free()
+	get_tree().current_scene = partida

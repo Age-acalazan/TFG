@@ -252,8 +252,8 @@ func _on_option_button_item_selected(index: int) -> void:
 		4: #Hardcore 10 de vida
 			set_modificadores(10,0,0,0)
 			$SubmenuModificadores/OptionButton/GemaPasado.visible = flags_retos[3]
-		5: #Crisis 50 de vida 3 tiendas sin armas ni vida
-			set_modificadores(50,3,0,0,["2c","3c","4c","5c","6c","7c","8c","9c","10c","2d","3d","4d","5d","6d","7d","8d","9d","10d"])
+		5: #Crisis 50 de vida 5 tiendas sin armas ni vida
+			set_modificadores(50,5,0,0,["2c","3c","4c","5c","6c","7c","8c","9c","10c","2d","3d","4d","5d","6d","7d","8d","9d","10d"])
 			$SubmenuModificadores/OptionButton/GemaPasado.visible = flags_retos[4]
 		6: #Hambruna 40 de vida sin recuperacion de vida
 			set_modificadores(40,0,0,0,["2c","3c","4c","5c","6c","7c","8c","9c","10c"])
