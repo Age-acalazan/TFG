@@ -321,21 +321,13 @@ func victoria():
 	$Sonido/MusicaFinPartida.stream = preload("uid://cdqt0oe741oie")
 	$Sonido/MusicaFinPartida.play()
 
-# Función que usa un tween para cambiar poco a poco la puntuación displayeada
+# Función que usa un tween para cambiar poco a poco la puntuación mostrada
 func mostrar_puntuacion(puntos : int):
 	var label := $FinPartida/Puntos
-	# Cancelar tween previo si existe
-	if label.has_meta("puntos_tween"):
-		var old_tween: Tween = label.get_meta("puntos_tween")
-		if old_tween:
-			old_tween.kill()
-	
-	var tween := create_tween()
-	label.set_meta("puntos_tween", tween)
-	
 	var actual := 0
-	label.text = "0 puntos"
+	var tween := create_tween()
 	
+	label.text = "0 puntos"
 	
 	tween.tween_method(
 		func(value):

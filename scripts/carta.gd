@@ -56,7 +56,7 @@ func _on_area_2d_mouse_entered():
 	create_tween().tween_property(sprite_2d,
 	"position",
 	Vector2(0,-HOVER_ARRIBA),
-	HOVER_TIEMPO)#.set_ease(Tween.EASE_IN)
+	HOVER_TIEMPO)
 	if palo_carta == PALO.PICAS or palo_carta == PALO.TREBOLES:
 		$PrediccionDaño.visible = true
 		emit_signal("cursor_entra_area_monstruo", self)
@@ -66,7 +66,7 @@ func _on_area_2d_mouse_exited() -> void:
 	create_tween().tween_property(sprite_2d,
 	"position",
 	Vector2(0,0),
-	HOVER_TIEMPO)#.set_ease(Tween.EASE_IN)
+	HOVER_TIEMPO)
 	$PrediccionDaño.visible = false
 
 func animacion_borrar():

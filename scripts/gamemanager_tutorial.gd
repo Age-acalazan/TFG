@@ -55,7 +55,6 @@ var paso : int = 1:
 	set(valor):
 		paso = valor
 		paso_actualizado()
-		print(paso)
 var monstruo_7_clicado : bool = false
 var monstruo_8_clicado : bool = false
 

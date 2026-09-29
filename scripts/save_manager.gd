@@ -2,7 +2,7 @@ extends VBoxContainer
 
 const SAVE_PATH := "user://leaderboard.json"
 
-func save_score(score: int) -> void:
+func save_score(score: int):
 	var leaderboard := []
 	var file : FileAccess
 
@@ -43,7 +43,7 @@ func load_leaderboard() -> Array:
 	
 	return []
 
-func format_datetime(iso_string: String) -> String:
+func format_datetime(iso_string: String):
 	var dt = Time.get_datetime_dict_from_datetime_string(iso_string,false)
 	return "%04d-%02d-%02d %02d:%02d" % [
 		dt.year,
@@ -62,7 +62,7 @@ func show_leaderboard():
 	var score_nodes := get_children()
 	var i = 0
 	for entry in leaderboard:
-		score_nodes[i].text = " Puntos: " + str(int(entry["score"])) +" | Fecha: " +format_datetime(str(entry["datetime"]))	
+		score_nodes[i].text = " Puntos: " + str(int(entry["score"])) +" | Fecha: " +format_datetime(str(entry["datetime"]))
 		i +=1
 		if i >= 10:
 			break

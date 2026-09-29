@@ -236,7 +236,7 @@ func _on_option_button_item_selected(index: int) -> void:
 		$SubmenuModificadores/ScrollContainer/VBoxContainer/HerreriaCartasExtra2/Herreria.modulate = Color(0.5,0.5,0.5,1)
 		$SubmenuModificadores/ScrollContainer/VBoxContainer/BombaCartasExtra3/Bomba.modulate = Color(0.5,0.5,0.5,1)
 		$SubmenuModificadores/ScrollContainer/VBoxContainer/Label/AlternarTodas.modulate = Color(0.5,0.5,0.5,1)
-
+		
 	match index:
 		0: #Modo libre
 			$SubmenuModificadores/OptionButton/GemaPasado.visible = false

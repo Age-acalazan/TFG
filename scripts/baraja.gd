@@ -179,7 +179,7 @@ func _on_carta_clicada(carta: Carta):
 	emit_signal("carta_clicada", carta)
 
 func _on_cursor_entra_area_monstruo(carta: Carta):
-	emit_signal("_on_cursor_entra_area_monstruo2", carta)	
+	emit_signal("_on_cursor_entra_area_monstruo2", carta)
 
 func huir():
 	# No encontré una mejor manera de hacer esto

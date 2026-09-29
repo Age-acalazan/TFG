@@ -1737,10 +1737,14 @@ speed_scale = 2.0
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_g4v7s")
 
-[node name="Botones" type="Node2D" parent="." unique_id=267885352]
-position = Vector2(480, 0)
+[node name="Botones" type="Control" parent="." unique_id=1222173788]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 480.0
+offset_right = 480.0
 
 [node name="Jugar" type="Button" parent="Botones" unique_id=787941081]
+layout_mode = 0
 offset_left = -416.0
 offset_top = 152.0
 offset_right = -56.0
@@ -1752,6 +1756,7 @@ script = ExtResource("56_t6u78")
 metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
 [node name="TablaClasificacion" type="Button" parent="Botones" unique_id=1285805953]
+layout_mode = 0
 offset_left = -416.0
 offset_top = 272.0
 offset_right = -56.0
@@ -1764,6 +1769,7 @@ script = ExtResource("56_t6u78")
 metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
 [node name="ComoJugar" type="Button" parent="Botones" unique_id=1486179282]
+layout_mode = 0
 offset_left = -416.0
 offset_top = 392.0
 offset_right = -56.0
@@ -1776,6 +1782,7 @@ script = ExtResource("56_t6u78")
 metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
 [node name="Creditos" type="Button" parent="Botones" unique_id=227821292]
+layout_mode = 0
 offset_left = -416.0
 offset_top = 512.0
 offset_right = -240.0
@@ -1787,6 +1794,7 @@ script = ExtResource("56_t6u78")
 metadata/_custom_type_script = "uid://b0e3f1taa4udn"
 
 [node name="Opciones" type="Button" parent="Botones" unique_id=663194430]
+layout_mode = 0
 offset_left = -232.0
 offset_top = 512.0
 offset_right = -55.99994
